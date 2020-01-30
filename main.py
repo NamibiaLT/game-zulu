@@ -183,14 +183,6 @@ def initGamePlay(arduino):
                 restartGame = True
 
 if __name__== "__main__":
-    
-    ##### LIGHT CONSTANTS #####
-    LIGHT_GREEN = arduino.get_pin('d:3:o')     # If pin "Invalid pin definition" it could be due to standard Firmata not recognizing ArduinoMEGA pins.
-    LIGHT_BLUE = arduino.get_pin('d:24:o')
-    LIGHT_YELLOW= arduino.get_pin('d:11:o')
-    LIGHT_1 = arduino.get_pin('d:23:o')
-    LIGHT_2 = arduino.get_pin('d:22:o')
-    LIGHT_3 = arduino.get_pin('d:2:o')
 
     mega = {
         'digital' : tuple(x for x in range(54)),
@@ -204,6 +196,14 @@ if __name__== "__main__":
         arduino = Arduino('/dev/ttyACM0', mega, 57600)
     except:
         arduino = Arduino('/dev/ttyACM1', mega, 57600)
+
+    ##### LIGHT CONSTANTS #####
+    LIGHT_GREEN = arduino.get_pin('d:3:o')     # If pin "Invalid pin definition" it could be due to standard Firmata not recognizing ArduinoMEGA pins.
+    LIGHT_BLUE = arduino.get_pin('d:24:o')
+    LIGHT_YELLOW= arduino.get_pin('d:11:o')
+    LIGHT_1 = arduino.get_pin('d:23:o')
+    LIGHT_2 = arduino.get_pin('d:22:o')
+    LIGHT_3 = arduino.get_pin('d:2:o')
 
     iterator = util.Iterator(arduino)   # Game is really slow. Would adding this iterator in another loop be better?
     iterator.start()
