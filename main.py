@@ -208,5 +208,7 @@ if __name__== "__main__":
 
     iterator = util.Iterator(arduino)   # Game is really slow. Would adding this iterator in another loop be better?
     iterator.start()
+    
+    time.sleep(1)
 
     main(arduino)
