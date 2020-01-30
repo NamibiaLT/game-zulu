@@ -68,7 +68,6 @@ soundData = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_ficti
 ##
 def main(arduino):
     while True:      #Main Loop. Keep the game on indefinitely.   
-        print(buttonsPressed(['blue']))
         initPregame()      
         #TODO: Refactor arduino/python code to send character strings rather than integer values        
         if buttonsPressed(['start']): #Start Game
@@ -200,8 +199,9 @@ if __name__== "__main__":
                 return False
             if (button.read() == False):
                 buttonsPressedCount += 1
-        print('button array: ', len(buttonArray))
-        print('buttonsPressedCount: ', buttonsPressedCount)
+        if (buttonArray[0] == 'start'):
+            print('button array: ', len(buttonArray))
+            print('buttonsPressedCount: ', buttonsPressedCount)
         if len(buttonArray) == buttonsPressedCount:
             return True
         return False
