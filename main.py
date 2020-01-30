@@ -1,12 +1,11 @@
 import serial
 import pygame
 import time
-import logging
+from logging import Logger
 from pyfirmata import Arduino, util
 pygame.mixer.init()
 
 #GENERAL TODO
-#Replace all print() with Logging.info("..."). See: https://realpython.com/python-logging/
 #TODO: Figure out why game is slow to respond to button pressed at the beginning.
     #Maybe will try inputFirmata firmware on arduino
 
@@ -32,8 +31,8 @@ soundData = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_ficti
 
 
 def buttonPressed(buttonType): #Do I need this function? Would this be better code?
-    print('buttonType', buttonType)
-    print('buttonType read', buttonType.read())
+    Logger.info('standard', 'buttonType', buttonType)
+    Logger.info('standard', 'buttonType read', buttonType.read())
     if buttonType.read() == False:
         return buttonType
     return False
@@ -47,7 +46,7 @@ def main(arduino):
     while True:      #Main Loop. Keep the game on indefinitely.   
         initPregame()      
         #TODO: Refactor arduino/python code to send character strings rather than integer values        
-        print(BUTTON_ALL)  
+        Logger.info('standard', 'BUTTON_ALL')  
         if BUTTON_START.read() == False: #Start Game
             exitPregame()
             initGamePlay(arduino)
@@ -55,18 +54,18 @@ def main(arduino):
 def initPregame():
     #lightPressed = bytes(arduino.write(10))
     #LIGHT_GREEN.write(1)
-    print("Initializing Pregame")
+    Logger.info('standard', "Initializing Pregame")
     soundIntroMusic.set_volume(0.5)
     soundIntroMusic.play(-1)
     #TODO: Illuminate blinking greenlight.
     #arduino.writeline("greenlight") blink
 
 def exitPregame():
-    print("Exiting Pregame")   
+    Logger.info('standard', "Exiting Pregame")   
     pygame.mixer.stop()     #Stop all music  
 
 def exitGamePlay():
-    print("Exiting GamePlay")
+    Logger.info('standard', "Exiting GamePlay")
     LIGHT_GREEN.write(0)
     pygame.mixer.stop()     #Stop all music
     while BUTTON_RESTART.read() == True:
@@ -89,7 +88,7 @@ def initGamePlay(arduino):
     #TODO: Illuminate greenlight.
     #arduino.writeline("greenlight")
     LIGHT_GREEN.write(1)
-    print("Initializing Game Play")    
+    Logger.info('standard', "Initializing Game Play")    
     restartGame = False
     while restartGame == False:
         #int(arduino.write(11))
@@ -102,7 +101,7 @@ def initGamePlay(arduino):
         time.sleep(2)               
         soundGamePlay.play(-1)        
         
-        print("Game Play Loop")
+        Logger.info('standard', "Game Play Loop")
 
         while restartGame == False:     #Put this loop here because the initGamePlay sounds kept cycling            
 #            #Sequence 3 LEDS from Right to LEFT...Need help with for loop.
@@ -117,7 +116,7 @@ def initGamePlay(arduino):
                 pygame.mixer.stop()
                 soundSuccess.play()
                 time.sleep(2)
-                print("Game Success")
+                Logger.info('standard', "Game Success")
                 restartGame = exitGamePlay()
 
             if BUTTON_YELLOW.read() == False:
@@ -125,11 +124,11 @@ def initGamePlay(arduino):
                 pygame.mixer.Channel(0).play(soundIncomingMissile)
                 pygame.mixer.Channel(0).queue(soundExplosion)
                 time.sleep(5)
-                print("Game Failure")
+                Logger.info('standard', "Game Failure")
                 restartGame = exitGamePlay()
 
             if BUTTON_RESTART.read() == False:
-                print("Restart Button Pressed")
+                Logger.info('standard', "Restart Button Pressed")
                 LIGHT_GREEN.write(0)
                 pygame.mixer.stop()                
                 restartGame = True
