@@ -191,6 +191,9 @@ if __name__== "__main__":
     }
     
     def buttonsPressed(buttonArray):
+        if (buttonArray[0] == 'start'):
+            btn = buttonConverter['start']
+            print('start button is ', btn.read())
         for buttonName in buttonArray:
             try:
                 button = buttonConverter[buttonName]
