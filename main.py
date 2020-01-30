@@ -71,38 +71,30 @@ quit()
 #screen = pygame.display.set_mode((200,200))
 #pygame.display.update()
 
-def buttonsPressed(buttonArray):
-    buttonsPressedCount = 0
-    for buttonName in buttonArray:
-        button = getButton(buttonName)
-        if (button.read() == True):
-            buttonsPressedCount += 1
-    if len(buttonArray) == buttonsPressedCount:
-        return True
-    return False
-
 ##
 ##### MAIN CODE #####
 ##
 def main(arduino):
-    def getButton(button):
-        if (button == 'blue'):
-            return arduino.get_pin('d:4:i')
-        if (button == 'yellow'):
-            return arduino.get_pin('d:12:i')
-        if (button == 'start'):
-            return arduino.get_pin('d:6:i')
-        if (button == 'restart'):
-            return arduino.get_pin('d:5:i')
-        if (button == 'left'):
-            return arduino.get_pin('d:10:i')
-        if (button == 'right'):
-            return arduino.get_pin('d:9:i')
-        if (button == 'up'): 
-            return arduino.get_pin('d:8:i') #Temp Out of Service
-        if (button == 'down'):
-            return arduino.get_pin('d:7:i') #Temp Out of Service
-        return
+    buttonConverter = {
+        'blue': arduino.get_pin('d:4:i')
+        'yellow': arduino.get_pin('d:12:i')
+        'start': arduino.get_pin('d:6:i')
+        'restart': arduino.get_pin('d:5:i')
+        'left': arduino.get_pin('d:10:i')
+        'right': arduino.get_pin('d:9:i')
+        'up': arduino.get_pin('d:8:i')
+        'down': arduino.get_pin('d:7:i')
+    }
+    
+    def buttonsPressed(buttonArray):
+        buttonsPressedCount = 0
+        for buttonName in buttonArray:
+            button = buttonConverter(buttonName)
+            if (button.read() == True):
+                buttonsPressedCount += 1
+        if len(buttonArray) == buttonsPressedCount:
+            return True
+        return False
 
     while True:      #Main Loop. Keep the game on indefinitely.   
         print(buttonsPressed('blue'))
