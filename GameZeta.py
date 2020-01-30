@@ -30,11 +30,20 @@ soundData = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_ficti
 #screen = pygame.display.set_mode((200,200))
 #pygame.display.update()
 
+
+def buttonPressed(buttonType): #Do I need this function? Would this be better code?
+    print('buttonType', buttonType)
+    print('buttonType read', buttonType.read())
+    if buttonType.read() == False:
+        return buttonType
+    return False
+
 ##
 ##### MAIN CODE #####
 ##
 def main(arduino):
 
+    buttonPressed('BUTTON_START')
     while True:      #Main Loop. Keep the game on indefinitely.   
         initPregame()      
         #TODO: Refactor arduino/python code to send character strings rather than integer values        
@@ -124,32 +133,17 @@ def initGamePlay(arduino):
                 LIGHT_GREEN.write(0)
                 pygame.mixer.stop()                
                 restartGame = True
-    
-#def buttonPressed(): #Do I need this function? Would this be better code?
-#    if BUTTON_BLUE.read() == False:
-#        return "BUTTON_BLUE"
-#    else
-#        # Do nothing
-#    
-#    if BUTTON_YELLOW.read() == False:
-#        return "BUTTON_YELLOW"
-#    else
-#        return
-#    if BUTTON_START.read() == False:
-#        return "BUTTON_START"
-#    else
-#        return
-    
+
 if __name__== "__main__":
-    
+
     mega = {
         'digital' : tuple(x for x in range(54)),
         'analog' : tuple(x for x in range(16)),
         'pwm' : tuple(x for x in range(2,14)),
         'use_ports' : True,
         'disabled' : (0, 1, 14, 15) # Rx, Tx, Crystal
-        }  
-      
+    }
+
     try:    
         arduino = Arduino('/dev/ttyACM0', mega, 57600)
     except:
@@ -169,7 +163,7 @@ if __name__== "__main__":
     BUTTON_DOWN = arduino.get_pin('d:7:i')#Temp Out of Service
     #TODO: Must add back in "BUTTON_RIGHT.read(), BUTTON_UP.read(),BUTTON_DOWN.read()"
     BUTTON_ALL = [BUTTON_BLUE.read(), BUTTON_YELLOW.read(), BUTTON_START.read(), BUTTON_RESTART.read()]
-        
+
     ##### LIGHT CONSTANTS #####
     LIGHT_GREEN = arduino.get_pin('d:3:o')     # If pin "Invalid pin definition" it could be due to standard Firmata not recognizing ArduinoMEGA pins.
     LIGHT_BLUE = arduino.get_pin('d:24:o')
@@ -177,6 +171,5 @@ if __name__== "__main__":
     LIGHT_1 = arduino.get_pin('d:23:o')
     LIGHT_2 = arduino.get_pin('d:22:o')
     LIGHT_3 = arduino.get_pin('d:2:o')
-        
+
     main(arduino)    
-    
