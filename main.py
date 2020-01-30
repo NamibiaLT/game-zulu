@@ -11,14 +11,6 @@ pygame.mixer.init()
 
 #TODO: Must add back in "BUTTON_RIGHT.read(), BUTTON_UP.read(),BUTTON_DOWN.read()"
 
-##### LIGHT CONSTANTS #####
-LIGHT_GREEN = arduino.get_pin('d:3:o')     # If pin "Invalid pin definition" it could be due to standard Firmata not recognizing ArduinoMEGA pins.
-LIGHT_BLUE = arduino.get_pin('d:24:o')
-LIGHT_YELLOW= arduino.get_pin('d:11:o')
-LIGHT_1 = arduino.get_pin('d:23:o')
-LIGHT_2 = arduino.get_pin('d:22:o')
-LIGHT_3 = arduino.get_pin('d:2:o')
-
 #SOUNDS
 soundIntroMusic = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/music_zapsplat_among_the_stars_no_piano.wav")
 soundPrecheck = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_fiction_computer_voice_says_pre_checks_completed_30835.wav") 
@@ -75,7 +67,14 @@ quit()
 ##### MAIN CODE #####
 ##
 def main(arduino):
-    print(arduino)
+    ##### LIGHT CONSTANTS #####
+    LIGHT_GREEN = arduino.get_pin('d:3:o')     # If pin "Invalid pin definition" it could be due to standard Firmata not recognizing ArduinoMEGA pins.
+    LIGHT_BLUE = arduino.get_pin('d:24:o')
+    LIGHT_YELLOW= arduino.get_pin('d:11:o')
+    LIGHT_1 = arduino.get_pin('d:23:o')
+    LIGHT_2 = arduino.get_pin('d:22:o')
+    LIGHT_3 = arduino.get_pin('d:2:o')
+
     buttonConverter = {
         'blue': arduino.get_pin('d:4:i'),
         'yellow': arduino.get_pin('d:12:i'),
