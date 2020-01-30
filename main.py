@@ -24,37 +24,37 @@ soundData = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_ficti
 #Add other success sound. Add button sounds.-
 
 #DISPLAY
-display_width = 400
-display_height = 400
-gameDisplay = pygame.display.set_mode((display_width,display_height))
-pygame.display.set_caption('Game Zulu')
+# display_width = 400
+# display_height = 400
+# gameDisplay = pygame.display.set_mode((display_width,display_height))
+# pygame.display.set_caption('Game Zulu')
 
-black = (0,0,0)
-white = (255,255,255)
+# black = (0,0,0)
+# white = (255,255,255)
 
-clock = pygame.time.Clock()
-spaceImg = pygame.image.load('space_ship.png')
+# clock = pygame.time.Clock()
+# spaceImg = pygame.image.load('space_ship.png')
 
-def car(x,y):
-    gameDisplay.blit(spaceImg, (x,y))
+# def car(x,y):
+#     gameDisplay.blit(spaceImg, (x,y))
 
-x =  (display_width * 0.45)
-y = (display_height * 0.8)
+# x =  (display_width * 0.45)
+# y = (display_height * 0.8)
 
 # while not crashed:
 #     for event in pygame.event.get():
 #         if event.type == pygame.QUIT:
 #             crashed = True
 
-    gameDisplay.fill(white)
-    car(x,y)
+#     gameDisplay.fill(white)
+#     car(x,y)
 
         
-    pygame.display.update()
-    clock.tick(60)
+#     pygame.display.update()
+#     clock.tick(60)
 
-pygame.quit()
-quit()
+# pygame.quit()
+# quit()
 
     #Play a gray, slow-moving symbol for pregame screen
     #Play a green, slow-moving symbol for gameplay screen
