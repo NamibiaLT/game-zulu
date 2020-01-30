@@ -9,6 +9,35 @@ pygame.mixer.init()
 #TODO: Figure out why game is slow to respond to button pressed at the beginning.
     #Maybe will try inputFirmata firmware on arduino
 
+#BUTTON_CONSTANTS
+def getButton(button):
+    if (button == 'blue'):
+        return arduino.get_pin('d:4:i')
+    if (button == 'yellow'):
+        return arduino.get_pin('d:12:i')
+    if (button == 'start'):
+        return arduino.get_pin('d:6:i')
+    if (button == 'restart'):
+        return arduino.get_pin('d:5:i')
+    if (button == 'left'):
+        return arduino.get_pin('d:10:i')
+    if (button == 'right'):
+        return arduino.get_pin('d:9:i')
+    if (button == 'up'): 
+        return arduino.get_pin('d:8:i') #Temp Out of Service
+    if (button == 'down'):
+        return arduino.get_pin('d:7:i') #Temp Out of Service
+    return
+#TODO: Must add back in "BUTTON_RIGHT.read(), BUTTON_UP.read(),BUTTON_DOWN.read()"
+
+##### LIGHT CONSTANTS #####
+LIGHT_GREEN = arduino.get_pin('d:3:o')     # If pin "Invalid pin definition" it could be due to standard Firmata not recognizing ArduinoMEGA pins.
+LIGHT_BLUE = arduino.get_pin('d:24:o')
+LIGHT_YELLOW= arduino.get_pin('d:11:o')
+LIGHT_1 = arduino.get_pin('d:23:o')
+LIGHT_2 = arduino.get_pin('d:22:o')
+LIGHT_3 = arduino.get_pin('d:2:o')
+
 #SOUNDS
 soundIntroMusic = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/music_zapsplat_among_the_stars_no_piano.wav")
 soundPrecheck = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_fiction_computer_voice_says_pre_checks_completed_30835.wav") 
@@ -30,25 +59,25 @@ soundData = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_ficti
 #screen = pygame.display.set_mode((200,200))
 #pygame.display.update()
 
-
-def currentButtonPressed():
-    if BUTTON_BLUE.read():
-        return 'BUTTON_BLUE'
-    if BUTTON_YELLOW.read():
-        return 'BUTTON_CONSTANTS'
-    if BUTTON_START.read():
-        return 'BUTTON_CONSTANTS'
-    if BUTTON_RESTART.read():
-        return 'BUTTON_START'
+def buttonsPressed(buttonArray):
+    buttonsPressedCount = 0
+    for buttonName in buttonArray:
+        button = getButton(buttonName)
+        if (button.read() == True):
+            buttonsPressedCount += 1
+    if len(buttonArray) == buttonsPressedCount:
+        return True
+    return False
 
 ##
 ##### MAIN CODE #####
 ##
 def main(arduino):
     while True:      #Main Loop. Keep the game on indefinitely.   
+        print(buttonsPressed('blue'))
         initPregame()      
         #TODO: Refactor arduino/python code to send character strings rather than integer values        
-        if BUTTON_START.read() == False: #Start Game
+        if buttonsPressed('blue', 'yellow'): #Start Game
             exitPregame()
             initGamePlay(arduino)
 
@@ -152,24 +181,4 @@ if __name__== "__main__":
     iterator = util.Iterator(arduino)   # Game is really slow. Would adding this iterator in another loop be better?
     iterator.start()
 
-    #BUTTON_CONSTANTS     ....Should this be here or up top. When up top the code did not run.
-    BUTTON_BLUE = arduino.get_pin('d:4:i')
-    BUTTON_YELLOW = arduino.get_pin('d:12:i')
-    BUTTON_START = arduino.get_pin('d:6:i')
-    BUTTON_RESTART = arduino.get_pin('d:5:i')
-    BUTTON_LEFT = arduino.get_pin('d:10:i')
-    BUTTON_RIGHT = arduino.get_pin('d:9:i')
-    BUTTON_UP = arduino.get_pin('d:8:i')     # Temp red button until up down gets fixed
-    BUTTON_DOWN = arduino.get_pin('d:7:i')#Temp Out of Service
-    #TODO: Must add back in "BUTTON_RIGHT.read(), BUTTON_UP.read(),BUTTON_DOWN.read()"
-    BUTTON_ALL = [BUTTON_BLUE.read(), BUTTON_YELLOW.read(), BUTTON_START.read(), BUTTON_RESTART.read()]
-
-    ##### LIGHT CONSTANTS #####
-    LIGHT_GREEN = arduino.get_pin('d:3:o')     # If pin "Invalid pin definition" it could be due to standard Firmata not recognizing ArduinoMEGA pins.
-    LIGHT_BLUE = arduino.get_pin('d:24:o')
-    LIGHT_YELLOW= arduino.get_pin('d:11:o')
-    LIGHT_1 = arduino.get_pin('d:23:o')
-    LIGHT_2 = arduino.get_pin('d:22:o')
-    LIGHT_3 = arduino.get_pin('d:2:o')
-
-    main(arduino)    
+    main(arduino)
