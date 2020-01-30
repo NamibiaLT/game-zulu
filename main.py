@@ -75,6 +75,7 @@ quit()
 ##### MAIN CODE #####
 ##
 def main(arduino):
+    print(arduino)
     buttonConverter = {
         'blue': arduino.get_pin('d:4:i'),
         'yellow': arduino.get_pin('d:12:i'),
