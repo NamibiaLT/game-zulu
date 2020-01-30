@@ -67,14 +67,6 @@ soundData = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_ficti
 ##### MAIN CODE #####
 ##
 def main(arduino):
-    ##### LIGHT CONSTANTS #####
-    LIGHT_GREEN = arduino.get_pin('d:3:o')     # If pin "Invalid pin definition" it could be due to standard Firmata not recognizing ArduinoMEGA pins.
-    LIGHT_BLUE = arduino.get_pin('d:24:o')
-    LIGHT_YELLOW= arduino.get_pin('d:11:o')
-    LIGHT_1 = arduino.get_pin('d:23:o')
-    LIGHT_2 = arduino.get_pin('d:22:o')
-    LIGHT_3 = arduino.get_pin('d:2:o')
-
     buttonConverter = {
         'blue': arduino.get_pin('d:4:i'),
         'yellow': arduino.get_pin('d:12:i'),
@@ -191,6 +183,14 @@ def initGamePlay(arduino):
                 restartGame = True
 
 if __name__== "__main__":
+    
+    ##### LIGHT CONSTANTS #####
+    LIGHT_GREEN = arduino.get_pin('d:3:o')     # If pin "Invalid pin definition" it could be due to standard Firmata not recognizing ArduinoMEGA pins.
+    LIGHT_BLUE = arduino.get_pin('d:24:o')
+    LIGHT_YELLOW= arduino.get_pin('d:11:o')
+    LIGHT_1 = arduino.get_pin('d:23:o')
+    LIGHT_2 = arduino.get_pin('d:22:o')
+    LIGHT_3 = arduino.get_pin('d:2:o')
 
     mega = {
         'digital' : tuple(x for x in range(54)),
