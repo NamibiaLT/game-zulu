@@ -89,7 +89,11 @@ def main(arduino):
     def buttonsPressed(buttonArray):
         buttonsPressedCount = 0
         for buttonName in buttonArray:
-            button = buttonConverter[buttonName]
+            print('buttonName', buttonName)
+            try:
+                button = buttonConverter[buttonName]
+            except:
+                return False
             if (button.read() == True):
                 buttonsPressedCount += 1
         if len(buttonArray) == buttonsPressedCount:
