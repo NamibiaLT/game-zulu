@@ -161,14 +161,14 @@ def initGamePlay(arduino):
 #                pass_time(0.5)
 #                LIGHT_OFF[i]    
         
-            if BUTTON_BLUE.read() == False:
+            if buttonsPressed(['blue']):
                 pygame.mixer.stop()
                 soundSuccess.play()
                 time.sleep(2)
                 logging.info("Game Success")
                 restartGame = exitGamePlay()
 
-            if BUTTON_YELLOW.read() == False:
+            if buttonsPressed(['yellow']):
                 pygame.mixer.stop()
                 pygame.mixer.Channel(0).play(soundIncomingMissile)
                 pygame.mixer.Channel(0).queue(soundExplosion)
@@ -176,7 +176,7 @@ def initGamePlay(arduino):
                 logging.info("Game Failure")
                 restartGame = exitGamePlay()
 
-            if BUTTON_RESTART.read() == False:
+            if buttonsPressed(['restart']):
                 logging.info("Restart Button Pressed")
                 LIGHT_GREEN.write(0)
                 pygame.mixer.stop()                
