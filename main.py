@@ -92,7 +92,7 @@ def exitGamePlay():
     logging.info("Exiting GamePlay")
     LIGHT_GREEN.write(0)
     pygame.mixer.stop()     #Stop all music
-    while BUTTON_RESTART.read() == True:
+    while buttonsPressed(['restart']):
         LIGHT_1.write(1)   #Should I make a function for light functionality? How will blinking likes effect the threading of the code?
         LIGHT_2.write(1)
         LIGHT_3.write(1)
@@ -194,7 +194,6 @@ if __name__== "__main__":
     def buttonsPressed(buttonArray):
         buttonsPressedCount = 0
         for buttonName in buttonArray:
-            print('buttonName', buttonName)
             try:
                 button = buttonConverter[buttonName]
             except:
