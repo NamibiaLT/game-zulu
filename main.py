@@ -22,6 +22,7 @@ soundData = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_ficti
 #Add other success sound. Add button sounds.-
 
 #DISPLAY
+    #ADDING STUFF HERE AND SEAN ALREADY EDITTED SUFF
     #Play a gray, slow-moving symbol for pregame screen
     #Play a green, slow-moving symbol for gameplay screen
     #Play a green, static symbol for success screen
