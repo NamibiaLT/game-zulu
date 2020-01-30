@@ -43,7 +43,7 @@ def buttonPressed(buttonType): #Do I need this function? Would this be better co
 ##
 def main(arduino):
 
-    buttonPressed('BUTTON_START')
+    buttonPressed(BUTTON_START)
     while True:      #Main Loop. Keep the game on indefinitely.   
         initPregame()      
         #TODO: Refactor arduino/python code to send character strings rather than integer values        
