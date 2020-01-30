@@ -199,7 +199,7 @@ if __name__== "__main__":
                 button = buttonConverter[buttonName]
             except:
                 return False
-            if (button.read() == True):
+            if (button.read() != False):
                 return False
         return True
 
