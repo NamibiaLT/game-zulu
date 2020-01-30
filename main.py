@@ -171,6 +171,9 @@ if __name__== "__main__":
     except:
         arduino = Arduino('/dev/ttyACM1', mega, 57600)
 
+    #### CONSTANTS
+    BUTTON_PRESSED = False
+
     ##### LIGHT CONSTANTS #####
     LIGHT_GREEN = arduino.get_pin('d:3:o')     # If pin "Invalid pin definition" it could be due to standard Firmata not recognizing ArduinoMEGA pins.
     LIGHT_BLUE = arduino.get_pin('d:24:o')
@@ -199,7 +202,7 @@ if __name__== "__main__":
                 button = buttonConverter[buttonName]
             except:
                 return False
-            if (button.read() != False):
+            if (button.read() != BUTTON_PRESSED):
                 return False
         return True
 
