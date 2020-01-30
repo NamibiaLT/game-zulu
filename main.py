@@ -67,31 +67,6 @@ soundData = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_ficti
 ##### MAIN CODE #####
 ##
 def main(arduino):
-    buttonConverter = {
-        'blue': arduino.get_pin('d:4:i'),
-        'yellow': arduino.get_pin('d:12:i'),
-        'start': arduino.get_pin('d:6:i'),
-        'restart': arduino.get_pin('d:5:i'),
-        'left': arduino.get_pin('d:10:i'),
-        'right': arduino.get_pin('d:9:i'),
-        'up': arduino.get_pin('d:8:i'),
-        'down': arduino.get_pin('d:7:i')
-    }
-    
-    def buttonsPressed(buttonArray):
-        buttonsPressedCount = 0
-        for buttonName in buttonArray:
-            print('buttonName', buttonName)
-            try:
-                button = buttonConverter[buttonName]
-            except:
-                return False
-            if (button.read() == True):
-                buttonsPressedCount += 1
-        if len(buttonArray) == buttonsPressedCount:
-            return True
-        return False
-
     while True:      #Main Loop. Keep the game on indefinitely.   
         print(buttonsPressed(['blue']))
         initPregame()      
@@ -204,6 +179,31 @@ if __name__== "__main__":
     LIGHT_1 = arduino.get_pin('d:23:o')
     LIGHT_2 = arduino.get_pin('d:22:o')
     LIGHT_3 = arduino.get_pin('d:2:o')
+
+    buttonConverter = {
+        'blue': arduino.get_pin('d:4:i'),
+        'yellow': arduino.get_pin('d:12:i'),
+        'start': arduino.get_pin('d:6:i'),
+        'restart': arduino.get_pin('d:5:i'),
+        'left': arduino.get_pin('d:10:i'),
+        'right': arduino.get_pin('d:9:i'),
+        'up': arduino.get_pin('d:8:i'),
+        'down': arduino.get_pin('d:7:i')
+    }
+    
+    def buttonsPressed(buttonArray):
+        buttonsPressedCount = 0
+        for buttonName in buttonArray:
+            print('buttonName', buttonName)
+            try:
+                button = buttonConverter[buttonName]
+            except:
+                return False
+            if (button.read() == True):
+                buttonsPressedCount += 1
+        if len(buttonArray) == buttonsPressedCount:
+            return True
+        return False
 
     iterator = util.Iterator(arduino)   # Game is really slow. Would adding this iterator in another loop be better?
     iterator.start()
