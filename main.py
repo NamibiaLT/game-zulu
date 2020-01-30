@@ -9,25 +9,6 @@ pygame.mixer.init()
 #TODO: Figure out why game is slow to respond to button pressed at the beginning.
     #Maybe will try inputFirmata firmware on arduino
 
-#BUTTON_CONSTANTS
-def getButton(button):
-    if (button == 'blue'):
-        return arduino.get_pin('d:4:i')
-    if (button == 'yellow'):
-        return arduino.get_pin('d:12:i')
-    if (button == 'start'):
-        return arduino.get_pin('d:6:i')
-    if (button == 'restart'):
-        return arduino.get_pin('d:5:i')
-    if (button == 'left'):
-        return arduino.get_pin('d:10:i')
-    if (button == 'right'):
-        return arduino.get_pin('d:9:i')
-    if (button == 'up'): 
-        return arduino.get_pin('d:8:i') #Temp Out of Service
-    if (button == 'down'):
-        return arduino.get_pin('d:7:i') #Temp Out of Service
-    return
 #TODO: Must add back in "BUTTON_RIGHT.read(), BUTTON_UP.read(),BUTTON_DOWN.read()"
 
 ##### LIGHT CONSTANTS #####
@@ -104,6 +85,25 @@ def buttonsPressed(buttonArray):
 ##### MAIN CODE #####
 ##
 def main(arduino):
+    def getButton(button):
+        if (button == 'blue'):
+            return arduino.get_pin('d:4:i')
+        if (button == 'yellow'):
+            return arduino.get_pin('d:12:i')
+        if (button == 'start'):
+            return arduino.get_pin('d:6:i')
+        if (button == 'restart'):
+            return arduino.get_pin('d:5:i')
+        if (button == 'left'):
+            return arduino.get_pin('d:10:i')
+        if (button == 'right'):
+            return arduino.get_pin('d:9:i')
+        if (button == 'up'): 
+            return arduino.get_pin('d:8:i') #Temp Out of Service
+        if (button == 'down'):
+            return arduino.get_pin('d:7:i') #Temp Out of Service
+        return
+
     while True:      #Main Loop. Keep the game on indefinitely.   
         print(buttonsPressed('blue'))
         initPregame()      
