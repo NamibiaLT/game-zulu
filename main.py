@@ -101,10 +101,10 @@ def main(arduino):
         return False
 
     while True:      #Main Loop. Keep the game on indefinitely.   
-        print(buttonsPressed('blue'))
+        print(buttonsPressed(['blue']))
         initPregame()      
         #TODO: Refactor arduino/python code to send character strings rather than integer values        
-        if buttonsPressed('blue', 'yellow'): #Start Game
+        if buttonsPressed(['start']): #Start Game
             exitPregame()
             initGamePlay(arduino)
 
