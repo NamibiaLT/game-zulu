@@ -47,23 +47,23 @@ y = (display_height * 0.8)
 #pygame.display.update()
 
 
-def buttonPressed(buttonType): #Do I need this function? Would this be better code?
-    print('buttonType', buttonType)
-    print('buttonType read', buttonType.read())
-    if buttonType.read() == False:
-        return buttonType
-    return False
+def currentButtonPressed():
+    if BUTTON_BLUE.read():
+        return 'BUTTON_BLUE'
+    if BUTTON_YELLOW.read():
+        return 'BUTTON_CONSTANTS'
+    if BUTTON_START.read():
+        return 'BUTTON_CONSTANTS'
+    if BUTTON_RESTART.read():
+        return 'BUTTON_START'
 
 ##
 ##### MAIN CODE #####
 ##
 def main(arduino):
-
-    buttonPressed(BUTTON_START)
     while True:      #Main Loop. Keep the game on indefinitely.   
         initPregame()      
         #TODO: Refactor arduino/python code to send character strings rather than integer values        
-        logging.info('BUTTON_ALL')  
         if BUTTON_START.read() == False: #Start Game
             exitPregame()
             initGamePlay(arduino)
