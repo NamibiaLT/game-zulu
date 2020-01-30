@@ -203,7 +203,11 @@ if __name__== "__main__":
             print('button array: ', len(buttonArray))
             print('buttonsPressedCount: ', buttonsPressedCount)
         if len(buttonArray) == buttonsPressedCount:
+            if (buttonArray[0] == 'start'):
+                print('returning true')
             return True
+        if (buttonArray[0] == 'start'):
+                print('returning true')
         return False
 
     iterator = util.Iterator(arduino)   # Game is really slow. Would adding this iterator in another loop be better?
