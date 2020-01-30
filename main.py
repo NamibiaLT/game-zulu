@@ -182,6 +182,7 @@ if __name__== "__main__":
     LIGHT_2 = arduino.get_pin('d:22:o')
     LIGHT_3 = arduino.get_pin('d:2:o')
 
+    # Use button name to get button pin
     buttonConverter = {
         'blue': arduino.get_pin('d:4:i'),
         'yellow': arduino.get_pin('d:12:i'),
@@ -193,6 +194,7 @@ if __name__== "__main__":
         'down': arduino.get_pin('d:7:i')
     }
     
+    # Returns True if every button is pressed in buttonArray
     def buttonsPressed(buttonArray):
         if (buttonArray[0] == 'start'):
             btn = buttonConverter['start']
