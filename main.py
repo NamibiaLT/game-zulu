@@ -31,8 +31,8 @@ soundData = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/zapsplat_science_ficti
 
 
 def buttonPressed(buttonType): #Do I need this function? Would this be better code?
-    logging.info('buttonType', buttonType)
-    logging.info('buttonType read', buttonType.read())
+    print('buttonType', buttonType)
+    print('buttonType read', buttonType.read())
     if buttonType.read() == False:
         return buttonType
     return False
