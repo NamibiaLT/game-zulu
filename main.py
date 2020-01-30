@@ -51,6 +51,8 @@ while not crashed:
     pygame.display.update()
     clock.tick(60)
 
+pygame.quit()
+quit()
 
     #Play a gray, slow-moving symbol for pregame screen
     #Play a green, slow-moving symbol for gameplay screen
