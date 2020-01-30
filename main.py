@@ -200,6 +200,8 @@ if __name__== "__main__":
                 return False
             if (button.read() == True):
                 buttonsPressedCount += 1
+        print('button array: ', len(buttonArray))
+        print('buttonsPressedCount: ', buttonsPressedCount)
         if len(buttonArray) == buttonsPressedCount:
             return True
         return False
