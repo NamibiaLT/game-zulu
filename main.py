@@ -41,10 +41,10 @@ def car(x,y):
 x =  (display_width * 0.45)
 y = (display_height * 0.8)
 
-while not crashed:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            crashed = True
+# while not crashed:
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             crashed = True
 
     gameDisplay.fill(white)
     car(x,y)
