@@ -76,14 +76,14 @@ LIGHT_3 = arduino.get_pin('d:2:o')
 #lightArray = [green, LIGHT_BLUE_PIN, LIGHT_YELLOW_PIN, LIGHT_1_PIN, LIGHT_2_PIN, LIGHT_3_PIN]
 
 # TODO: Make this into a function
-BUTTON_BLUE = arduino.get_pin('d:4:i')
-BUTTON_YELLOW = arduino.get_pin('d:12:i')
-BUTTON_BLACK = arduino.get_pin('d:6:i')
-BUTTON_GREEN = arduino.get_pin('d:5:i')
-BUTTON_LEFT = arduino.get_pin('d:10:i')
-BUTTON_RIGHT = arduino.get_pin('d:9:i')
-BUTTON_UP = arduino.get_pin('d:8:i')
-BUTTON_DOWN = arduino.get_pin('d:7:i')
+# BUTTON_BLUE = arduino.get_pin('d:4:i')
+# BUTTON_YELLOW = arduino.get_pin('d:12:i')
+# BUTTON_BLACK = arduino.get_pin('d:6:i')
+# BUTTON_GREEN = arduino.get_pin('d:5:i')
+# BUTTON_LEFT = arduino.get_pin('d:10:i')
+# BUTTON_RIGHT = arduino.get_pin('d:9:i')
+# BUTTON_UP = arduino.get_pin('d:8:i')
+# BUTTON_DOWN = arduino.get_pin('d:7:i')
 
 # Use button name to get button pin
 buttonConverter = {
