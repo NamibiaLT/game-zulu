@@ -9,19 +9,19 @@ clock = pygame.time.Clock()
 
 ##### DISPLAY ##### 
 gameDisplay = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-screenSize = gameDisplay.get_size()
+screenSize = gameDisplay.get_size()   #James work PC is 1920 1080
 display_width = screenSize[0]
 display_height = screenSize[1]
 pygame.display.set_caption('Game Zulu')
 
 
 ###### SOUNDS #####
-
 # soundMissile = pygame.mixer.Sound("Sounds\missile.wav")
 # soundSuccess = pygame.mixer.Sound("Sounds\success.wav")
 # introMusic = "Sounds\intro_music.wav"
 # gamePlayMusic = 'Sounds\spooky_gameplay.wav'
 
+# TODO: Figure out how to play these on windows OR LINUX regardless of slashes...
 soundMissile = pygame.mixer.Sound("Sounds/missile.wav")
 soundSuccess = pygame.mixer.Sound("Sounds/success.wav")
 introMusic = "Sounds/intro_music.wav"
@@ -30,7 +30,6 @@ gamePlayMusic = 'Sounds/spooky_gameplay.wav'
 
 
 ###### IMAGES #####
-
 # stars = pygame.transform.scale(pygame.image.load('Images\stars.jpg'), screenSize)
 # spaceShip = pygame.transform.scale(pygame.image.load('Images\inside_space_ship.jpg'), screenSize)
 # spaceShipFail = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_fail.jpg'), screenSize)
@@ -81,8 +80,8 @@ def success():
                 quit()
                 
         # Button position, configuration, and action
-        buttonWidth = 300
-        buttonHeight = 150
+        buttonWidth = display_width * 0.16   # Number is a scaling factor. On 1920 screen this is a 300mm button
+        buttonHeight = display_height * 0.14    # Number is a scaling factor. On 1080 screen this is a 150mm button
         buttonCenterOneThird = (display_width*0.33)-(buttonWidth/2)
         buttonCenterTwoThird = (display_width*0.66)-(buttonWidth/2)
         buttonCenterVertical = (display_height*0.5)-(buttonHeight/2)
@@ -113,8 +112,8 @@ def fail():
                 quit()
 
         # Button position, configuration, and action
-        buttonWidth = 300
-        buttonHeight = 150
+        buttonWidth = display_width * 0.16   # Number is a scaling factor. On 1920 screen this is a 300mm button
+        buttonHeight = display_height * 0.14    # Number is a scaling factor. On 1080 screen this is a 150mm button
         buttonCenterOneThird = (display_width*0.33)-(buttonWidth/2)
         buttonCenterTwoThird = (display_width*0.66)-(buttonWidth/2)
         buttonCenterVertical = (display_height*0.5)-(buttonHeight/2)
@@ -164,8 +163,8 @@ def paused():
                 quit()
 
         # Button position, configuration, and action
-        buttonWidth = 300
-        buttonHeight = 150
+        buttonWidth = display_width * 0.16   # Number is a scaling factor. On 1920 screen this is a 300mm button
+        buttonHeight = display_height * 0.14    # Number is a scaling factor. On 1080 screen this is a 150mm button
         buttonCenterOneThird = (display_width*0.33)-(buttonWidth/2)
         buttonCenterTwoThird = (display_width*0.66)-(buttonWidth/2)
         button("Play Again",buttonCenterOneThird,display_height * 0.6,buttonWidth,buttonHeight,green,bright_green,game_loop)
@@ -200,11 +199,11 @@ def game_intro():
         gameDisplay.blit(TextSurf, TextRect)
 
         # Button position, configuration, and action
-        buttonWidth = 300
-        buttonHeight = 150
+        buttonWidth = display_width * 0.16   # Number is a scaling factor. On 1920 screen this is a 300mm button
+        buttonHeight = display_height * 0.14    # Number is a scaling factor. On 1080 screen this is a 150mm button
         buttonCenterOneThird = (display_width*0.33)-(buttonWidth/2)
         buttonCenterTwoThird = (display_width*0.66)-(buttonWidth/2)
-        button("Play Again",buttonCenterOneThird,display_height * 0.6,buttonWidth,buttonHeight,green,bright_green,game_loop)
+        button("Play",buttonCenterOneThird,display_height * 0.6,buttonWidth,buttonHeight,green,bright_green,game_loop)
         button("Quit",buttonCenterTwoThird,display_height * 0.6,buttonWidth,buttonHeight,red,bright_red,quitgame)
         
         pygame.display.update()
