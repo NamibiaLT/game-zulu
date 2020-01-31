@@ -1,7 +1,7 @@
 import pygame
 import time
 import random
-from moviepy.editor import VideoFileClip
+#from moviepy.editor import VideoFileClip
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -194,7 +194,7 @@ def game_intro():
         pygame.display.update()
         clock.tick(15)
 
-    
+
 def game_loop():
     global pause
     # Start the game play music
