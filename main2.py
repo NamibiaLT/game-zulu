@@ -9,9 +9,9 @@ clock = pygame.time.Clock()
 
 ##### DISPLAY ##### 
 gameDisplay = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-screenSize = gameDisplay.get_size()   #James work PC is 1920 1080
-display_width = screenSize[0]
-display_height = screenSize[1]
+SCREEN_SIZE = gameDisplay.get_size()   #James work PC is 1920 1080
+DISPLAY_WIDTH = SCREEN_SIZE[0]
+DISPLAY_HEIGHT = SCREEN_SIZE[1]
 pygame.display.set_caption('Game Zulu')
 
 ###### SOUNDS #####
@@ -27,24 +27,24 @@ introMusic = "Sounds/intro_music.wav"
 gamePlayMusic = 'Sounds/spooky_gameplay.wav'
 
 ###### IMAGES #####
-# stars = pygame.transform.scale(pygame.image.load('Images\stars.jpg'), screenSize)
-# spaceShip = pygame.transform.scale(pygame.image.load('Images\inside_space_ship.jpg'), screenSize)
-# spaceShipFail = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_fail.jpg'), screenSize)
-# spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_success.jpg'), screenSize)
+# stars = pygame.transform.scale(pygame.image.load('Images\stars.jpg'), SCREEN_SIZE)
+# spaceShip = pygame.transform.scale(pygame.image.load('Images\inside_space_ship.jpg'), SCREEN_SIZE)
+# spaceShipFail = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_fail.jpg'), SCREEN_SIZE)
+# spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_success.jpg'), SCREEN_SIZE)
 
-stars = pygame.transform.scale(pygame.image.load('Images/stars.jpg'), screenSize)
-spaceShip = pygame.transform.scale(pygame.image.load('Images/inside_space_ship.jpg'), screenSize)
-spaceShipFail = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_fail.jpg'), screenSize)
-spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_success.jpg'), screenSize)
+stars = pygame.transform.scale(pygame.image.load('Images/stars.jpg'), SCREEN_SIZE)
+spaceShip = pygame.transform.scale(pygame.image.load('Images/inside_space_ship.jpg'), SCREEN_SIZE)
+spaceShipFail = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_fail.jpg'), SCREEN_SIZE)
+spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_success.jpg'), SCREEN_SIZE)
 
 
-##### COLOR DEFINITIONS #####
-black = (0,0,0)
-white = (255,255,255)
-red = (200,0,0)
-green = (0,200,0)
-bright_red = (255,0,0)
-bright_green = (0,255,0)
+##### COLORS #####
+BLACK = (0,0,0)
+WHITE = (255,255,255)
+RED = (200,0,0)
+GREEN = (0,200,0)
+BRIGHT_RED = (255,0,0)
+BRIGHT_GREEN = (0,255,0)
 
 # TODO: Get game icon. Maybe a small spaceship.
 gameIcon = pygame.image.load('racecar2.png')
@@ -53,7 +53,7 @@ pygame.display.set_icon(gameIcon)
 pause = False
 
 def text_objects(text, font):
-    textSurface = font.render(text, True, white)
+    textSurface = font.render(text, True, WHITE)
     return textSurface, textSurface.get_rect()
  
 def success():
@@ -61,13 +61,13 @@ def success():
     soundSuccess.play()
     pygame.mixer.music.stop()
    
-    # Display a green spaceship
+    # Display a GREEN spaceship
     gameDisplay.blit(spaceShipSuccess, (0,0))  
     pygame.display.update()     
    
     largeText = pygame.font.SysFont("comicsansms",250)
     TextSurf, TextRect = text_objects("", largeText)
-    TextRect.center = ((display_width * 0.5),(display_height * 0.33))
+    TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
     
     while True:
@@ -77,13 +77,13 @@ def success():
                 quit()
                 
         # Button position, configuration, and action
-        buttonWidth = display_width * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
-        buttonHeight = display_height * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
-        buttonCenterOneThird = (display_width*0.33)-(buttonWidth/2)
-        buttonCenterTwoThird = (display_width*0.66)-(buttonWidth/2)
-        buttonCenterVertical = (display_height*0.5)-(buttonHeight/2)
-        button("Play Again",buttonCenterOneThird,buttonCenterVertical,buttonWidth,buttonHeight,green,bright_green,game_loop)
-        button("Quit",buttonCenterTwoThird,buttonCenterVertical,buttonWidth,buttonHeight,red,bright_red,quitgame)
+        BUTTON_WIDTH = DISPLAY_WIDTH * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
+        BUTTON_HEIGHT = DISPLAY_HEIGHT * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
+        BUTTON_CENTER_ONE_THIRD = (DISPLAY_WIDTH*0.33)-(BUTTON_WIDTH/2)
+        BUTTON_CENTER_TWO_THIRD = (DISPLAY_WIDTH*0.66)-(BUTTON_WIDTH/2)
+        BUTTON_CENTER_VERTICAL = (DISPLAY_HEIGHT*0.5)-(BUTTON_HEIGHT/2)
+        button("Play Again",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+        button("Quit",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
  
         pygame.display.update()
         clock.tick(15) 
@@ -93,13 +93,13 @@ def fail():
     pygame.mixer.music.stop()
     soundMissile.play()
     
-    # Display a red spaceship
+    # Display a RED spaceship
     gameDisplay.blit(spaceShipFail, (0,0))  
     pygame.display.update()  
 
     largeText = pygame.font.SysFont("comicsansms",250)
     TextSurf, TextRect = text_objects("", largeText)
-    TextRect.center = ((display_width * 0.5),(display_height * 0.33))
+    TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
     
     while True:
@@ -109,13 +109,13 @@ def fail():
                 quit()
 
         # Button position, configuration, and action
-        buttonWidth = display_width * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
-        buttonHeight = display_height * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
-        buttonCenterOneThird = (display_width*0.33)-(buttonWidth/2)
-        buttonCenterTwoThird = (display_width*0.66)-(buttonWidth/2)
-        buttonCenterVertical = (display_height*0.5)-(buttonHeight/2)
-        button("Play Again",buttonCenterOneThird,buttonCenterVertical,buttonWidth,buttonHeight,green,bright_green,game_loop)
-        button("Quit",buttonCenterTwoThird,buttonCenterVertical,buttonWidth,buttonHeight,red,bright_red,quitgame)
+        BUTTON_WIDTH = DISPLAY_WIDTH * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
+        BUTTON_HEIGHT = DISPLAY_HEIGHT * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
+        BUTTON_CENTER_ONE_THIRD = (DISPLAY_WIDTH*0.33)-(BUTTON_WIDTH/2)
+        BUTTON_CENTER_TWO_THIRD = (DISPLAY_WIDTH*0.66)-(BUTTON_WIDTH/2)
+        BUTTON_CENTER_VERTICAL = (DISPLAY_HEIGHT*0.5)-(BUTTON_HEIGHT/2)
+        button("Play Again",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+        button("Quit",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
 
         pygame.display.update()
         clock.tick(15) 
@@ -150,7 +150,7 @@ def paused():
     #############
     largeText = pygame.font.SysFont("comicsansms",250)
     TextSurf, TextRect = text_objects("Paused", largeText)
-    TextRect.center = ((display_width * 0.5),(display_height * 0.33))
+    TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
     
     while pause:
@@ -160,12 +160,12 @@ def paused():
                 quit()
 
         # Button position, configuration, and action
-        buttonWidth = display_width * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
-        buttonHeight = display_height * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
-        buttonCenterOneThird = (display_width*0.33)-(buttonWidth/2)
-        buttonCenterTwoThird = (display_width*0.66)-(buttonWidth/2)
-        button("Play Again",buttonCenterOneThird,display_height * 0.6,buttonWidth,buttonHeight,green,bright_green,game_loop)
-        button("Quit",buttonCenterTwoThird,display_height * 0.6,buttonWidth,buttonHeight,red,bright_red,quitgame)
+        BUTTON_WIDTH = DISPLAY_WIDTH * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
+        BUTTON_HEIGHT = DISPLAY_HEIGHT * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
+        BUTTON_CENTER_ONE_THIRD = (DISPLAY_WIDTH*0.33)-(BUTTON_WIDTH/2)
+        BUTTON_CENTER_TWO_THIRD = (DISPLAY_WIDTH*0.66)-(BUTTON_WIDTH/2)
+        button("Play Again",BUTTON_CENTER_ONE_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+        button("Quit",BUTTON_CENTER_TWO_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
 
         pygame.display.update()
         clock.tick(15)   
@@ -192,16 +192,16 @@ def game_intro():
         gameDisplay.blit(stars, (0,0))
         largeText = pygame.font.SysFont("comicsansms",250)
         TextSurf, TextRect = text_objects("Zulu", largeText)
-        TextRect.center = ((display_width * 0.5),(display_height * 0.3))
+        TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.3))
         gameDisplay.blit(TextSurf, TextRect)
 
         # Button position, configuration, and action
-        buttonWidth = display_width * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
-        buttonHeight = display_height * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
-        buttonCenterOneThird = (display_width*0.33)-(buttonWidth/2)
-        buttonCenterTwoThird = (display_width*0.66)-(buttonWidth/2)
-        button("Play",buttonCenterOneThird,display_height * 0.6,buttonWidth,buttonHeight,green,bright_green,game_loop)
-        button("Quit",buttonCenterTwoThird,display_height * 0.6,buttonWidth,buttonHeight,red,bright_red,quitgame)
+        BUTTON_WIDTH = DISPLAY_WIDTH * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
+        BUTTON_HEIGHT = DISPLAY_HEIGHT * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
+        BUTTON_CENTER_ONE_THIRD = (DISPLAY_WIDTH*0.33)-(BUTTON_WIDTH/2)
+        BUTTON_CENTER_TWO_THIRD = (DISPLAY_WIDTH*0.66)-(BUTTON_WIDTH/2)
+        button("Play",BUTTON_CENTER_ONE_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+        button("Quit",BUTTON_CENTER_TWO_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
         
         pygame.display.update()
         clock.tick(15)
@@ -220,6 +220,7 @@ def game_loop():
 
     dodged = clock.tick() 
     # TODO: Play clock at dodged = 0...
+    # TODO: Add time limit to game.
     gameExit = False
  
     while not gameExit:
