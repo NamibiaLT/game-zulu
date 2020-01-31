@@ -14,7 +14,6 @@ display_width = screenSize[0]
 display_height = screenSize[1]
 pygame.display.set_caption('Game Zulu')
 
-
 ###### SOUNDS #####
 # soundMissile = pygame.mixer.Sound("Sounds\missile.wav")
 # soundSuccess = pygame.mixer.Sound("Sounds\success.wav")
@@ -26,8 +25,6 @@ soundMissile = pygame.mixer.Sound("Sounds/missile.wav")
 soundSuccess = pygame.mixer.Sound("Sounds/success.wav")
 introMusic = "Sounds/intro_music.wav"
 gamePlayMusic = 'Sounds/spooky_gameplay.wav'
-
-
 
 ###### IMAGES #####
 # stars = pygame.transform.scale(pygame.image.load('Images\stars.jpg'), screenSize)
