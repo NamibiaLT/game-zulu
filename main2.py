@@ -16,12 +16,6 @@ pygame.display.set_caption('Game Zulu')
 
 
 ###### SOUNDS #####
-<<<<<<< HEAD
-soundMissile = pygame.mixer.Sound("Sounds\missile.wav")
-soundSuccess = pygame.mixer.Sound("Sounds\success.wav")
-introMusic = "Sounds\intro_music.wav"
-gamePlayMusic = 'Sounds\spooky_gameplay.wav'
-=======
 try:
     soundMissile = pygame.mixer.Sound("Sounds\missile.wav")
     soundSuccess = pygame.mixer.Sound("Sounds\success.wav")
@@ -31,8 +25,9 @@ except:
     soundMissile = pygame.mixer.Sound("Sounds/missile.wav")
     soundSuccess = pygame.mixer.Sound("Sounds/success.wav")
     introMusic = "Sounds/intro_music.wav"
-    gamePlayMusic = 'Sounds/spooky_gameplay.wav'    
->>>>>>> 9c2c003befb620bf62b6a469cc8fb4ebf5d33a8d
+    gamePlayMusic = 'Sounds/spooky_gameplay.wav'
+
+
 
 ###### IMAGES #####
 try:
