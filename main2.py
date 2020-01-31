@@ -65,28 +65,61 @@ iterator.start()
 time.sleep(0.5)   # Needed for arduino to initialize
 
 ##### LIGHT CONSTANTS #####
-green = arduino.get_pin('d:3:o')
+GREEN = arduino.get_pin('d:3:o')
 # TODO: Add white light
 # TODO: Replace yellow light with red light
-LIGHT_BLUE_PIN = arduino.get_pin('d:24:o')
-LIGHT_YELLOW_PIN = arduino.get_pin('d:11:o')
-LIGHT_1_PIN = arduino.get_pin('d:23:o')
-LIGHT_2_PIN = arduino.get_pin('d:22:o')
-LIGHT_3_PIN = arduino.get_pin('d:2:o')
+BLUE = arduino.get_pin('d:24:o')
+YELLOW = arduino.get_pin('d:11:o')
+LIGHT_1 = arduino.get_pin('d:23:o')
+LIGHT_2 = arduino.get_pin('d:22:o')
+LIGHT_3 = arduino.get_pin('d:2:o')
 lightArray = [green, LIGHT_BLUE_PIN, LIGHT_YELLOW_PIN, LIGHT_1_PIN, LIGHT_2_PIN, LIGHT_3_PIN]
+
+# TODO: Make this into a function
+BUTTON_BLUE = arduino.get_pin('d:4:i')
+BUTTON_YELLOW = arduino.get_pin('d:12:i')
+BUTTON_BLACK = arduino.get_pin('d:6:i')
+BUTTON_GREEN = arduino.get_pin('d:5:i')
+BUTTON_LEFT = arduino.get_pin('d:10:i')
+BUTTON_RIGHT = arduino.get_pin('d:9:i')
+BUTTON_UP = arduino.get_pin('d:8:i')
+BUTTON_DOWN = arduino.get_pin('d:7:i')
+
+# Use button name to get button pin
+buttonConverter = {
+    'blue': arduino.get_pin('d:4:i'),
+    'yellow': arduino.get_pin('d:12:i'),
+    'start': arduino.get_pin('d:6:i'),
+    'restart': arduino.get_pin('d:5:i'),
+    'left': arduino.get_pin('d:10:i'),
+    'right': arduino.get_pin('d:9:i'),
+    'up': arduino.get_pin('d:8:i'),
+    'down': arduino.get_pin('d:7:i')
+    }
 
 #########################################################################################
 
+# TODO: Make this function better with an array
 on = 1
 off = 0
 def light(light, state):
     light.write(state)
 
-
-
-
 def buttonPressed(button, state):
     pass
+
+def buttonsPressed(buttonArray):
+    if (buttonArray[0] == 'start'):
+        btn = buttonConverter['start']
+        print('start button is ', btn.read())
+    for buttonName in buttonArray:
+        try:
+            button = buttonConverter[buttonName]
+        except:
+            return False
+        if (button.read() != BUTTON_PRESSED):
+            return False
+    return True
 
 def text_objects(text, font):
     textSurface = font.render(text, True, WHITE)
@@ -245,7 +278,7 @@ def game_loop():
     global pause
     # Start the game play music
     #green.write(1)
-    light(green, on)
+    light(GREEN, on)
     pygame.mixer.music.stop()
     pygame.mixer.music.load(gamePlayMusic)
     pygame.mixer.music.play(-1)
@@ -266,10 +299,6 @@ def game_loop():
                 quit()
  
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    x_change = -5
-                if event.key == pygame.K_RIGHT:
-                    x_change = 5
                 if event.key == pygame.K_p:
                     pause = True
                     paused()
@@ -281,6 +310,28 @@ def game_loop():
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                     x_change = 0
+
+        if buttonsPressed(['blue']):
+            pygame.mixer.stop()
+            soundSuccess.play()
+            time.sleep(2)
+            logging.info("Game Success")
+            restartGame = exitGamePlay()
+
+        if buttonsPressed(['yellow']):
+            pygame.mixer.stop()
+            pygame.mixer.Channel(0).play(soundIncomingMissile)
+            pygame.mixer.Channel(0).queue(soundExplosion)
+            time.sleep(5)
+            logging.info("Game Failure")
+            restartGame = exitGamePlay()
+
+        if buttonsPressed(['restart']):
+            logging.info("Restart Button Pressed")
+            LIGHT_GREEN.write(0)
+            pygame.mixer.stop()                
+            restartGame = True
+
         pygame.display.update()
         clock.tick(60)
 
