@@ -64,6 +64,7 @@ iterator = util.Iterator(arduino)   # Game is really slow. Would adding this ite
 iterator.start()
 time.sleep(0.5)   # Needed for arduino to initialize
 
+
 ##### LIGHT CONSTANTS #####
 LIGHT_GREEN = arduino.get_pin('d:3:o')
 # TODO: Add white light
@@ -108,6 +109,7 @@ def light(light, state):
 def buttonPressed(button, state):
     pass
 
+BUTTON_PRESSED = False
 def buttonsPressed(buttonArray):
     if (buttonArray[0] == 'start'):
         btn = buttonConverter['start']
