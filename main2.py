@@ -16,30 +16,30 @@ pygame.display.set_caption('Game Zulu')
 
 
 ###### SOUNDS #####
-try:
-    soundMissile = pygame.mixer.Sound("Sounds\missile.wav")
-    soundSuccess = pygame.mixer.Sound("Sounds\success.wav")
-    introMusic = "Sounds\intro_music.wav"
-    gamePlayMusic = 'Sounds\spooky_gameplay.wav'
-except:
-    soundMissile = pygame.mixer.Sound("Sounds/missile.wav")
-    soundSuccess = pygame.mixer.Sound("Sounds/success.wav")
-    introMusic = "Sounds/intro_music.wav"
-    gamePlayMusic = 'Sounds/spooky_gameplay.wav'
+
+# soundMissile = pygame.mixer.Sound("Sounds\missile.wav")
+# soundSuccess = pygame.mixer.Sound("Sounds\success.wav")
+# introMusic = "Sounds\intro_music.wav"
+# gamePlayMusic = 'Sounds\spooky_gameplay.wav'
+
+soundMissile = pygame.mixer.Sound("Sounds/missile.wav")
+soundSuccess = pygame.mixer.Sound("Sounds/success.wav")
+introMusic = "Sounds/intro_music.wav"
+gamePlayMusic = 'Sounds/spooky_gameplay.wav'
 
 
 
 ###### IMAGES #####
-try:
-    stars = pygame.transform.scale(pygame.image.load('Images\stars.jpg'), screenSize)
-    spaceShip = pygame.transform.scale(pygame.image.load('Images\inside_space_ship.jpg'), screenSize)
-    spaceShipFail = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_fail.jpg'), screenSize)
-    spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_success.jpg'), screenSize)
-except:
-    stars = pygame.transform.scale(pygame.image.load('Images/stars.jpg'), screenSize)
-    spaceShip = pygame.transform.scale(pygame.image.load('Images/inside_space_ship.jpg'), screenSize)
-    spaceShipFail = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_fail.jpg'), screenSize)
-    spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_success.jpg'), screenSize)
+
+# stars = pygame.transform.scale(pygame.image.load('Images\stars.jpg'), screenSize)
+# spaceShip = pygame.transform.scale(pygame.image.load('Images\inside_space_ship.jpg'), screenSize)
+# spaceShipFail = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_fail.jpg'), screenSize)
+# spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_success.jpg'), screenSize)
+
+stars = pygame.transform.scale(pygame.image.load('Images/stars.jpg'), screenSize)
+spaceShip = pygame.transform.scale(pygame.image.load('Images/inside_space_ship.jpg'), screenSize)
+spaceShipFail = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_fail.jpg'), screenSize)
+spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_success.jpg'), screenSize)
 
 
 ##### COLOR DEFINITIONS #####
