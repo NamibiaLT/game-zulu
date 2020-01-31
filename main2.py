@@ -73,7 +73,7 @@ LIGHT_YELLOW_PIN = arduino.get_pin('d:11:o')
 LIGHT_1_PIN = arduino.get_pin('d:23:o')
 LIGHT_2_PIN = arduino.get_pin('d:22:o')
 LIGHT_3_PIN = arduino.get_pin('d:2:o')
-lightArray = [LIGHT_GREEN_PIN, LIGHT_BLUE_PIN, LIGHT_YELLOW_PIN, LIGHT_1_PIN, LIGHT_2_PIN, LIGHT_3_PIN]
+lightArray = [green, LIGHT_BLUE_PIN, LIGHT_YELLOW_PIN, LIGHT_1_PIN, LIGHT_2_PIN, LIGHT_3_PIN]
 
 #########################################################################################
 
