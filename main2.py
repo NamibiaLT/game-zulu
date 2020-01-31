@@ -131,6 +131,7 @@ def success():
     # Start the success sounds
     soundSuccess.play()
     pygame.mixer.music.stop()
+    logging.info("Game Success")
    
     # Display a GREEN spaceship
     gameDisplay.blit(spaceShipSuccess, (0,0))  
@@ -163,6 +164,7 @@ def fail():
     # Start the fail sounds
     pygame.mixer.music.stop()
     soundMissile.play()
+    logging.info("Game Failure")
     
     # Display a RED spaceship
     gameDisplay.blit(spaceShipFail, (0,0))  
@@ -295,6 +297,8 @@ def game_loop():
     gameExit = False
  
     while not gameExit:
+        
+        # Keyboard logic
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -308,31 +312,16 @@ def game_loop():
                     fail()    
                 if event.key == pygame.K_g:
                     success()                                  
- 
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                    x_change = 0
 
+        # Button box logic
         if buttonsPressed(['blue']):
-            pygame.mixer.stop()
-            soundSuccess.play()
-            time.sleep(2)
-            logging.info("Game Success")
-            restartGame = exitGamePlay()
+            success()
 
         if buttonsPressed(['yellow']):
-            pygame.mixer.stop()
-            pygame.mixer.Channel(0).play(soundIncomingMissile)
-            pygame.mixer.Channel(0).queue(soundExplosion)
-            time.sleep(5)
-            logging.info("Game Failure")
-            restartGame = exitGamePlay()
+            fail()
 
         if buttonsPressed(['restart']):
-            logging.info("Restart Button Pressed")
-            LIGHT_GREEN.write(0)
-            pygame.mixer.stop()                
-            restartGame = True
+            paused()  
 
         pygame.display.update()
         clock.tick(60)
