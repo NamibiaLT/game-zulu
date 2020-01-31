@@ -243,7 +243,8 @@ def game_intro():
 def game_loop():
     global pause
     # Start the game play music
-    light(green, on)
+    green.write(1)
+    #light(green, on)
     pygame.mixer.music.stop()
     pygame.mixer.music.load(gamePlayMusic)
     pygame.mixer.music.play(-1)
