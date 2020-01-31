@@ -65,11 +65,11 @@ iterator.start()
 time.sleep(0.5)   # Needed for arduino to initialize
 
 ##### LIGHT CONSTANTS #####
-GREEN = arduino.get_pin('d:3:o')
+LIGHT_GREEN = arduino.get_pin('d:3:o')
 # TODO: Add white light
 # TODO: Replace yellow light with red light
-BLUE = arduino.get_pin('d:24:o')
-YELLOW = arduino.get_pin('d:11:o')
+LIGHT_BLUE = arduino.get_pin('d:24:o')
+LIGHT_YELLOW = arduino.get_pin('d:11:o')
 LIGHT_1 = arduino.get_pin('d:23:o')
 LIGHT_2 = arduino.get_pin('d:22:o')
 LIGHT_3 = arduino.get_pin('d:2:o')
@@ -278,7 +278,7 @@ def game_loop():
     global pause
     # Start the game play music
     #green.write(1)
-    light(GREEN, on)
+    light(LIGHT_GREEN, on)
     pygame.mixer.music.stop()
     pygame.mixer.music.load(gamePlayMusic)
     pygame.mixer.music.play(-1)
