@@ -65,7 +65,7 @@ iterator.start()
 time.sleep(0.5)   # Needed for arduino to initialize
 
 ##### LIGHT CONSTANTS #####
-LIGHT_GREEN_PIN = arduino.get_pin('d:3:o')
+green = arduino.get_pin('d:3:o')
 # TODO: Add white light
 # TODO: Replace yellow light with red light
 LIGHT_BLUE_PIN = arduino.get_pin('d:24:o')
