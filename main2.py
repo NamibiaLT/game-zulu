@@ -73,7 +73,7 @@ YELLOW = arduino.get_pin('d:11:o')
 LIGHT_1 = arduino.get_pin('d:23:o')
 LIGHT_2 = arduino.get_pin('d:22:o')
 LIGHT_3 = arduino.get_pin('d:2:o')
-lightArray = [green, LIGHT_BLUE_PIN, LIGHT_YELLOW_PIN, LIGHT_1_PIN, LIGHT_2_PIN, LIGHT_3_PIN]
+#lightArray = [green, LIGHT_BLUE_PIN, LIGHT_YELLOW_PIN, LIGHT_1_PIN, LIGHT_2_PIN, LIGHT_3_PIN]
 
 # TODO: Make this into a function
 BUTTON_BLUE = arduino.get_pin('d:4:i')
