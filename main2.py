@@ -2,7 +2,8 @@ import pygame
 import time
 import random
 import os
-#from moviepy.editor import VideoFileClip
+import logging
+from pyfirmata import Arduino, util
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -14,20 +15,15 @@ DISPLAY_WIDTH = SCREEN_SIZE[0]
 DISPLAY_HEIGHT = SCREEN_SIZE[1]
 pygame.display.set_caption('Game Zulu')
 
-###### SOUNDS #####
-soundMissile = pygame.mixer.Sound("Sounds/missile.wav")
-soundSuccess = pygame.mixer.Sound("Sounds/success.wav")
-# TODO: Add precheck complete sound
-# TODO: Add welcome sound
-introMusic = "Sounds/intro_music.wav"
-gamePlayMusic = 'Sounds/spooky_gameplay.wav'
-
 ###### IMAGES #####
 stars = pygame.transform.scale(pygame.image.load('Images/stars.jpg'), SCREEN_SIZE)
 spaceShip = pygame.transform.scale(pygame.image.load('Images/inside_space_ship.jpg'), SCREEN_SIZE)
 spaceShipFail = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_fail.jpg'), SCREEN_SIZE)
 spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_success.jpg'), SCREEN_SIZE)
 
+# TODO: Get game icon. Maybe a small spaceship.
+gameIcon = pygame.image.load('racecar2.png')
+pygame.display.set_icon(gameIcon)
 
 ##### COLORS #####
 BLACK = (0,0,0)
@@ -37,11 +33,31 @@ GREEN = (0,200,0)
 BRIGHT_RED = (255,0,0)
 BRIGHT_GREEN = (0,255,0)
 
-# TODO: Get game icon. Maybe a small spaceship.
-gameIcon = pygame.image.load('racecar2.png')
-pygame.display.set_icon(gameIcon)
-
+###### SOUNDS #####
+soundMissile = pygame.mixer.Sound("Sounds/missile.wav")
+soundSuccess = pygame.mixer.Sound("Sounds/success.wav")
+# TODO: Add precheck complete sound
+# TODO: Add welcome sound
+introMusic = "Sounds/intro_music.wav"
+gamePlayMusic = 'Sounds/spooky_gameplay.wav'
 pause = False
+
+##### BUTTON BOX CONFIGURATION #####
+mega = {
+    'digital' : tuple(x for x in range(54)),
+    'analog' : tuple(x for x in range(16)),
+    'pwm' : tuple(x for x in range(2,14)),
+    'use_ports' : True,
+    'disabled' : (0, 1, 14, 15) # Rx, Tx, Crystal
+}
+
+try:    
+    arduino = Arduino('/dev/ttyACM0', mega, 57600)
+except NameError:
+    arduino = Arduino('/dev/ttyACM1', mega, 57600)
+except:
+    print("No Arduino board is detected\n")
+
 
 def text_objects(text, font):
     textSurface = font.render(text, True, WHITE)
