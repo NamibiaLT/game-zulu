@@ -15,23 +15,14 @@ DISPLAY_HEIGHT = SCREEN_SIZE[1]
 pygame.display.set_caption('Game Zulu')
 
 ###### SOUNDS #####
-# soundMissile = pygame.mixer.Sound("Sounds\missile.wav")
-# soundSuccess = pygame.mixer.Sound("Sounds\success.wav")
-# introMusic = "Sounds\intro_music.wav"
-# gamePlayMusic = 'Sounds\spooky_gameplay.wav'
-
-# TODO: Figure out how to play these on windows OR LINUX regardless of slashes...
 soundMissile = pygame.mixer.Sound("Sounds/missile.wav")
 soundSuccess = pygame.mixer.Sound("Sounds/success.wav")
+# TODO: Add precheck complete sound
+# TODO: Add welcome sound
 introMusic = "Sounds/intro_music.wav"
 gamePlayMusic = 'Sounds/spooky_gameplay.wav'
 
 ###### IMAGES #####
-# stars = pygame.transform.scale(pygame.image.load('Images\stars.jpg'), SCREEN_SIZE)
-# spaceShip = pygame.transform.scale(pygame.image.load('Images\inside_space_ship.jpg'), SCREEN_SIZE)
-# spaceShipFail = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_fail.jpg'), SCREEN_SIZE)
-# spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_success.jpg'), SCREEN_SIZE)
-
 stars = pygame.transform.scale(pygame.image.load('Images/stars.jpg'), SCREEN_SIZE)
 spaceShip = pygame.transform.scale(pygame.image.load('Images/inside_space_ship.jpg'), SCREEN_SIZE)
 spaceShipFail = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_fail.jpg'), SCREEN_SIZE)
