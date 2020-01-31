@@ -12,13 +12,9 @@ introMusic = "/Users/bellj23/Documents/code/game-zulu/Sounds/intro_music.wav"
 gamePlayMusic = '/Users/bellj23/Documents/code/game-zulu/Sounds/spooky_gameplay.wav'
 
 ###### IMAGES #####
-stars = pygame.image.load('/Users/bellj23/Documents/code/game-zulu/Images/Stars.png')
+stars = pygame.image.load('/Users/bellj23/Documents/code/game-zulu/Images/stars.jpg')
 spaceShip = pygame.image.load('/Users/bellj23/Documents/code/game-zulu/Images/inside_space_ship.jpg')
 
-
-
-
- 
 ##### COLOR DEFINITIONS #####
 black = (0,0,0)
 white = (255,255,255)
@@ -163,14 +159,19 @@ def game_intro():
                 quit()
                 
         #gameDisplay.fill(white)
-        gameDisplay.blit(stars, (display_width * 0.5,display_height * 0.5))
+        gameDisplay.blit(stars, (0,0))
         largeText = pygame.font.SysFont("comicsansms",250)
         TextSurf, TextRect = text_objects("Zulu", largeText)
         TextRect.center = ((display_width * 0.5),(display_height * 0.3))
         gameDisplay.blit(TextSurf, TextRect)
 
-        button("Play Again",display_width * 0.30,display_height * 0.6,300,150,green,bright_green,game_loop)
-        button("Quit",display_width * 0.60,display_height * 0.6,300,150,red,bright_red,quitgame)
+        # Button position, configuration, and action
+        buttonWidth = 300
+        buttonHeight = 150
+        buttonCenterOneThird = (display_width*0.33)-(buttonWidth/2)
+        buttonCenterTwoThird = (display_width*0.66)-(buttonWidth/2)
+        button("Play Again",buttonCenterOneThird,display_height * 0.6,buttonWidth,buttonHeight,green,bright_green,game_loop)
+        button("Quit",buttonCenterTwoThird,display_height * 0.6,buttonWidth,buttonHeight,red,bright_red,quitgame)
         
         pygame.display.update()
         clock.tick(15)
