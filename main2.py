@@ -80,8 +80,9 @@ lightArray = [green, LIGHT_BLUE_PIN, LIGHT_YELLOW_PIN, LIGHT_1_PIN, LIGHT_2_PIN,
 on = 1
 off = 0
 def light(light, state):
-    for light in lightArray:
-        lightArray[light].write(state)      
+    light.write(state)
+
+
 
 
 def buttonPressed(button, state):
