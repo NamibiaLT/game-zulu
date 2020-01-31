@@ -64,7 +64,28 @@ iterator = util.Iterator(arduino)   # Game is really slow. Would adding this ite
 iterator.start()
 time.sleep(0.5)   # Needed for arduino to initialize
 
+##### LIGHT CONSTANTS #####
+LIGHT_GREEN_PIN = arduino.get_pin('d:3:o')
+# TODO: Add white light
+# TODO: Replace yellow light with red light
+LIGHT_BLUE_PIN = arduino.get_pin('d:24:o')
+LIGHT_YELLOW_PIN = arduino.get_pin('d:11:o')
+LIGHT_1_PIN = arduino.get_pin('d:23:o')
+LIGHT_2_PIN = arduino.get_pin('d:22:o')
+LIGHT_3_PIN = arduino.get_pin('d:2:o')
+lightArray = [LIGHT_GREEN_PIN, LIGHT_BLUE_PIN, LIGHT_YELLOW_PIN, LIGHT_1_PIN, LIGHT_2_PIN, LIGHT_3_PIN]
+
 #########################################################################################
+
+on = 1
+off = 0
+def light(light, state):
+    for light in lightArray:
+        lightArray[light].write(state)      
+
+
+def buttonPressed(button, state):
+    pass
 
 def text_objects(text, font):
     textSurface = font.render(text, True, WHITE)
@@ -222,6 +243,7 @@ def game_intro():
 def game_loop():
     global pause
     # Start the game play music
+    light(green, on)
     pygame.mixer.music.stop()
     pygame.mixer.music.load(gamePlayMusic)
     pygame.mixer.music.play(-1)
