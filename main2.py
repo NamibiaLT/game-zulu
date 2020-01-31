@@ -42,7 +42,7 @@ introMusic = "Sounds/intro_music.wav"
 gamePlayMusic = 'Sounds/spooky_gameplay.wav'
 pause = False
 
-##### BUTTON BOX CONFIGURATION #####
+##### BUTTON BOX CONFIGURATION ##########################################################
 mega = {
     'digital' : tuple(x for x in range(54)),
     'analog' : tuple(x for x in range(16)),
@@ -55,9 +55,16 @@ try:
     arduino = Arduino('/dev/ttyACM0', mega, 57600)
 except NameError:
     arduino = Arduino('/dev/ttyACM1', mega, 57600)
+except AttributeError:
+    arduino = Arduino('COM7', mega, 57600)   
 except:
     print("No Arduino board is detected\n")
 
+iterator = util.Iterator(arduino)   # Game is really slow. Would adding this iterator in another loop be better?
+iterator.start()
+time.sleep(0.5)   # Needed for arduino to initialize
+
+#########################################################################################
 
 def text_objects(text, font):
     textSurface = font.render(text, True, WHITE)
@@ -177,7 +184,6 @@ def paused():
         pygame.display.update()
         clock.tick(15)   
 
-
 def game_intro():
     intro = True
     startMusicPlay = False
@@ -212,7 +218,6 @@ def game_intro():
         
         pygame.display.update()
         clock.tick(15)
-
 
 def game_loop():
     global pause
