@@ -6,10 +6,12 @@ from pyfirmata import Arduino, util
 pygame.mixer.init()
 
 #GENERAL TODO
-#TODO: Figure out why game is slow to respond to button pressed at the beginning.
-    #Maybe will try inputFirmata firmware on arduino
+# TODO: Figure out why game is slow to respond to button pressed at the beginning.
+    # Maybe will try inputFirmata firmware on arduino
 
 #TODO: Must add back in "BUTTON_RIGHT.read(), BUTTON_UP.read(),BUTTON_DOWN.read()"
+# TODO: Make executable. Look at https://pythonprogramming.net/converting-pygame-executable-cx_freeze/
+
 
 #SOUNDS
 soundIntroMusic = pygame.mixer.Sound("/home/pi/Puzzilist/Sounds/music_zapsplat_among_the_stars_no_piano.wav")
