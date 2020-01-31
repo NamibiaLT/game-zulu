@@ -1,6 +1,7 @@
 import pygame
 import time
 import random
+import os
 #from moviepy.editor import VideoFileClip
 
 pygame.init()
@@ -15,16 +16,16 @@ pygame.display.set_caption('Game Zulu')
 
 
 ###### SOUNDS #####
-soundMissile = pygame.mixer.Sound("/Sounds/missile.wav")
-soundSuccess = pygame.mixer.Sound("/Sounds/success.wav")
-introMusic = "/Sounds/intro_music.wav"
-gamePlayMusic = '/Sounds/spooky_gameplay.wav'
+soundMissile = pygame.mixer.Sound("Sounds\missile.wav")
+soundSuccess = pygame.mixer.Sound("Sounds\success.wav")
+introMusic = "Sounds\intro_music.wav"
+gamePlayMusic = 'Sounds\spooky_gameplay.wav'
 
 ###### IMAGES #####
-stars = pygame.transform.scale(pygame.image.load('/Images/stars.jpg'), screenSize)
-spaceShip = pygame.transform.scale(pygame.image.load('/Images/inside_space_ship.jpg'), screenSize)
-spaceShipFail = pygame.transform.scale(pygame.image.load('/Images/inside_space_ship_fail.jpg'), screenSize)
-spaceShipSuccess = pygame.transform.scale(pygame.image.load('/Images/inside_space_ship_success.jpg'), screenSize)
+stars = pygame.transform.scale(pygame.image.load('Images\stars.jpg'), screenSize)
+spaceShip = pygame.transform.scale(pygame.image.load('Images\inside_space_ship.jpg'), screenSize)
+spaceShipFail = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_fail.jpg'), screenSize)
+spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images\inside_space_ship_success.jpg'), screenSize)
 
 ##### COLOR DEFINITIONS #####
 black = (0,0,0)
@@ -35,7 +36,7 @@ bright_red = (255,0,0)
 bright_green = (0,255,0)
 
 # TODO: Get game icon. Maybe a small spaceship.
-gameIcon = pygame.image.load('/racecar2.png')
+gameIcon = pygame.image.load('racecar2.png')
 pygame.display.set_icon(gameIcon)
 
 pause = False
