@@ -24,10 +24,29 @@ pygame.display.set_icon(gameIcon)
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 
 ##### LIGHTS #####
-from shared.lights import lights
+# TODO: Add white light
+# TODO: Replace yellow light with red light
+lights = {
+  'blue': arduino.get_pin('d:24:o'),
+  'yellow': arduino.get_pin('d:11:o'),
+  'green': arduino.get_pin('d:3:o'),
+  'one': arduino.get_pin('d:23:o'),
+  'two': arduino.get_pin('d:22:o'),
+  'three': arduino.get_pin('d:2:o'),
+}
 
 ##### BUTTONS #####
-from shared.buttons import buttons, buttonsPressed
+from shared.buttons import buttonsPressed
+buttons = {
+  'blue': arduino.get_pin('d:4:i'),
+  'yellow': arduino.get_pin('d:12:i'),
+  'start': arduino.get_pin('d:6:i'),
+  'restart': arduino.get_pin('d:5:i'),
+  'left': arduino.get_pin('d:10:i'),
+  'right': arduino.get_pin('d:9:i'),
+  'up': arduino.get_pin('d:8:i'),
+  'down': arduino.get_pin('d:7:i')
+}
 
 ###### SOUNDS #####
 from shared.sounds import soundMissile, soundSuccess, introMusic, gamePlayMusic
@@ -202,7 +221,7 @@ def game_loop():
     global pause
     # Start the game play music
     #green.write(1)
-    light(lights('green'), on)
+    light(lights['green'], on)
     pygame.mixer.music.stop()
     pygame.mixer.music.load(gamePlayMusic)
     pygame.mixer.music.play(-1)
