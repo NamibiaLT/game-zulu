@@ -13,7 +13,7 @@ from shared.display import gameDisplay, SCREEN_SIZE, DISPLAY_WIDTH, DISPLAY_HEIG
 pygame.display.set_caption('Game Zulu')
 
 ###### IMAGES #####
-stars = pygame.transform.scale(pygame.image.load('images/stars.jpg'), SCREEN_SIZE)
+stars = imageLoader('images/stars.jpg')
 spaceShip = pygame.transform.scale(pygame.image.load('images/inside_space_ship.jpg'), SCREEN_SIZE)
 spaceShipFail = pygame.transform.scale(pygame.image.load('images/inside_space_ship_fail.jpg'), SCREEN_SIZE)
 spaceShipSuccess = pygame.transform.scale(pygame.image.load('images/inside_space_ship_success.jpg'), SCREEN_SIZE)
