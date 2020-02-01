@@ -9,116 +9,40 @@ pygame.init()
 clock = pygame.time.Clock()
 
 ##### DISPLAY ##### 
-from shared.display import gameDisplay, SCREEN_SIZE, DISPLAY_WIDTH, DISPLAY_HEIGHT, imageLoader
+from shared.display import gameDisplay, DISPLAY_WIDTH, DISPLAY_HEIGHT, fullScreenImage
 pygame.display.set_caption('Game Zulu')
 
-###### IMAGES #####
-stars = imageLoader('images/stars.jpg')
-spaceShip = pygame.transform.scale(pygame.image.load('images/inside_space_ship.jpg'), SCREEN_SIZE)
-spaceShipFail = pygame.transform.scale(pygame.image.load('images/inside_space_ship_fail.jpg'), SCREEN_SIZE)
-spaceShipSuccess = pygame.transform.scale(pygame.image.load('images/inside_space_ship_success.jpg'), SCREEN_SIZE)
-
 # TODO: Get game icon. Maybe a small spaceship.
+###### IMAGES #####
+stars = fullScreenImage('images/stars.jpg')
+spaceShip = fullScreenImage('images/inside_space_ship.jpg')
+spaceShipFail = fullScreenImage('images/inside_space_ship_fail.jpg')
+spaceShipSuccess = fullScreenImage('images/inside_space_ship_success.jpg')
 gameIcon = pygame.image.load('images/racecar2.png')
 pygame.display.set_icon(gameIcon)
 
 ##### COLORS #####
-BLACK = (0,0,0)
-WHITE = (255,255,255)
-RED = (200,0,0)
-GREEN = (0,200,0)
-BRIGHT_RED = (255,0,0)
-BRIGHT_GREEN = (0,255,0)
+from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
+
+##### LIGHTS #####
+from shared.lights import lights
+
+##### BUTTONS #####
+from shared.buttons import buttons, buttonsPressed
 
 ###### SOUNDS #####
-soundMissile = pygame.mixer.Sound("sounds/missile.wav")
-soundSuccess = pygame.mixer.Sound("sounds/success.wav")
-# TODO: Add precheck complete sound
-# TODO: Add welcome sound
-introMusic = "sounds/intro_music.wav"
-gamePlayMusic = 'sounds/spooky_gameplay.wav'
+from shared.sounds import soundMissile, soundSuccess, introMusic, gamePlayMusic
+
 pause = False
 
-##### BUTTON BOX CONFIGURATION ##########################################################
-mega = {
-    'digital' : tuple(x for x in range(54)),
-    'analog' : tuple(x for x in range(16)),
-    'pwm' : tuple(x for x in range(2,14)),
-    'use_ports' : True,
-    'disabled' : (0, 1, 14, 15) # Rx, Tx, Crystal
-}
-
-try:    
-    arduino = Arduino('/dev/ttyACM0', mega, 57600)
-except NameError:
-    arduino = Arduino('/dev/ttyACM1', mega, 57600)
-except AttributeError:
-    arduino = Arduino('COM7', mega, 57600)   
-except:
-    print("No Arduino board is detected\n")
-
-iterator = util.Iterator(arduino)   # Game is really slow. Would adding this iterator in another loop be better?
-iterator.start()
-time.sleep(0.5)   # Needed for arduino to initialize
-
-
-##### LIGHT CONSTANTS #####
-LIGHT_GREEN = arduino.get_pin('d:3:o')
-# TODO: Add white light
-# TODO: Replace yellow light with red light
-LIGHT_BLUE = arduino.get_pin('d:24:o')
-LIGHT_YELLOW = arduino.get_pin('d:11:o')
-LIGHT_1 = arduino.get_pin('d:23:o')
-LIGHT_2 = arduino.get_pin('d:22:o')
-LIGHT_3 = arduino.get_pin('d:2:o')
-#lightArray = [green, LIGHT_BLUE_PIN, LIGHT_YELLOW_PIN, LIGHT_1_PIN, LIGHT_2_PIN, LIGHT_3_PIN]
-
-# TODO: Make this into a function
-# BUTTON_BLUE = arduino.get_pin('d:4:i')
-# BUTTON_YELLOW = arduino.get_pin('d:12:i')
-# BUTTON_BLACK = arduino.get_pin('d:6:i')
-# BUTTON_GREEN = arduino.get_pin('d:5:i')
-# BUTTON_LEFT = arduino.get_pin('d:10:i')
-# BUTTON_RIGHT = arduino.get_pin('d:9:i')
-# BUTTON_UP = arduino.get_pin('d:8:i')
-# BUTTON_DOWN = arduino.get_pin('d:7:i')
-
-# Use button name to get button pin
-buttonConverter = {
-    'blue': arduino.get_pin('d:4:i'),
-    'yellow': arduino.get_pin('d:12:i'),
-    'start': arduino.get_pin('d:6:i'),
-    'restart': arduino.get_pin('d:5:i'),
-    'left': arduino.get_pin('d:10:i'),
-    'right': arduino.get_pin('d:9:i'),
-    'up': arduino.get_pin('d:8:i'),
-    'down': arduino.get_pin('d:7:i')
-    }
-
-#########################################################################################
+from shared.sounds import getArduino
+arduino = getArduino()
 
 # TODO: Make this function better with an array
 on = 1
 off = 0
 def light(light, state):
     light.write(state)
-
-def buttonPressed(button, state):
-    pass
-
-BUTTON_PRESSED = False
-def buttonsPressed(buttonArray):
-    if (buttonArray[0] == 'start'):
-        btn = buttonConverter['start']
-        print('start button is ', btn.read())
-    for buttonName in buttonArray:
-        try:
-            button = buttonConverter[buttonName]
-        except:
-            return False
-        if (button.read() != BUTTON_PRESSED):
-            return False
-    return True
 
 def text_objects(text, font):
     textSurface = font.render(text, True, WHITE)
@@ -279,7 +203,7 @@ def game_loop():
     global pause
     # Start the game play music
     #green.write(1)
-    light(LIGHT_GREEN, on)
+    light(lights('green'), on)
     pygame.mixer.music.stop()
     pygame.mixer.music.load(gamePlayMusic)
     pygame.mixer.music.play(-1)
