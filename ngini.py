@@ -57,8 +57,8 @@ from shared.sounds import soundMissile, soundSuccess, lava, gamePlayMusic
 pause = False
 
 # TODO: Make this function better with an array
-on = 1
-off = 0
+ON = 1
+OFF = 0
 def light(light, state):
     light.write(state)
 
@@ -191,9 +191,9 @@ def game_intro():
         button("Play",BUTTON_CENTER_ONE_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
         button("Quit",BUTTON_CENTER_TWO_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
 
-        light(lights['one', on])
-        light(lights['two', on])
-        light(lights['three', on])
+        light(lights['one'], ON)
+        light(lights['two'], ON)
+        light(lights['three'], ON)
         
         pygame.display.update()
         clock.tick(15)
@@ -202,7 +202,7 @@ def game_loop():
     global pause
     # Start the game play music
     #green.write(1)
-    light(lights['green'], on)
+    light(lights['green'], ON)
     pygame.mixer.music.stop()
     pygame.mixer.music.load(gamePlayMusic)
     pygame.mixer.music.play(-1)
