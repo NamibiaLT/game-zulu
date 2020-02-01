@@ -9,10 +9,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 ##### DISPLAY ##### 
-gameDisplay = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-SCREEN_SIZE = gameDisplay.get_size()   #James work PC is 1920 1080
-DISPLAY_WIDTH = SCREEN_SIZE[0]
-DISPLAY_HEIGHT = SCREEN_SIZE[1]
+from display import gameDisplay, DISPLAY_WIDTH, DISPLAY_HEIGHT
 pygame.display.set_caption('Game Zulu')
 
 ###### IMAGES #####
