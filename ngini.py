@@ -206,7 +206,7 @@ def game_loop():
         if buttonsPressed(['yellow']):
             fail()
             
-        if (buttonsPressed(['right']):
+        if (buttonsPressed(['right'])):
             light(lights['blue'], OFF)
             light(lights['yellow'], ON)
 
