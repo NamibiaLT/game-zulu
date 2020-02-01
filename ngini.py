@@ -40,16 +40,6 @@ lights = {
 
 ##### BUTTONS #####
 from shared.buttons import buttonsPressed, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_CENTER_ONE_THIRD, BUTTON_CENTER_TWO_THIRD, BUTTON_CENTER_VERTICAL
-buttons = {
-  'blue': arduino.get_pin('d:4:i'),
-  'yellow': arduino.get_pin('d:12:i'),
-  'start': arduino.get_pin('d:6:i'),
-  'restart': arduino.get_pin('d:5:i'),
-  'left': arduino.get_pin('d:10:i'),
-  'right': arduino.get_pin('d:9:i'),
-  'up': arduino.get_pin('d:8:i'),
-  'down': arduino.get_pin('d:7:i')
-}
 
 ###### SOUNDS #####
 from shared.sounds import soundMissile, soundSuccess, lava, gamePlayMusic
@@ -203,13 +193,8 @@ def game_loop():
     # Start the game play music
     #green.write(1)
     light(lights['green'], ON)
-    pygame.mixer.music.stop()
-    pygame.mixer.music.load(gamePlayMusic)
-    pygame.mixer.music.play(-1)
-   
-    # Background
-    gameDisplay.blit(spaceShip, (0,0))    
-    pygame.display.update()
+    light(lights['two'], OFF)
+    light(lights['three'], OFF)
 
     dodged = clock.tick() 
     # TODO: Play clock at dodged = 0...
