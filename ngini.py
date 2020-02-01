@@ -22,6 +22,9 @@ pygame.display.set_icon(gameIcon)
 ##### COLORS #####
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 
+##### TEXT #####
+from shared.text import text_objects
+
 ##### ARDUINO #####
 from shared.arduino_setup import getArduino
 arduino = getArduino()
@@ -39,7 +42,7 @@ lights = {
 }
 
 ##### BUTTONS #####
-from shared.buttons import BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_CENTER_ONE_THIRD, BUTTON_CENTER_TWO_THIRD, BUTTON_CENTER_VERTICAL
+from shared.buttons import button, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_CENTER_ONE_THIRD, BUTTON_CENTER_TWO_THIRD, BUTTON_CENTER_VERTICAL
 buttons = {
   'blue': arduino.get_pin('d:4:i'),
   'yellow': arduino.get_pin('d:12:i'),
@@ -75,10 +78,6 @@ ON = 1
 OFF = 0
 def light(light, state):
     light.write(state)
-
-def text_objects(text, font):
-    textSurface = font.render(text, True, WHITE)
-    return textSurface, textSurface.get_rect()
  
 def success():
     # Start the success sounds
@@ -132,52 +131,11 @@ def fail():
         button("Quit",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
 
         pygame.display.update()
-        clock.tick(15) 
-
-def button(msg,x,y,w,h,ic,ac,action=None):
-    mouse = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
-
-    if x+w > mouse[0] > x and y+h > mouse[1] > y:
-        pygame.draw.rect(gameDisplay, ac,(x,y,w,h))
-        if click[0] == 1 and action != None:
-            action()         
-    else:
-        pygame.draw.rect(gameDisplay, ic,(x,y,w,h))
-    smallText = pygame.font.SysFont("comicsansms",20)
-    textSurf, textRect = text_objects(msg, smallText)
-    textRect.center = ( (x+(w/2)), (y+(h/2)) )
-    gameDisplay.blit(textSurf, textRect)
+        clock.tick(15)
     
 def quitgame():
     pygame.quit()
     quit()
-
-def unpause():
-    global pause
-    pygame.mixer.music.unpause()
-    pause = False
-    
-def paused():
-    ############
-    pygame.mixer.music.pause()
-    #############
-    largeText = pygame.font.SysFont("comicsansms",250)
-    TextSurf, TextRect = text_objects("Paused", largeText)
-    TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
-    gameDisplay.blit(TextSurf, TextRect)
-    
-    while pause:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-
-        button("Play Again",BUTTON_CENTER_ONE_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
-        button("Quit",BUTTON_CENTER_TWO_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
-
-        pygame.display.update()
-        clock.tick(15)   
 
 def game_intro():
     intro = True
