@@ -210,7 +210,7 @@ def game_loop():
         if buttonsPressed(['blue']):
             if (lightOn('blue')):
                 fail()
-            else
+            else:
                 success()
 
         if buttonsPressed(['yellow']):
