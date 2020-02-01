@@ -3,7 +3,6 @@ import time
 import random
 import os
 import logging
-from pyfirmata import Arduino, util
 
 pygame.init()
 clock = pygame.time.Clock()
