@@ -23,9 +23,13 @@ pygame.display.set_icon(gameIcon)
 ##### COLORS #####
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 
-##### LIGHTS #####
+##### ARDUINO #####
+from shared.arduino_setup import getArduino
+arduino = getArduino()
+
 # TODO: Add white light
 # TODO: Replace yellow light with red light
+##### LIGHTS #####
 lights = {
   'blue': arduino.get_pin('d:24:o'),
   'yellow': arduino.get_pin('d:11:o'),
@@ -52,9 +56,6 @@ buttons = {
 from shared.sounds import soundMissile, soundSuccess, introMusic, gamePlayMusic
 
 pause = False
-
-from shared.arduino_setup import getArduino
-arduino = getArduino()
 
 # TODO: Make this function better with an array
 on = 1
