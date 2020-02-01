@@ -41,6 +41,16 @@ lights = {
   'three': arduino.get_pin('d:2:o'),
 }
 
+def lightsOn(lightArray):
+    for lightName in lightArray:
+        try:
+            light = lights[lightName]
+        except:
+            return False
+        if (light.read() != ON):
+            return False
+    return True
+
 ##### BUTTONS #####
 from shared.buttons import button, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_CENTER_ONE_THIRD, BUTTON_CENTER_TWO_THIRD, BUTTON_CENTER_VERTICAL
 buttons = {
@@ -56,9 +66,6 @@ buttons = {
 
 BUTTON_PRESSED = False
 def buttonsPressed(buttonArray):
-    if (buttonArray[0] == 'start'):
-        btn = buttons['start']
-        print('start button is ', btn.read())
     for buttonName in buttonArray:
         try:
             button = buttons[buttonName]
@@ -201,7 +208,10 @@ def game_loop():
 
         # Button box logic
         if buttonsPressed(['blue']):
-            fail()
+            if (lightOn('blue')):
+                fail()
+            else
+                success()
 
         if buttonsPressed(['yellow']):
             fail()
@@ -210,6 +220,9 @@ def game_loop():
             light(lights['blue'], OFF)
             light(lights['yellow'], ON)
 
+        if (buttonsPressed(['left'])):
+            light(lights['blue'], ON)
+            light(lights['yellow'], OFF)
 
         clock.tick(60)
 
