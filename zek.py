@@ -179,12 +179,11 @@ def game_intro():
         
 def gate_1():
     if buttonsPressed(['blue']):
-        soundTrumpet.play()
-        # if (lightsOn(['blue'])):
-        #     fail()
-        # else:
-        #     soundTrumpet.play()
-        #     return
+        if (lightsOn(['blue'])):
+            fail()
+        else:
+            soundTrumpet.play()
+            return
 
     if buttonsPressed(['yellow']):
         fail()
