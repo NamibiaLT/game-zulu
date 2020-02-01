@@ -146,7 +146,7 @@ def quitgame():
 
 def game_intro():
     intro = True
-    startMusicPlay = False
+    # startMusicPlay = False
     testTrumpet = False
     while intro:
         # Abilty to quit the game
@@ -156,10 +156,10 @@ def game_intro():
                 quit()
         
         # Start intro music
-        while not startMusicPlay:
-            pygame.mixer.music.load(lava)
-            pygame.mixer.music.play(-1)   
-            startMusicPlay = True
+        # while not startMusicPlay:
+        #     pygame.mixer.music.load(lava)
+        #     pygame.mixer.music.play(-1)   
+        #     startMusicPlay = True
 
         while not testTrumpet:
             soundTrumpet.play()
