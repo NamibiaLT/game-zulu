@@ -219,6 +219,9 @@ def game_loop():
     light(lights['green'], ON)
     light(lights['two'], OFF)
     light(lights['three'], OFF)
+    light(lights['blue'], ON)
+
+    pygame.display.update()
 
     dodged = clock.tick() 
     # TODO: Play clock at dodged = 0...
