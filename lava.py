@@ -34,7 +34,7 @@ from shared.sounds import soundMissile, soundSuccess, introMusic, gamePlayMusic
 
 pause = False
 
-from shared.sounds import getArduino
+from shared.arduino_setup import getArduino
 arduino = getArduino()
 
 # TODO: Make this function better with an array
