@@ -8,3 +8,4 @@ soundSuccess = pygame.mixer.Sound("sounds/success.wav")
 introMusicSpace = "sounds/intro_music_space.wav"
 gamePlayMusic = 'sounds/spooky_gameplay.wav'
 lava = "sounds/lava.wav"
+soundTrumpet = "sounds/trumpet.wav"

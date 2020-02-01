@@ -76,7 +76,7 @@ def buttonsPressed(buttonArray):
     return True
 
 ###### SOUNDS #####
-from shared.sounds import soundMissile, soundSuccess, lava, gamePlayMusic
+from shared.sounds import soundMissile, soundSuccess, lava, gamePlayMusic, soundTrumpet
 
 pause = False
 
@@ -176,6 +176,33 @@ def game_intro():
         
         pygame.display.update()
         clock.tick(15)
+        
+def gate_1():
+    if buttonsPressed(['blue']):
+        if (lightsOn(['blue'])):
+            fail()
+        else:
+            soundSuccess
+            return
+
+    if buttonsPressed(['yellow']):
+        fail()
+        
+    if (buttonsPressed(['right'])):
+        light(lights['blue'], OFF)
+        light(lights['yellow'], ON)
+
+    if (buttonsPressed(['left'])):
+        light(lights['blue'], ON)
+        light(lights['yellow'], OFF)
+        
+def gate_2():
+    lightsOn(['blue'])
+    lightsOn(['green'])
+    lightsOn(['yellow'])
+    lightsOn(['one'])
+    lightsOn(['two'])
+    lightsOn(['three'])
 
 def game_loop():
     global pause
@@ -186,6 +213,7 @@ def game_loop():
     light(lights['three'], OFF)
     light(lights['blue'], ON)
 
+    # same background, just refresh to remove title and buttons
     gameDisplay.blit(lavaBackground, (0,0))
     pygame.display.update()
 
@@ -207,22 +235,8 @@ def game_loop():
                     quitgame()
 
         # Button box logic
-        if buttonsPressed(['blue']):
-            if (lightsOn(['blue'])):
-                fail()
-            else:
-                success()
-
-        if buttonsPressed(['yellow']):
-            fail()
-            
-        if (buttonsPressed(['right'])):
-            light(lights['blue'], OFF)
-            light(lights['yellow'], ON)
-
-        if (buttonsPressed(['left'])):
-            light(lights['blue'], ON)
-            light(lights['yellow'], OFF)
+        gate_1()
+        gate_2()
 
         clock.tick(60)
 
