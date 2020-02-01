@@ -168,7 +168,7 @@ def game_intro():
         # Background and title
         gameDisplay.blit(lavaBackground, (0,0))
         largeText = pygame.font.SysFont("comicsansms",250)
-        TextSurf, TextRect = text_objects("Ngini", largeText)
+        TextSurf, TextRect = text_objects("Zek", largeText)
         TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.3))
         gameDisplay.blit(TextSurf, TextRect)
 
