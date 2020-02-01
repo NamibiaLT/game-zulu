@@ -197,7 +197,7 @@ def game_loop():
  
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_g:
-                    success()
+                    quitgame()
 
         # Button box logic
         if buttonsPressed(['blue']):
