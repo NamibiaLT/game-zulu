@@ -191,9 +191,9 @@ def game_intro():
         button("Play",BUTTON_CENTER_ONE_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
         button("Quit",BUTTON_CENTER_TWO_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
 
-        light(lights['one', 'on'])
-        light(lights['two', 'on'])
-        light(lights['three', 'on'])
+        light(lights['one', on])
+        light(lights['two', on])
+        light(lights['three', on])
         
         pygame.display.update()
         clock.tick(15)
