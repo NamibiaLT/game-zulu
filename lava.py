@@ -9,7 +9,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 ##### DISPLAY ##### 
-from shared.display import gameDisplay, DISPLAY_WIDTH, DISPLAY_HEIGHT
+from shared.display import gameDisplay, SCREEN_SIZE, DISPLAY_WIDTH, DISPLAY_HEIGHT
 pygame.display.set_caption('Game Zulu')
 
 ###### IMAGES #####
