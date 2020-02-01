@@ -16,13 +16,13 @@ DISPLAY_HEIGHT = SCREEN_SIZE[1]
 pygame.display.set_caption('Game Zulu')
 
 ###### IMAGES #####
-stars = pygame.transform.scale(pygame.image.load('images/stars.jpg'), SCREEN_SIZE)
-spaceShip = pygame.transform.scale(pygame.image.load('images/inside_space_ship.jpg'), SCREEN_SIZE)
-spaceShipFail = pygame.transform.scale(pygame.image.load('images/inside_space_ship_fail.jpg'), SCREEN_SIZE)
-spaceShipSuccess = pygame.transform.scale(pygame.image.load('images/inside_space_ship_success.jpg'), SCREEN_SIZE)
+stars = pygame.transform.scale(pygame.image.load('img/stars.jpg'), SCREEN_SIZE)
+spaceShip = pygame.transform.scale(pygame.image.load('img/inside_space_ship.jpg'), SCREEN_SIZE)
+spaceShipFail = pygame.transform.scale(pygame.image.load('img/inside_space_ship_fail.jpg'), SCREEN_SIZE)
+spaceShipSuccess = pygame.transform.scale(pygame.image.load('img/inside_space_ship_success.jpg'), SCREEN_SIZE)
 
 # TODO: Get game icon. Maybe a small spaceship.
-gameIcon = pygame.image.load('images/racecar2.png')
+gameIcon = pygame.image.load('img/racecar2.png')
 pygame.display.set_icon(gameIcon)
 
 ##### COLORS #####
