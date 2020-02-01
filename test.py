@@ -1,3 +1,5 @@
+from shared.display import gameDisplay
+
 buttonConverter = {
     blue: "arduino.get_pin('d:4:i')",
     yellow: "arduino.get_pin('d:12:i')",
