@@ -1,3 +1,5 @@
+import pygame
+
 # TODO: Add precheck complete sound
 # TODO: Add welcome sound
 
