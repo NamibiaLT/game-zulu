@@ -321,6 +321,7 @@ def game_loop():
             fail()
 
         if buttonsPressed(['restart']):
+            pause = True
             paused()  
 
         pygame.display.update()
