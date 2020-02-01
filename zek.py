@@ -179,7 +179,8 @@ def game_intro():
         
 def gate_1():
     if buttonsPressed(['blue']):
-        soundTrumpet.play()
+        pygame.mixer.music.load(soundTrumpet)
+        pygame.mixer.music.play(-1)
         # if (lightsOn(['blue'])):
         #     fail()
         # else:
