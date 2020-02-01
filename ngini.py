@@ -221,6 +221,7 @@ def game_loop():
     light(lights['three'], OFF)
     light(lights['blue'], ON)
 
+    gameDisplay.blit(lavaBackground, (0,0))
     pygame.display.update()
 
     dodged = clock.tick() 
@@ -237,26 +238,17 @@ def game_loop():
                 quit()
  
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_p:
-                    pause = True
-                    paused()
-                if event.key == pygame.K_h:
-                    fail()    
                 if event.key == pygame.K_g:
-                    success()                                  
+                    success()
 
         # Button box logic
         if buttonsPressed(['blue']):
-            success()
+            fail()
 
         if buttonsPressed(['yellow']):
             fail()
 
-        if buttonsPressed(['restart']):
-            pause = True
-            paused()  
 
-        pygame.display.update()
         clock.tick(60)
 
 game_intro()
