@@ -5,5 +5,6 @@ import pygame
 
 soundMissile = pygame.mixer.Sound("sounds/missile.wav")
 soundSuccess = pygame.mixer.Sound("sounds/success.wav")
-introMusic = "sounds/intro_music.wav"
+introMusicSpace = "sounds/intro_music_space.wav"
 gamePlayMusic = 'sounds/spooky_gameplay.wav'
+lava = "sounds/lava.wav"
