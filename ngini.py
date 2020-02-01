@@ -182,7 +182,7 @@ def gate_1():
         if (lightsOn(['blue'])):
             fail()
         else:
-            soundSuccess
+            soundTrumpet
             return
 
     if buttonsPressed(['yellow']):
