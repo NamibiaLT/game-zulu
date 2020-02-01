@@ -31,14 +31,16 @@ arduino = getArduino()
 
 # TODO: Add white light
 # TODO: Replace yellow light with red light
+
 ##### LIGHTS #####
 lights = {
-  'blue': arduino.get_pin('d:24:o'),
-  'yellow': arduino.get_pin('d:11:o'),
-  'green': arduino.get_pin('d:3:o'),
-  'one': arduino.get_pin('d:23:o'),
-  'two': arduino.get_pin('d:22:o'),
-  'three': arduino.get_pin('d:2:o'),
+  'blue': arduino.get_pin('d:10:p'),
+  'green': arduino.get_pin('d:13:p'),
+  'red': arduino.get_pin('d:13:p'), 
+  'red': arduino.get_pin('d:3:p'),
+  'one': arduino.get_pin('d:2:p'),
+  'two': arduino.get_pin('d:5:p'),
+  'three': arduino.get_pin('d:4:p'),
 }
 
 def lightsOn(lightArray):
@@ -54,15 +56,19 @@ def lightsOn(lightArray):
 ##### BUTTONS #####
 from shared.buttons import button, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_CENTER_ONE_THIRD, BUTTON_CENTER_TWO_THIRD, BUTTON_CENTER_VERTICAL
 buttons = {
-  'blue': arduino.get_pin('d:4:i'),
-  'yellow': arduino.get_pin('d:12:i'),
-  'start': arduino.get_pin('d:6:i'),
-  'restart': arduino.get_pin('d:5:i'),
-  'left': arduino.get_pin('d:9:i'),
-  'right': arduino.get_pin('d:10:i'),
-  'up': arduino.get_pin('d:8:i'),
-  'down': arduino.get_pin('d:7:i')
+  'blue': arduino.get_pin('d:5:i'),
+  'green': arduino.get_pin('d:37:i'),
+  'red': arduino.get_pin('d:35:i'),  
+  'abort': arduino.get_pin('d:30:i'),   #Back of game. Should be abort button to exit/quit program/game
+  'left': arduino.get_pin('d:32:i'),
+  'right': arduino.get_pin('d:31:i'),
+  'up': arduino.get_pin('d:34:i'),
+  'down': arduino.get_pin('d:33:i'),
 }
+        # 'handle': arduino.get_pin('d:XXXXXX:i') ADD TO button array
+##### SENSORS #####
+motionSense = ardiuno.get_pin('d:8:i')    # Detects motion as HIGH then waits 3 seconds of no motion to go low. Can adjust time manually. https://www.makerguides.com/hc-sr501-arduino-tutorial/
+
 
 BUTTON_PRESSED = False
 def buttonsPressed(buttonArray):
