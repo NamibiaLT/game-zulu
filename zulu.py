@@ -193,15 +193,14 @@ def game_intro():
         clock.tick(15)
         
 def gate_1():
-    iterator = util.Iterator(arduino)
-    iterator.start()
     light(lights['button1'], ON)
     
     if buttonsPressed(['back']):
         pygame.quit()
         quit()
 
-    if buttonsPressed(['up']):
+    if buttonsPressed(['button1']):
+        print(buttonsPressed(['button1']))       
         gate0Success = False
         gate1Success = True
 
