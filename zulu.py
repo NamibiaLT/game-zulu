@@ -245,7 +245,8 @@ def gate_1():
         gate0Success = False
         gate1Success = True
         soundGateSuccess.play()
-        light(lights['button1'], OFF)       
+        light(lights['button1'], OFF)
+        time.sleep(0.3)       
         gate_2()
 
     if buttonsPressed(['button2']):
@@ -256,12 +257,8 @@ def gate_1():
     if buttonsPressed(['center']):
         soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
-        
-    if buttonsPressed(['up']):
-        soundTrumpet.set_volume(0.3)
-        soundGateSuccess.play()
 
-    if buttonsPressed(['down']) or buttonsPressed(['left']) or buttonsPressed(['right']):
+    if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']):
         soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
 
@@ -281,7 +278,8 @@ def gate_2():
     if buttonsPressed(['button2']):      
         gate1Success = False
         gate2Success = True
-        light(lights['button2'], OFF)       
+        light(lights['button2'], OFF)    
+        time.sleep(0.3)     
         gate_3()
 
     if buttonsPressed(['button1']):
@@ -324,7 +322,8 @@ def gate_3():
     #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
     if buttonsPressed(['center']):      
         gate2Success = False
-        light(lights['led3'], OFF)       
+        light(lights['led3'], OFF)  
+        time.sleep(0.3)       
         success()
 
     if buttonsPressed(['button1']) or buttonsPressed(['button2']):
