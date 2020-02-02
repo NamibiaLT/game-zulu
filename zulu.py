@@ -2,6 +2,7 @@ import pygame
 import random
 import os
 import logging
+import time
 
 pygame.init()
 clock = pygame.time.Clock()
