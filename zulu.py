@@ -214,6 +214,7 @@ def gate_1():
         
     pygame.display.update()
     clock.tick(60)
+return
         
 def gate_2():
     # temporarily success gate....
