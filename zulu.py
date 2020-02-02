@@ -87,7 +87,7 @@ pause = False
 
 ON = 1
 OFF = 0
-### HELP: How to write if "ALL, ON" then all lights come on.
+### HELP: How to write if "ALL, ON" then all lights come on. Help with this function. "ALL does not work."
 def light(light, state):
     if (light == 'ALL'):
         for lightName in lights:
@@ -226,15 +226,13 @@ def fail():
     # light(lights['led5'], OFF)        
     # time.sleep(0.3)
 
-    light('All', ON)
-
-    # light(lights['button1'], OFF)
-    # light(lights['button2'], OFF)
-    # light(lights['led1'], OFF)
-    # light(lights['led2'], OFF)
-    # light(lights['led3'], OFF)
-    # light(lights['led4'], OFF)
-    # light(lights['led5'], OFF)
+    light(lights['button1'], OFF)
+    light(lights['button2'], OFF)
+    light(lights['led1'], OFF)
+    light(lights['led2'], OFF)
+    light(lights['led3'], OFF)
+    light(lights['led4'], OFF)
+    light(lights['led5'], OFF)
 
     while True:
         for event in pygame.event.get():
