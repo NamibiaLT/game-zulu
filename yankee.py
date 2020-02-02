@@ -29,9 +29,6 @@ from shared.text import text_objects
 from shared.arduino_setup import getArduino
 arduino = getArduino()
 
-# TODO: Add white light
-# TODO: Replace yellow light with red light
-
 ##### LIGHTS #####
 lights = {
   'blue': arduino.get_pin('d:10:p'),
