@@ -237,16 +237,17 @@ def gate_1():
     light(lights['button1'], ON)
     
     if buttonsPressed(['back']):
-        pygame.quit()
-        quit()
+        quitgame()
 
     #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
     if buttonsPressed(['button1']):      
-        global gate1Success
-        global gate0Success
+        global gateSuccess
+        # global gate1Success
+        # global gate0Success
 
-        gate0Success = False
-        gate1Success = True
+        gateSuccess = [False,True,False]
+        # gate0Success = False
+        # gate1Success = True
         soundGateSuccess.play()
         light(lights['button1'], OFF)
         time.sleep(0.3)       
@@ -276,11 +277,13 @@ def gate_2():
 
     #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
     if buttonsPressed(['button2']):      
-        global gate1Success
-        global gate2Success
+        # global gate1Success
+        # global gate2Success
+        global gateSuccess
         
-        gate1Success = False
-        gate2Success = True
+        gateSuccess = [False, False, True]
+        # gate1Success = False
+        # gate2Success = True
         light(lights['button2'], OFF)    
         time.sleep(0.3)     
         gate_3()
@@ -306,6 +309,8 @@ def gate_3():
 
     #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
     if buttonsPressed(['center']):      
+        global gateSuccess
+        gateSuccess = [False, False, False]
         gate2Success = False
         light(lights['led3'], OFF)  
         time.sleep(0.3)       
@@ -326,6 +331,7 @@ def gate_3():
 
 def game_loop():
     global pause
+    global gateSuccess
     global gate0Success
     global gate1Success
     global gate2Success
@@ -340,6 +346,7 @@ def game_loop():
 
     gameExit = False
  
+    gateSuccess = [True, False, False]
     gate0Success = True
     gate1Success = False
     gate2Success = False
@@ -367,7 +374,6 @@ def game_loop():
         if gate2Success:
             gate_3()
 
-        
         pygame.display.update()
         clock.tick(60)
 
