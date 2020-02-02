@@ -4,6 +4,11 @@ import os
 import logging
 import time
 
+# This game is the first game of the series.  
+#
+# Game Play: A button will light up. The player must hit that button. Other buttons will be dead and indicate so with a sound. 
+# 
+
 pygame.init()
 clock = pygame.time.Clock()
 
@@ -201,7 +206,7 @@ def gate_1():
     if buttonsPressed(['button2']):
         fail()
     
-    if buttonsPressed(['center'])
+    if buttonsPressed(['center']):
         soundTrumpet.play()
 
         
