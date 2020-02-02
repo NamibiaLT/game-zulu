@@ -4,11 +4,9 @@ import os
 import logging
 import time
 
-
+# Game Zulu
 # This game is the first game of the series.  
-#
-# Game Play: A button will light up. The player must hit that button. Other buttons will be dead and indicate so with a sound. 
-# 
+# Game Play: A button will light up. The player must hit a coorosponding button. Other buttons will trigger a fail condition. 
 
 pygame.init()
 pygame.mixer.init()
@@ -34,7 +32,7 @@ from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 from shared.text import text_objects
 from shared.sounds import soundMissile, soundButtonDead, soundGateSuccess, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2
 
-##### LIGHTS #####
+##### LIGHT ASSIGNMENTS #####
 lights = {
   'button1': arduino.get_pin('d:11:p'),
   'button2': arduino.get_pin('d:10:p'),
@@ -42,8 +40,7 @@ lights = {
   'led2': arduino.get_pin('d:2:p'),
   'led3': arduino.get_pin('d:5:p'),
   'led4': arduino.get_pin('d:4:p'),
-  'led5': arduino.get_pin('d:13:p'), 
-}
+  'led5': arduino.get_pin('d:13:p'), }
 
 def lightsOn(lightArray):
     for lightName in lightArray:
@@ -67,10 +64,6 @@ buttons = {
   'up': arduino.get_pin('d:34:i'),
   'down': arduino.get_pin('d:33:i'),
 }
-        # 'handle': arduino.get_pin('d:XXXXXX:i') ADD TO button array
-##### SENSORS #####
-#motionSense = ardiuno.get_pin('d:8:i')
-
 
 BUTTON_PRESSED = False
 def buttonsPressed(buttonArray):
@@ -84,7 +77,6 @@ def buttonsPressed(buttonArray):
     return True
 
 pause = False
-
 ON = 1
 OFF = 0
 ### HELP: How to write if "ALL, ON" then all lights come on. Help with this function. "ALL does not work."
@@ -164,8 +156,6 @@ def success():
     light(lights['led4'], OFF)
     light(lights['led5'], OFF)
 
-
-    
     while True:
         for event in pygame.event.get():
             # Quit game from window screen            
@@ -182,7 +172,6 @@ def success():
  
         pygame.display.update()
         clock.tick(15) 
-
 
 
 def fail():
@@ -253,9 +242,7 @@ def fail():
 
         pygame.display.update()
         clock.tick(15)
-
-
-    
+  
 def quitgame():
     pygame.quit()
     quit()
@@ -374,6 +361,7 @@ def gate_3():
     clock.tick(60)
 
 def game_loop():
+    
     global pause
     global gateSuccess
 
@@ -404,6 +392,7 @@ def game_loop():
                     quit()
 
         # Button box logic
+        # Make game assign random LED on to determine which one wins the gate.
         if gateSuccess[0]:
             gate_1()
 
