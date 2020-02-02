@@ -312,13 +312,6 @@ def game_loop():
 
         if gate2Success:
             gate_3()
-
-        if buttonsPressed(['center']):
-            soundTrumpet.set_volume(0.3)
-            soundTrumpet.play()
-        
-        if buttonsPressed(['up']):
-            soundSuccess.play() 
         
         pygame.display.update()
         clock.tick(60)
