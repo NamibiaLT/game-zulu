@@ -257,11 +257,8 @@ def gate_1():
     
     # TODO: Change all these to button dead sound
     # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
-    if buttonsPressed(['center']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
 
-    if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']):
+    if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']) or buttonsPressed(['center']):
         soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
 
@@ -293,23 +290,7 @@ def gate_2():
     
     # TODO: Change all these to button dead sound
     # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
-    if buttonsPressed(['center']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
-        
-    if buttonsPressed(['up']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
-
-    if buttonsPressed(['down']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
-
-    if buttonsPressed(['left']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
-
-    if buttonsPressed(['right']):
+    if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']) or buttonsPressed(['center']):
         soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
 
@@ -336,27 +317,12 @@ def gate_3():
     # TODO: Change all these to button dead sound
     # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
 
-    if buttonsPressed(['up']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
-
-    if buttonsPressed(['down']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
-
-    if buttonsPressed(['left']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
-
-    if buttonsPressed(['right']):
+    if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']):
         soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
 
     pygame.display.update()
     clock.tick(60)
-
-    success()    
-
 
 def game_loop():
     global pause
@@ -400,6 +366,7 @@ def game_loop():
 
         if gate2Success:
             gate_3()
+
         
         pygame.display.update()
         clock.tick(60)
