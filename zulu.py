@@ -1,80 +1,54 @@
 import pygame
-import time
 import random
 import os
 import logging
-from pyfirmata import Arduino, util
 
 pygame.init()
 clock = pygame.time.Clock()
 
 ##### DISPLAY ##### 
-gameDisplay = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-SCREEN_SIZE = gameDisplay.get_size()   #James work PC is 1920 1080
-DISPLAY_WIDTH = SCREEN_SIZE[0]
-DISPLAY_HEIGHT = SCREEN_SIZE[1]
+from shared.display import gameDisplay, DISPLAY_WIDTH, DISPLAY_HEIGHT, fullScreenImage
 pygame.display.set_caption('Game Zulu')
 
-###### IMAGES #####
-stars = pygame.transform.scale(pygame.image.load('Images/stars.jpg'), SCREEN_SIZE)
-spaceShip = pygame.transform.scale(pygame.image.load('Images/inside_space_ship.jpg'), SCREEN_SIZE)
-spaceShipFail = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_fail.jpg'), SCREEN_SIZE)
-spaceShipSuccess = pygame.transform.scale(pygame.image.load('Images/inside_space_ship_success.jpg'), SCREEN_SIZE)
-
 # TODO: Get game icon. Maybe a small spaceship.
-gameIcon = pygame.image.load('racecar2.png')
+###### IMAGES #####
+lavaBackground = fullScreenImage('images/lava.jpg')
+spaceShip = fullScreenImage('images/inside_space_ship.jpg')
+spaceShipFail = fullScreenImage('images/inside_space_ship_fail.jpg')
+spaceShipSuccess = fullScreenImage('images/inside_space_ship_success.jpg')
+gameIcon = pygame.image.load('images/racecar2.png')
 pygame.display.set_icon(gameIcon)
 
 ##### COLORS #####
-BLACK = (0,0,0)
-WHITE = (255,255,255)
-RED = (200,0,0)
-GREEN = (0,200,0)
-BRIGHT_RED = (255,0,0)
-BRIGHT_GREEN = (0,255,0)
+from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 
-###### SOUNDS #####
-soundMissile = pygame.mixer.Sound("Sounds/missile.wav")
-soundSuccess = pygame.mixer.Sound("Sounds/success.wav")
-# TODO: Add precheck complete sound
-# TODO: Add welcome sound
-introMusic = "Sounds/intro_music.wav"
-gamePlayMusic = 'Sounds/spooky_gameplay.wav'
-pause = False
+##### TEXT #####
+from shared.text import text_objects
 
-##### BUTTON BOX CONFIGURATION ##########################################################
-mega = {
-    'digital' : tuple(x for x in range(54)),
-    'analog' : tuple(x for x in range(16)),
-    'pwm' : tuple(x for x in range(2,14)),
-    'use_ports' : True,
-    'disabled' : (0, 1, 14, 15) # Rx, Tx, Crystal
+##### ARDUINO #####
+from shared.arduino_setup import getArduino
+arduino = getArduino()
+
+##### LIGHTS #####
+lights = {
+  'blue': arduino.get_pin('d:10:p'),
+  'green': arduino.get_pin('d:13:p'),
+  'red': arduino.get_pin('d:13:p'), 
+  'red': arduino.get_pin('d:3:p'),
+  'one': arduino.get_pin('d:2:p'),
+  'two': arduino.get_pin('d:5:p'),
+  'three': arduino.get_pin('d:4:p'),
 }
 
-try:    
-    arduino = Arduino('/dev/ttyACM0', mega, 57600)
-except NameError:
-    arduino = Arduino('/dev/ttyACM1', mega, 57600)
-except AttributeError:
-    arduino = Arduino('COM7', mega, 57600)   
-except:
-    print("No Arduino board is detected\n")
-
-iterator = util.Iterator(arduino)   # Game is really slow. Would adding this iterator in another loop be better?
-iterator.start()
-time.sleep(0.5)   # Needed for arduino to initialize
-
-
-##### LIGHT CONSTANTS #####
-LIGHT_GREEN = arduino.get_pin('d:3:o')
-# TODO: Add white light
-# TODO: Replace yellow light with red light
-LIGHT_BLUE = arduino.get_pin('d:24:o')
-LIGHT_YELLOW = arduino.get_pin('d:11:o')
-LIGHT_1 = arduino.get_pin('d:23:o')
-LIGHT_2 = arduino.get_pin('d:22:o')
-LIGHT_3 = arduino.get_pin('d:2:o')
-#lightArray = [green, LIGHT_BLUE_PIN, LIGHT_YELLOW_PIN, LIGHT_1_PIN, LIGHT_2_PIN, LIGHT_3_PIN]
+def lightsOn(lightArray):
+    for lightName in lightArray:
+        try:
+            light = lights[lightName]
+        except:
+            return False
+        if (light.read() != ON):
+            return False
+    return True
 
 ##### BUTTONS #####
 from shared.buttons import button, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_CENTER_ONE_THIRD, BUTTON_CENTER_TWO_THIRD, BUTTON_CENTER_VERTICAL
@@ -88,38 +62,32 @@ buttons = {
   'up': arduino.get_pin('d:34:i'),
   'down': arduino.get_pin('d:33:i'),
 }
-# 'handle': arduino.get_pin('d:XXXXXX:i') ADD TO button array
+        # 'handle': arduino.get_pin('d:XXXXXX:i') ADD TO button array
 ##### SENSORS #####
-#motionSense = ardiuno.get_pin('d:8:i')    # Detects motion as HIGH then waits 3 seconds of no motion to go low. Can adjust time manually. https://www.makerguides.com/hc-sr501-arduino-tutorial/
+motionSense = ardiuno.get_pin('d:8:i')    # Detects motion as HIGH then waits 3 seconds of no motion to go low. Can adjust time manually. https://www.makerguides.com/hc-sr501-arduino-tutorial/
 
-#########################################################################################
-
-# TODO: Make this function better with an array
-on = 1
-off = 0
-def light(light, state):
-    light.write(state)
-
-def buttonPressed(button, state):
-    pass
 
 BUTTON_PRESSED = False
 def buttonsPressed(buttonArray):
-    if (buttonArray[0] == 'start'):
-        btn = buttonConverter['start']
-        print('start button is ', btn.read())
     for buttonName in buttonArray:
         try:
-            button = buttonConverter[buttonName]
+            button = buttons[buttonName]
         except:
             return False
         if (button.read() != BUTTON_PRESSED):
             return False
     return True
 
-def text_objects(text, font):
-    textSurface = font.render(text, True, WHITE)
-    return textSurface, textSurface.get_rect()
+###### SOUNDS #####
+from shared.sounds import soundMissile, soundSuccess, lava, gamePlayMusic, soundTrumpet
+
+pause = False
+
+# TODO: Make this function better with an array
+ON = 1
+OFF = 0
+def light(light, state):
+    light.write(state)
  
 def success():
     # Start the success sounds
