@@ -109,6 +109,39 @@ def success():
     TextSurf, TextRect = text_objects("", largeText)
     TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
+
+    # HELP: How to make light function so we can do 'light(lights['ALL'], ON)
+    light(lights['button1'], ON)
+    light(lights['button2'], ON)
+    light(lights['led1'], ON)
+    light(lights['led2'], ON)
+    light(lights['led3'], ON)
+    light(lights['led4'], ON)
+    light(lights['led5'], ON)
+    time.sleep(0.3)
+    light(lights['button1'], OFF)
+    light(lights['button2'], OFF)
+    light(lights['led1'], OFF)
+    light(lights['led2'], OFF)
+    light(lights['led3'], OFF)
+    light(lights['led4'], OFF)
+    light(lights['led5'], OFF)
+    time.sleep(0.3)
+    light(lights['button1'], ON)
+    light(lights['button2'], ON)
+    light(lights['led1'], ON)
+    light(lights['led2'], ON)
+    light(lights['led3'], ON)
+    light(lights['led4'], ON)
+    light(lights['led5'], ON)
+    time.sleep(0.3)
+    light(lights['button1'], OFF)
+    light(lights['button2'], OFF)
+    light(lights['led1'], OFF)
+    light(lights['led2'], OFF)
+    light(lights['led3'], OFF)
+    light(lights['led4'], OFF)
+    light(lights['led5'], OFF)
     
     while True:
         for event in pygame.event.get():
@@ -119,8 +152,8 @@ def success():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     quitgame()
-        # TODO: Make Enter only available if game was successful. Put LOCK symbol if not.
-        button("Proceed",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+        # TODO: Make Proceed only available if game was successful.
+        button("Proceed",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_intro)
         # TODO: Make Leave go back to main screen with list of games
         button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,game_intro)
  
@@ -153,8 +186,9 @@ def fail():
                 if event.key == pygame.q_g:
                     quitgame()
 
-        # TODO: Make Enter only available if game was successful. Put LOCK symbol for this fail.        
-        button("Proceed (LOCKED)",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+        # TODO: Make Enter only available if game was successful. Put LOCK symbol for this fail.
+        # TODO: Make dead sound if pushed. Make so nothing happens        
+        button("Proceed (LOCKED)",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_intro)
         # TODO: Make Leave go back to main screen with list of games        
         button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,game_intro)
 
@@ -209,66 +243,123 @@ def gate_1():
     if buttonsPressed(['button1']):      
         gate0Success = False
         gate1Success = True
+        light(lights['button1'], OFF)       
         gate_2()
 
     if buttonsPressed(['button2']):
         fail()
     
+    # TODO: Change all these to button dead sound
+    # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
     if buttonsPressed(['center']):
         soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
         
     if buttonsPressed(['up']):
-        soundButtonPushDead.play(1) 
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
 
     if buttonsPressed(['down']):
-        soundButtonPush1.play(3)
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
 
     if buttonsPressed(['left']):
-        soundButtonPush2.play(5)
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
 
     if buttonsPressed(['right']):
-        soundMissile.play(2)
-
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
 
     pygame.display.update()
     clock.tick(60)
 
         
 def gate_2():
-    # temporarily success gate....
-    light(lights['button1'], ON)
+
     light(lights['button2'], ON)
-    light(lights['led1'], ON)
-    light(lights['led2'], ON)
-    light(lights['led3'], ON)
-    light(lights['led4'], ON)
-    light(lights['led5'], ON)
-    time.sleep(0.3)
-    light(lights['button1'], OFF)
-    light(lights['button2'], OFF)
-    light(lights['led1'], OFF)
-    light(lights['led2'], OFF)
-    light(lights['led3'], OFF)
-    light(lights['led4'], OFF)
-    light(lights['led5'], OFF)
-    time.sleep(0.3)
-    light(lights['button1'], ON)
-    light(lights['button2'], ON)
-    light(lights['led1'], ON)
-    light(lights['led2'], ON)
-    light(lights['led3'], ON)
-    light(lights['led4'], ON)
-    light(lights['led5'], ON)
-    time.sleep(0.3)
-    light(lights['button1'], OFF)
-    light(lights['button2'], OFF)
-    light(lights['led1'], OFF)
-    light(lights['led2'], OFF)
-    light(lights['led3'], OFF)
-    light(lights['led4'], OFF)
-    light(lights['led5'], OFF)
+    
+    if buttonsPressed(['back']):
+        pygame.quit()
+        quit()
+
+    #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
+    if buttonsPressed(['button2']):      
+        gate1Success = False
+        gate2Success = True
+        light(lights['button2'], OFF)       
+        gate_3()
+
+    if buttonsPressed(['button1']):
+        fail()
+    
+    # TODO: Change all these to button dead sound
+    # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
+    if buttonsPressed(['center']):
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
+        
+    if buttonsPressed(['up']):
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
+
+    if buttonsPressed(['down']):
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
+
+    if buttonsPressed(['left']):
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
+
+    if buttonsPressed(['right']):
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
+
+    pygame.display.update()
+    clock.tick(60)
+
     success()
+
+def gate_3()
+    light(lights['led3'], ON)
+    
+    if buttonsPressed(['back']):
+        pygame.quit()
+        quit()
+
+    #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
+    if buttonsPressed(['center']):      
+        gate2Success = False
+        light(lights['led3'], OFF)       
+        success()
+
+    if buttonsPressed(['button1']) or buttonsPressed(['button2']):
+        fail()
+    
+    # TODO: Change all these to button dead sound
+    # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
+
+    if buttonsPressed(['up']):
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
+
+    if buttonsPressed(['down']):
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
+
+    if buttonsPressed(['left']):
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
+
+    if buttonsPressed(['right']):
+        soundTrumpet.set_volume(0.3)
+        soundTrumpet.play()
+
+    pygame.display.update()
+    clock.tick(60)
+
+    success()    
+
 
 def game_loop():
     global pause
