@@ -217,7 +217,8 @@ def game_intro():
         # Start intro music
         while not startMusicPlay:
             pygame.mixer.music.load(introMusicSpace)
-            pygame.mixer.music.play(-1)   
+            pygame.mixer.music.play(-1)  
+            soundGateSuccess.play() 
             startMusicPlay = True
 
         # Background and title
@@ -260,11 +261,7 @@ def gate_1():
         soundTrumpet.set_volume(0.3)
         soundGateSuccess.play()
 
-    if buttonsPressed(['down']) or buttonsPressed(['left']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
-
-    if buttonsPressed(['right']):
+    if buttonsPressed(['down']) or buttonsPressed(['left']) or buttonsPressed(['right']):
         soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
 
