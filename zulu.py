@@ -3,7 +3,9 @@ import random
 import os
 import logging
 import time
-
+from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
+from shared.text import text_objects
+from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2, soundGateSuccess
 
 # This game is the first game of the series.  
 #
@@ -17,18 +19,13 @@ clock = pygame.time.Clock()
 from shared.display import gameDisplay, DISPLAY_WIDTH, DISPLAY_HEIGHT, fullScreenImage
 pygame.display.set_caption('Game Zulu')
 
-# TODO: Get game icon. Maybe a small spaceship.
 ###### IMAGES #####
 stars = fullScreenImage('images/stars.jpg')
 spaceShip = fullScreenImage('images/inside_space_ship.jpg')
 spaceShipFail = fullScreenImage('images/inside_space_ship_fail.jpg')
 spaceShipSuccess = fullScreenImage('images/inside_space_ship_success.jpg')
-gameIcon = pygame.image.load('images/racecar2.png')
+gameIcon = pygame.image.load('images/space_ship_2.png')
 pygame.display.set_icon(gameIcon)
-
-from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
-from shared.text import text_objects
-from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2, soundGateSuccess
 
 ##### ARDUINO #####
 from shared.arduino_setup import getArduino
@@ -95,13 +92,13 @@ def light(light, state):
     light.write(state)
  
 def success():
-    # Start the success sounds
+    #### SOUNDS ####
     pygame.mixer.music.stop()    
     soundSuccess.play()
     pygame.mixer.music.stop()
     logging.info("Game Success")
    
-    # Display a GREEN spaceship
+    #### DISPLAY ####
     gameDisplay.blit(spaceShipSuccess, (0,0))  
     pygame.display.update()     
    
@@ -110,6 +107,7 @@ def success():
     TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
 
+    #### BUTTON BOX ####
     # HELP: How to make light function so we can do 'light(lights['ALL'], ON)
     light(lights['button1'], ON)
     light(lights['button2'], ON)
@@ -142,6 +140,23 @@ def success():
     light(lights['led3'], OFF)
     light(lights['led4'], OFF)
     light(lights['led5'], OFF)
+    time.sleep(0.3)    
+    light(lights['button1'], ON)
+    light(lights['button2'], ON)
+    light(lights['led1'], ON)
+    light(lights['led2'], ON)
+    light(lights['led3'], ON)
+    light(lights['led4'], ON)
+    light(lights['led5'], ON)
+    time.sleep(0.3)
+    light(lights['button1'], OFF)
+    light(lights['button2'], OFF)
+    light(lights['led1'], OFF)
+    light(lights['led2'], OFF)
+    light(lights['led3'], OFF)
+    light(lights['led4'], OFF)
+    light(lights['led5'], OFF)
+
     
     while True:
         for event in pygame.event.get():
@@ -161,12 +176,12 @@ def success():
         clock.tick(15) 
 
 def fail():
-    # Start the fail sounds
+    #### SOUNDS ####
     pygame.mixer.music.stop()
     soundMissile.play()
     logging.info("Game Failure")
     
-    # Display a RED spaceship
+    #### DISPLAY #####
     gameDisplay.blit(spaceShipFail, (0,0))  
     pygame.display.update()  
 
@@ -175,6 +190,24 @@ def fail():
     TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
     
+    #### BUTTON BOX #####
+    for i in range(0:10):
+        light(lights['led5'], ON)
+        light(lights['led1'], OFF)
+        time.stop(0.3)
+        light(lights['led1'], OFF)
+        light(lights['led5'], ON)        
+        time.stop(0.3)
+    
+    light(lights['button1'], OFF)
+    light(lights['button2'], OFF)
+    light(lights['led1'], OFF)
+    light(lights['led2'], OFF)
+    light(lights['led3'], OFF)
+    light(lights['led4'], OFF)
+    light(lights['led5'], OFF)
+
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -218,7 +251,6 @@ def game_intro():
         while not startMusicPlay:
             pygame.mixer.music.load(introMusicSpace)
             pygame.mixer.music.play(-1)  
-            soundGateSuccess.play() 
             startMusicPlay = True
 
         # Background and title
@@ -242,13 +274,10 @@ def gate_1():
     #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
     if buttonsPressed(['button1']):      
         global gateSuccess
-        # global gate1Success
-        # global gate0Success
 
         gateSuccess = [False,True,False]
-        # gate0Success = False
-        # gate1Success = True
-        soundGateSuccess.play()
+
+        soundTrumpet.play()
         light(lights['button1'], OFF)
         time.sleep(0.3)       
         gate_2()
@@ -265,8 +294,7 @@ def gate_1():
 
     pygame.display.update()
     clock.tick(60)
-
-        
+   
 def gate_2():
 
     light(lights['button2'], ON)
@@ -277,13 +305,9 @@ def gate_2():
 
     #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
     if buttonsPressed(['button2']):      
-        # global gate1Success
-        # global gate2Success
         global gateSuccess
-        
         gateSuccess = [False, False, True]
-        # gate1Success = False
-        # gate2Success = True
+        soundTrumpet.play()
         light(lights['button2'], OFF)    
         time.sleep(0.3)     
         gate_3()
@@ -311,7 +335,7 @@ def gate_3():
     if buttonsPressed(['center']):      
         global gateSuccess
         gateSuccess = [False, False, False]
-        gate2Success = False
+        soundTrumpet.play()
         light(lights['led3'], OFF)  
         time.sleep(0.3)       
         success()
@@ -332,9 +356,7 @@ def gate_3():
 def game_loop():
     global pause
     global gateSuccess
-    global gate0Success
-    global gate1Success
-    global gate2Success
+
     # Start the game play music
     pygame.mixer.music.stop()
     pygame.mixer.music.load(gamePlayMusic)
@@ -347,9 +369,6 @@ def game_loop():
     gameExit = False
  
     gateSuccess = [True, False, False]
-    gate0Success = True
-    gate1Success = False
-    gate2Success = False
   
     while not gameExit:
         
