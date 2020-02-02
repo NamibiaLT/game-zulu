@@ -7,9 +7,9 @@ import pygame
 soundMissile = pygame.mixer.Sound("sounds/missile.wav")
 soundSuccess = pygame.mixer.Sound("sounds/success.wav")
 soundTrumpet = pygame.mixer.Sound("sounds/trumpet.wav")
-buttonPushDead = pygame.mixer.Sound("sounds/button_push_dead.wav")
-buttonPush1 = pygame.mixer.Sound("sounds/button_push_1.wav")
-buttonPush2 = pygame.mixer.Sound("sounds/button_push_2.wav")
+soundButtonPushDead = pygame.mixer.Sound("sounds/button_push_dead.wav")
+soundButtonPush1 = pygame.mixer.Sound("sounds/button_push_1.wav")
+soundbuttonPush2 = pygame.mixer.Sound("sounds/button_push_2.wav")
 
 #### Background Music ####
 introMusicSpace = "sounds/intro_music_space.wav"

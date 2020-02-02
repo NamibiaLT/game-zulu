@@ -4,6 +4,7 @@ import os
 import logging
 import time
 
+
 # This game is the first game of the series.  
 #
 # Game Play: A button will light up. The player must hit that button. Other buttons will be dead and indicate so with a sound. 
@@ -25,11 +26,9 @@ spaceShipSuccess = fullScreenImage('images/inside_space_ship_success.jpg')
 gameIcon = pygame.image.load('images/racecar2.png')
 pygame.display.set_icon(gameIcon)
 
-##### COLORS #####
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
-
-##### TEXT #####
 from shared.text import text_objects
+from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead
 
 ##### ARDUINO #####
 from shared.arduino_setup import getArduino
@@ -85,7 +84,7 @@ def buttonsPressed(buttonArray):
     return True
 
 ###### SOUNDS #####
-from shared.sounds import soundMissile, soundSuccess, lava, gamePlayMusic, soundTrumpet, introMusicSpace
+
 
 pause = False
 
@@ -97,6 +96,7 @@ def light(light, state):
  
 def success():
     # Start the success sounds
+    pygame.mixer.music.stop()    
     soundSuccess.play()
     pygame.mixer.music.stop()
     logging.info("Game Success")
@@ -112,13 +112,17 @@ def success():
     
     while True:
         for event in pygame.event.get():
+            # Quit game from window screen            
             if event.type == pygame.QUIT:
                 quitgame()
-            if event.type == pygame.QUIT:
-                quitgame()
-
-        button("Enter",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
-        button("Quit",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
+            # Quit game from keyboard
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    quitgame()
+        # TODO: Make Enter only available if game was successful. Put LOCK symbol if not.
+        button("Proceed",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+        # TODO: Make Leave go back to main screen with list of games
+        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
  
         pygame.display.update()
         clock.tick(15) 
@@ -207,11 +211,17 @@ def gate_1():
     if buttonsPressed(['button2']):
         fail()
     
-    if buttonsPressed(['center','up']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
+    if buttonsPressed(['center']):
+        soundButtonPushDead.play()
+    if buttonsPressed(['up']):
+        soundButtonPushDead.play()       
+    if buttonsPressed(['down']):
+        soundButtonPushDead.play()
+    if buttonsPressed(['left']):
+        soundButtonPushDead.play()
+    if buttonsPressed(['right']):
+        soundButtonPushDead.play()
 
-        
     pygame.display.update()
     clock.tick(60)
 
@@ -249,7 +259,6 @@ def gate_2():
     light(lights['led3'], OFF)
     light(lights['led4'], OFF)
     light(lights['led5'], OFF)
-    time.sleep(3)
     success()
 
 def game_loop():
