@@ -108,11 +108,9 @@ def success():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
+                quitgame()
             if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
+                quitgame()
 
         button("Enter",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
         button("Quit",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
@@ -164,8 +162,7 @@ def game_intro():
         for event in pygame.event.get():
             # Quit game from window screen
             if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
+                quitgame()
 
             # Quit game from keyboard
             if event.type == pygame.KEYDOWN:
@@ -191,20 +188,23 @@ def game_intro():
         clock.tick(15)
         
 def gate_1():
-    light(lights['button1'], ON)
     
-    # Button box logic
-    if buttonsPressed(['button1']):
-        gate2()
+    while not gate1Success:
+        light(lights['button1'], ON)
+        
+        if buttonsPressed(['back']):
+            pygame.quit()
+            quit()
 
-    if buttonsPressed(['button2']):
-        fail()
+        if buttonsPressed(['button1']):
+            gate1Success = True
 
-    if buttonsPressed(['back']):
-        paused()  
+        if buttonsPressed(['button2']):
+            fail()
 
-    pygame.display.update()
-    clock.tick(60)
+        
+        pygame.display.update()
+        clock.tick(60)
         
 def gate_2():
     # temporarily success gate....
@@ -254,7 +254,9 @@ def game_loop():
     pygame.display.update()
 
     gameExit = False
- 
+    gate1Sucess = False
+    gate2Success = False
+
     while not gameExit:
         
         # Ability to quit from screen or keyboard
@@ -265,10 +267,13 @@ def game_loop():
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.q_g:
-                    quitgame()
+                    pygame.quit()
+                    quit()
 
         # Button box logic
+        
         gate_1()
+
         gate_2()
         
         pygame.display.update()
