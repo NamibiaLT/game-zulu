@@ -122,7 +122,7 @@ def success():
         # TODO: Make Enter only available if game was successful. Put LOCK symbol if not.
         button("Proceed",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
         # TODO: Make Leave go back to main screen with list of games
-        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
+        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,game_intro)
  
         pygame.display.update()
         clock.tick(15) 
@@ -154,9 +154,9 @@ def fail():
                     quitgame()
 
         # TODO: Make Enter only available if game was successful. Put LOCK symbol for this fail.        
-        button("Proceed",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+        button("Proceed (LOCKED)",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
         # TODO: Make Leave go back to main screen with list of games        
-        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
+        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,game_into)
 
         pygame.display.update()
         clock.tick(15)
@@ -215,6 +215,7 @@ def gate_1():
         fail()
     
     if buttonsPressed(['center']):
+        soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
         
     if buttonsPressed(['up']):
@@ -313,10 +314,11 @@ def game_loop():
             gate_3()
 
         if buttonsPressed(['center']):
+            soundTrumpet.set_volume(0.3)
             soundTrumpet.play()
         
         if buttonsPressed(['up']):
-            soundButtonPushDead.play() 
+            soundSuccess.play() 
         
         pygame.display.update()
         clock.tick(60)
