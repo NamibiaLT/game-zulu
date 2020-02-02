@@ -192,10 +192,10 @@ def fail():
     for i in range(0,10):
         light(lights['led5'], ON)
         light(lights['led1'], OFF)
-        time.stop(0.3)
+        time.sleep(0.3)
         light(lights['led1'], OFF)
         light(lights['led5'], ON)        
-        time.stop(0.3)
+        time.sleep(0.3)
     
     light(lights['button1'], OFF)
     light(lights['button2'], OFF)
