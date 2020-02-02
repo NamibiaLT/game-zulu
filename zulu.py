@@ -310,8 +310,6 @@ def gate_2():
     pygame.display.update()
     clock.tick(60)
 
-    success()
-
 def gate_3():
     light(lights['led3'], ON)
     
