@@ -28,7 +28,7 @@ pygame.display.set_icon(gameIcon)
 
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 from shared.text import text_objects
-from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2
+from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2, soundGateSuccess
 
 ##### ARDUINO #####
 from shared.arduino_setup import getArduino
@@ -243,6 +243,7 @@ def gate_1():
     if buttonsPressed(['button1']):      
         gate0Success = False
         gate1Success = True
+        soundGateSuccess.play()
         light(lights['button1'], OFF)       
         gate_2()
 
