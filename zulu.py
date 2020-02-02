@@ -64,7 +64,7 @@ buttons = {
 }
         # 'handle': arduino.get_pin('d:XXXXXX:i') ADD TO button array
 ##### SENSORS #####
-motionSense = ardiuno.get_pin('d:8:i')    # Detects motion as HIGH then waits 3 seconds of no motion to go low. Can adjust time manually. https://www.makerguides.com/hc-sr501-arduino-tutorial/
+#motionSense = ardiuno.get_pin('d:8:i')    # Detects motion as HIGH then waits 3 seconds of no motion to go low. Can adjust time manually. https://www.makerguides.com/hc-sr501-arduino-tutorial/
 
 
 BUTTON_PRESSED = False
@@ -112,8 +112,6 @@ def success():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-
-            
 
         button("Enter",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
         button("Quit",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)

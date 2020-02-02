@@ -18,9 +18,9 @@ def getArduino():
   except AttributeError:
       arduino = Arduino('COM7', mega, 57600)
   except:
-      print("No Arduino board is detected\n")
+      print("No arduino board is detected\n")
 
-  iterator = util.Iterator(arduino)   # Game is really slow. Would adding this iterator in another loop be better?
+  iterator = util.Iterator(arduino)
   iterator.start()
-  time.sleep(0.5)   # Needed for arduino to initialize
+  time.sleep(0.5)   # Give time for arduino to initialize
   return arduino
