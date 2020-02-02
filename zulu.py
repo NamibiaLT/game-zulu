@@ -188,19 +188,17 @@ def game_intro():
         clock.tick(15)
         
 def gate_1():
+    light(lights['button1'], ON)
     
-    while not gate1Success:
-        light(lights['button1'], ON)
-        
-        if buttonsPressed(['back']):
-            pygame.quit()
-            quit()
+    if buttonsPressed(['back']):
+        pygame.quit()
+        quit()
 
-        if buttonsPressed(['button1']):
-            gate1Success = True
+    if buttonsPressed(['button1']):
+        gate1Success = True
 
-        if buttonsPressed(['button2']):
-            fail()
+    if buttonsPressed(['button2']):
+        fail()
 
         
         pygame.display.update()
@@ -256,6 +254,7 @@ def game_loop():
     gameExit = False
     gate1Success = False
     gate2Success = False
+    gate3Success = False
 
     while not gameExit:
         
@@ -272,9 +271,14 @@ def game_loop():
 
         # Button box logic
         
-        gate_1()
+        while not gate1Success:
+            gate_1()
 
-        gate_2()
+        while not gate2Success:
+            gate_2()
+
+        while not gate3Success:
+            gate_3()
         
         pygame.display.update()
         clock.tick(60)
