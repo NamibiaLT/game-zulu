@@ -199,10 +199,10 @@ def gate_1():
         pygame.quit()
         quit()
 
-    if buttonsPressed(['button1']):
-        print(buttonsPressed(['button1']))       
+    if buttonsPressed(['button1']):      
         gate0Success = False
         gate1Success = True
+        return
 
     if buttonsPressed(['button2']):
         fail()
@@ -214,7 +214,7 @@ def gate_1():
         
     pygame.display.update()
     clock.tick(60)
-return
+
         
 def gate_2():
     # temporarily success gate....
