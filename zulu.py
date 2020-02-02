@@ -193,6 +193,8 @@ def game_intro():
         clock.tick(15)
         
 def gate_1():
+    iterator = util.Iterator(arduino)
+    iterator.start()
     light(lights['button1'], ON)
     
     if buttonsPressed(['back']):
@@ -207,6 +209,7 @@ def gate_1():
         fail()
     
     if buttonsPressed(['center']):
+        soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
 
         
