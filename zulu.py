@@ -32,7 +32,7 @@ arduino = getArduino()
 
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 from shared.text import text_objects
-from shared.sounds import soundMissile,soundGateSuccess, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2
+from shared.sounds import soundMissile, soundButtonDead, soundGateSuccess, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2
 
 ##### LIGHTS #####
 lights = {
