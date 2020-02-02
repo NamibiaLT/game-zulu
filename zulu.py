@@ -365,13 +365,13 @@ def game_loop():
                     quit()
 
         # Button box logic
-        if gate0Success:
+        if gateSuccess[0]:
             gate_1()
 
-        if gate1Success:
+        if gate1Success[1]:
             gate_2()
 
-        if gate2Success:
+        if gate2Success[2]:
             gate_3()
 
         pygame.display.update()
