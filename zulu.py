@@ -80,12 +80,8 @@ def buttonsPressed(buttonArray):
             return False
     return True
 
-###### SOUNDS #####
-
-
 pause = False
 
-# TODO: Make this function better with an array
 ON = 1
 OFF = 0
 def light(light, state):
@@ -191,7 +187,7 @@ def fail():
     gameDisplay.blit(TextSurf, TextRect)
     
     #### BUTTON BOX #####
-    for i in range(0:10):
+    for i in range(0,10):
         light(lights['led5'], ON)
         light(lights['led1'], OFF)
         time.stop(0.3)
