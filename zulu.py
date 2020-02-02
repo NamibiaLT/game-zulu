@@ -32,7 +32,7 @@ arduino = getArduino()
 
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 from shared.text import text_objects
-from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2, soundGateSuccess
+from shared.sounds import soundMissile, soundSuccess, gamePlayMusic,, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2, soundGateSuccess, 
 
 ##### LIGHTS #####
 lights = {
@@ -303,8 +303,7 @@ def gate_1():
     # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
 
     if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']) or buttonsPressed(['center']):
-        soundButtonPushDead.set_volume(1)
-        soundButtonPushDead.play()
+        soundButtonDead.play()
         time.sleep(2)
 
     pygame.display.update()
