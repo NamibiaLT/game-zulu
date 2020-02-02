@@ -195,14 +195,18 @@ def gate_1():
         quit()
 
     if buttonsPressed(['button1']):
+        gate0Success = False
         gate1Success = True
 
     if buttonsPressed(['button2']):
         fail()
+    
+    if buttonsPressed(['center'])
+        soundTrumpet.play()
 
         
-        pygame.display.update()
-        clock.tick(60)
+    pygame.display.update()
+    clock.tick(60)
         
 def gate_2():
     # temporarily success gate....
@@ -252,9 +256,10 @@ def game_loop():
     pygame.display.update()
 
     gameExit = False
+    gate0Success = True
     gate1Success = False
     gate2Success = False
-    gate3Success = False
+  
 
     while not gameExit:
         
@@ -270,14 +275,13 @@ def game_loop():
                     quit()
 
         # Button box logic
-        
-        while not gate1Success:
+        if gate0Success
             gate_1()
 
-        while not gate2Success:
+        if gate1Success:
             gate_2()
 
-        while not gate3Success:
+        if gate2Success:
             gate_3()
         
         pygame.display.update()
