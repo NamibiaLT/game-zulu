@@ -12,7 +12,7 @@ pygame.display.set_caption('Game Zulu')
 
 # TODO: Get game icon. Maybe a small spaceship.
 ###### IMAGES #####
-lavaBackground = fullScreenImage('images/lava.jpg')
+stars = fullScreenImage('images/stars.jpg')
 spaceShip = fullScreenImage('images/inside_space_ship.jpg')
 spaceShipFail = fullScreenImage('images/inside_space_ship_fail.jpg')
 spaceShipSuccess = fullScreenImage('images/inside_space_ship_success.jpg')
@@ -79,7 +79,7 @@ def buttonsPressed(buttonArray):
     return True
 
 ###### SOUNDS #####
-from shared.sounds import soundMissile, soundSuccess, lava, gamePlayMusic, soundTrumpet
+from shared.sounds import soundMissile, soundSuccess, lava, gamePlayMusic, soundTrumpet, introMusicSpace
 
 pause = False
 
@@ -173,12 +173,12 @@ def game_intro():
         
         # Start intro music
         while not startMusicPlay:
-            pygame.mixer.music.load(lava)
+            pygame.mixer.music.load(introMusicSpace)
             pygame.mixer.music.play(-1)   
             startMusicPlay = True
 
         # Background and title
-        gameDisplay.blit(lavaBackground, (0,0))
+        gameDisplay.blit(stars, (0,0))
         largeText = pygame.font.SysFont("comicsansms",250)
         TextSurf, TextRect = text_objects("Zulu", largeText)
         TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.3))
@@ -190,7 +190,7 @@ def game_intro():
         clock.tick(15)
         
 def gate_1():
-    lightOn(['button1'])
+    light(lights['button1'], ON)
     
     # Button box logic
     if buttonsPressed(['button1']):
