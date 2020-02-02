@@ -280,7 +280,7 @@ def game_loop():
                     quit()
 
         # Button box logic
-        if gate0Success
+        if gate0Success:
             gate_1()
 
         if gate1Success:
