@@ -202,8 +202,7 @@ def gate_1(gate0Success,gate1Success):
     if buttonsPressed(['button1']):      
         gate0Success = False
         gate1Success = True
-        return gate0Success
-        return gate1Success
+        gate2()
 
     if buttonsPressed(['button2']):
         fail()
@@ -288,7 +287,7 @@ def game_loop():
 
         # Button box logic
         if gate0Success:
-            gate_1(gate0Success,gate1Success)
+            gate_1()
 
         if gate1Success:
             gate_2()
