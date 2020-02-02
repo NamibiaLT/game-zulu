@@ -288,7 +288,7 @@ def game_loop():
 
         # Button box logic
         if gate0Success:
-            gate_1()
+            gate_1(gate0Success,gate1Success)
 
         if gate1Success:
             gate_2()
