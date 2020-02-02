@@ -242,6 +242,9 @@ def gate_1():
 
     #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
     if buttonsPressed(['button1']):      
+        global gate1Success
+        global gate0Success
+
         gate0Success = False
         gate1Success = True
         soundGateSuccess.play()
