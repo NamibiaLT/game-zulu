@@ -302,6 +302,7 @@ def gate_1():
     if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']) or buttonsPressed(['center']):
         soundButtonPushDead.set_volume(1)
         soundButtonPushDead.play()
+        time.sleep(2)
 
     pygame.display.update()
     clock.tick(60)
