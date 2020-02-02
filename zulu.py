@@ -304,7 +304,6 @@ def gate_1():
 
     if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']) or buttonsPressed(['center']):
         soundButtonDead.play()
-        time.sleep(2)
 
     pygame.display.update()
     clock.tick(60)
@@ -332,8 +331,7 @@ def gate_2():
     # TODO: Change all these to button dead sound
     # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
     if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']) or buttonsPressed(['center']):
-        soundButtonPushDead.set_volume(1)
-        soundButtonPushDead.play()
+        soundButtonDead.play()
 
     pygame.display.update()
     clock.tick(60)
@@ -361,8 +359,7 @@ def gate_3():
     # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
 
     if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']):
-        soundButtonPushDead.set_volume(1)
-        soundButtonPushDead.play()
+        soundButtonDead.play()
 
     pygame.display.update()
     clock.tick(60)
