@@ -253,6 +253,9 @@ def gate_2():
 
 def game_loop():
     global pause
+    global gate0Success
+    global gate1Success
+    global gate2Success
     # Start the game play music
     pygame.mixer.music.stop()
     pygame.mixer.music.load(gamePlayMusic)
@@ -263,11 +266,11 @@ def game_loop():
     pygame.display.update()
 
     gameExit = False
-    global gate0Success = True
-    global gate1Success = False
-    global gate2Success = False
+ 
+    gate0Success = True
+    gate1Success = False
+    gate2Success = False
   
-
     while not gameExit:
         
         # Ability to quit from screen or keyboard
