@@ -3,9 +3,7 @@ import random
 import os
 import logging
 import time
-from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
-from shared.text import text_objects
-from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2, soundGateSuccess
+
 
 # This game is the first game of the series.  
 #
@@ -30,6 +28,10 @@ pygame.display.set_icon(gameIcon)
 ##### ARDUINO #####
 from shared.arduino_setup import getArduino
 arduino = getArduino()
+
+from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
+from shared.text import text_objects
+from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2, soundGateSuccess
 
 ##### LIGHTS #####
 lights = {
