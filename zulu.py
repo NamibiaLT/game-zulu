@@ -192,7 +192,7 @@ def game_intro():
         pygame.display.update()
         clock.tick(15)
         
-def gate_1(gate0Success,gate1Success):
+def gate_1():
     light(lights['button1'], ON)
     
     if buttonsPressed(['back']):
