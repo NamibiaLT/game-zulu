@@ -207,7 +207,7 @@ def gate_1():
     if buttonsPressed(['button2']):
         fail()
     
-    if buttonsPressed(['center']):
+    if buttonsPressed(['center','up']):
         soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
 
@@ -225,7 +225,7 @@ def gate_2():
     light(lights['led3'], ON)
     light(lights['led4'], ON)
     light(lights['led5'], ON)
-    time.sleep(1)
+    time.sleep(0.3)
     light(lights['button1'], OFF)
     light(lights['button2'], OFF)
     light(lights['led1'], OFF)
@@ -233,7 +233,7 @@ def gate_2():
     light(lights['led3'], OFF)
     light(lights['led4'], OFF)
     light(lights['led5'], OFF)
-    time.sleep(1)
+    time.sleep(0.3)
     light(lights['button1'], ON)
     light(lights['button2'], ON)
     light(lights['led1'], ON)
@@ -241,7 +241,7 @@ def gate_2():
     light(lights['led3'], ON)
     light(lights['led4'], ON)
     light(lights['led5'], ON)
-    time.sleep(1)
+    time.sleep(0.3)
     light(lights['button1'], OFF)
     light(lights['button2'], OFF)
     light(lights['led1'], OFF)
