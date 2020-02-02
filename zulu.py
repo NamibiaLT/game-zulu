@@ -254,7 +254,7 @@ def game_loop():
     pygame.display.update()
 
     gameExit = False
-    gate1Sucess = False
+    gate1Success = False
     gate2Success = False
 
     while not gameExit:
