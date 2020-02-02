@@ -31,13 +31,13 @@ arduino = getArduino()
 
 ##### LIGHTS #####
 lights = {
-  'blue': arduino.get_pin('d:10:p'),
-  'green': arduino.get_pin('d:13:p'),
-  'red': arduino.get_pin('d:13:p'), 
-  'red': arduino.get_pin('d:3:p'),
-  'one': arduino.get_pin('d:2:p'),
-  'two': arduino.get_pin('d:5:p'),
-  'three': arduino.get_pin('d:4:p'),
+  'button1': arduino.get_pin('d:11:p'),
+  'button2': arduino.get_pin('d:10:p'),
+  'led1': arduino.get_pin('d:3:p'),
+  'led2': arduino.get_pin('d:2:p'),
+  'led3': arduino.get_pin('d:5:p'),
+  'led4': arduino.get_pin('d:4:p'),
+  'led5': arduino.get_pin('d:13:p'), 
 }
 
 def lightsOn(lightArray):
@@ -51,12 +51,12 @@ def lightsOn(lightArray):
     return True
 
 ##### BUTTONS #####
-from shared.buttons import button, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_CENTER_ONE_THIRD, BUTTON_CENTER_TWO_THIRD, BUTTON_CENTER_VERTICAL
+from shared.buttons import button, BUTTON_WIDTH, BUTTON_HEIGHT,BUTTON_CENTER_HORIZONTAL, BUTTON_CENTER_ONE_THIRD, BUTTON_CENTER_TWO_THIRD, BUTTON_CENTER_VERTICAL
 buttons = {
-  'blue': arduino.get_pin('d:5:i'),
-  'green': arduino.get_pin('d:37:i'),
-  'red': arduino.get_pin('d:35:i'),  
-  'abort': arduino.get_pin('d:30:i'),   #Back of game. Should be abort button to exit/quit program/game
+  'button2': arduino.get_pin('d:36:i'),
+  'button1': arduino.get_pin('d:37:i'),
+  'center': arduino.get_pin('d:35:i'),  
+  'back': arduino.get_pin('d:30:i'),
   'left': arduino.get_pin('d:32:i'),
   'right': arduino.get_pin('d:31:i'),
   'up': arduino.get_pin('d:34:i'),
@@ -109,14 +109,13 @@ def success():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
-                
-        # Button position, configuration, and action
-        BUTTON_WIDTH = DISPLAY_WIDTH * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
-        BUTTON_HEIGHT = DISPLAY_HEIGHT * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
-        BUTTON_CENTER_ONE_THIRD = (DISPLAY_WIDTH*0.33)-(BUTTON_WIDTH/2)
-        BUTTON_CENTER_TWO_THIRD = (DISPLAY_WIDTH*0.66)-(BUTTON_WIDTH/2)
-        BUTTON_CENTER_VERTICAL = (DISPLAY_HEIGHT*0.5)-(BUTTON_HEIGHT/2)
-        button("Play Again",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            
+
+        button("Enter",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
         button("Quit",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
  
         pygame.display.update()
@@ -143,149 +142,136 @@ def fail():
                 pygame.quit()
                 quit()
 
-        # Button position, configuration, and action
-        BUTTON_WIDTH = DISPLAY_WIDTH * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
-        BUTTON_HEIGHT = DISPLAY_HEIGHT * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
-        BUTTON_CENTER_ONE_THIRD = (DISPLAY_WIDTH*0.33)-(BUTTON_WIDTH/2)
-        BUTTON_CENTER_TWO_THIRD = (DISPLAY_WIDTH*0.66)-(BUTTON_WIDTH/2)
-        BUTTON_CENTER_VERTICAL = (DISPLAY_HEIGHT*0.5)-(BUTTON_HEIGHT/2)
-        button("Play Again",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
-        button("Quit",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
+            # Quit game from keyboard
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.q_g:
+                    quitgame()
+
+        button("Enter",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+        button("Exit",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
 
         pygame.display.update()
-        clock.tick(15) 
-
-def button(msg,x,y,w,h,ic,ac,action=None):
-    mouse = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
-
-    if x+w > mouse[0] > x and y+h > mouse[1] > y:
-        pygame.draw.rect(gameDisplay, ac,(x,y,w,h))
-        if click[0] == 1 and action != None:
-            action()         
-    else:
-        pygame.draw.rect(gameDisplay, ic,(x,y,w,h))
-    smallText = pygame.font.SysFont("comicsansms",20)
-    textSurf, textRect = text_objects(msg, smallText)
-    textRect.center = ( (x+(w/2)), (y+(h/2)) )
-    gameDisplay.blit(textSurf, textRect)
+        clock.tick(15)
     
 def quitgame():
     pygame.quit()
     quit()
 
-def unpause():
-    global pause
-    pygame.mixer.music.unpause()
-    pause = False
-    
-def paused():
-    ############
-    pygame.mixer.music.pause()
-    #############
-    largeText = pygame.font.SysFont("comicsansms",250)
-    TextSurf, TextRect = text_objects("Paused", largeText)
-    TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
-    gameDisplay.blit(TextSurf, TextRect)
-    
-    while pause:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-
-        # Button position, configuration, and action
-        BUTTON_WIDTH = DISPLAY_WIDTH * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
-        BUTTON_HEIGHT = DISPLAY_HEIGHT * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
-        BUTTON_CENTER_ONE_THIRD = (DISPLAY_WIDTH*0.33)-(BUTTON_WIDTH/2)
-        BUTTON_CENTER_TWO_THIRD = (DISPLAY_WIDTH*0.66)-(BUTTON_WIDTH/2)
-        button("Play Again",BUTTON_CENTER_ONE_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
-        button("Quit",BUTTON_CENTER_TWO_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
-
-        pygame.display.update()
-        clock.tick(15)   
-
 def game_intro():
     intro = True
     startMusicPlay = False
     while intro:
-        # Abilty to quite the game
+        # Abilty to quit the game
         for event in pygame.event.get():
-            #print(event)
+            # Quit game from window screen
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+
+            # Quit game from keyboard
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.q_g:
+                    quitgame()
         
-        # Start into music
+        # Start intro music
         while not startMusicPlay:
-            pygame.mixer.music.load(introMusic)
+            pygame.mixer.music.load(lava)
             pygame.mixer.music.play(-1)   
             startMusicPlay = True
 
         # Background and title
-        gameDisplay.blit(stars, (0,0))
+        gameDisplay.blit(lavaBackground, (0,0))
         largeText = pygame.font.SysFont("comicsansms",250)
         TextSurf, TextRect = text_objects("Zulu", largeText)
         TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.3))
         gameDisplay.blit(TextSurf, TextRect)
 
-        # Button position, configuration, and action
-        BUTTON_WIDTH = DISPLAY_WIDTH * 0.25   # Number is a scaling factor. On 1920 screen this is a 300mm button
-        BUTTON_HEIGHT = DISPLAY_HEIGHT * 0.17    # Number is a scaling factor. On 1080 screen this is a 150mm button
-        BUTTON_CENTER_ONE_THIRD = (DISPLAY_WIDTH*0.33)-(BUTTON_WIDTH/2)
-        BUTTON_CENTER_TWO_THIRD = (DISPLAY_WIDTH*0.66)-(BUTTON_WIDTH/2)
-        button("Play",BUTTON_CENTER_ONE_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
-        button("Quit",BUTTON_CENTER_TWO_THIRD,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
+        button("Enter",BUTTON_CENTER_HORIZONTAL,DISPLAY_HEIGHT * 0.6,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
         
         pygame.display.update()
         clock.tick(15)
+        
+def gate_1():
+    lightOn(['button1'])
+    
+    # Button box logic
+    if buttonsPressed(['button1']):
+        gate2()
+
+    if buttonsPressed(['button2']):
+        fail()
+
+    if buttonsPressed(['back']):
+        paused()  
+
+    pygame.display.update()
+    clock.tick(60)
+        
+def gate_2():
+    # temporarily success gate....
+    light(lights['button1'], ON)
+    light(lights['button2'], ON)
+    light(lights['led1'], ON)
+    light(lights['led2'], ON)
+    light(lights['led3'], ON)
+    light(lights['led4'], ON)
+    light(lights['led5'], ON)
+    time.sleep(1)
+    light(lights['button1'], OFF)
+    light(lights['button2'], OFF)
+    light(lights['led1'], OFF)
+    light(lights['led2'], OFF)
+    light(lights['led3'], OFF)
+    light(lights['led4'], OFF)
+    light(lights['led5'], OFF)
+    time.sleep(1)
+    light(lights['button1'], ON)
+    light(lights['button2'], ON)
+    light(lights['led1'], ON)
+    light(lights['led2'], ON)
+    light(lights['led3'], ON)
+    light(lights['led4'], ON)
+    light(lights['led5'], ON)
+    time.sleep(1)
+    light(lights['button1'], OFF)
+    light(lights['button2'], OFF)
+    light(lights['led1'], OFF)
+    light(lights['led2'], OFF)
+    light(lights['led3'], OFF)
+    light(lights['led4'], OFF)
+    light(lights['led5'], OFF)
+    time.sleep(3)
+    success()
 
 def game_loop():
     global pause
     # Start the game play music
-    #green.write(1)
-    light(LIGHT_GREEN, on)
     pygame.mixer.music.stop()
     pygame.mixer.music.load(gamePlayMusic)
     pygame.mixer.music.play(-1)
-   
-    # Background
+
+    # background display
     gameDisplay.blit(spaceShip, (0,0))    
     pygame.display.update()
 
-    dodged = clock.tick() 
-    # TODO: Play clock at dodged = 0...
-    # TODO: Add time limit to game.
     gameExit = False
  
     while not gameExit:
         
-        # Keyboard logic
+        # Ability to quit from screen or keyboard
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
- 
+            
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_p:
-                    pause = True
-                    paused()
-                if event.key == pygame.K_h:
-                    fail()    
-                if event.key == pygame.K_g:
-                    success()                                  
+                if event.key == pygame.q_g:
+                    quitgame()
 
         # Button box logic
-        if buttonsPressed(['blue']):
-            success()
-
-        if buttonsPressed(['yellow']):
-            fail()
-
-        if buttonsPressed(['restart']):
-            pause = True
-            paused()  
-
+        gate_1()
+        gate_2()
+        
         pygame.display.update()
         clock.tick(60)
 
