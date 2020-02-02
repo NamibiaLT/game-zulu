@@ -226,13 +226,15 @@ def fail():
     # light(lights['led5'], OFF)        
     # time.sleep(0.3)
 
-    light(lights['button1'], OFF)
-    light(lights['button2'], OFF)
-    light(lights['led1'], OFF)
-    light(lights['led2'], OFF)
-    light(lights['led3'], OFF)
-    light(lights['led4'], OFF)
-    light(lights['led5'], OFF)
+    light('All', ON)
+
+    # light(lights['button1'], OFF)
+    # light(lights['button2'], OFF)
+    # light(lights['led1'], OFF)
+    # light(lights['led2'], OFF)
+    # light(lights['led3'], OFF)
+    # light(lights['led4'], OFF)
+    # light(lights['led5'], OFF)
 
     while True:
         for event in pygame.event.get():
