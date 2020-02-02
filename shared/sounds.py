@@ -1,15 +1,15 @@
 import pygame
 
-# TODO: Add precheck complete sound
-# TODO: Add welcome sound
+pygame.init()
 
 #### Sounds ####
+soundWarningMissile = pygame.mixer.Sound("warning_incoming_missile.wav")
 soundMissile = pygame.mixer.Sound("sounds/missile.wav")
 soundSuccess = pygame.mixer.Sound("sounds/success.wav")
 soundTrumpet = pygame.mixer.Sound("sounds/trumpet.wav")
 soundGateSuccess = pygame.mixer.Sound("sounds/sound_gate_success.wav") 
-soundButtonPushDeadd = pygame.mixer.Sound("sounds/button_push_dead.wav")
-soundButtonPush11 = pygame.mixer.Sound("sounds/button_push_1.wav")
+soundButtonPushDead = pygame.mixer.Sound("sounds/button_push_dead.wav")
+soundButtonPush1 = pygame.mixer.Sound("sounds/button_push_1.wav")
 soundbuttonPush2 = pygame.mixer.Sound("sounds/button_push_2.wav")
 
 #### Background Music ####

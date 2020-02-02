@@ -1,5 +1,11 @@
 {
   "python.linting.pylintEnabled": false,
   "python.linting.enabled": true,
-  "python.pythonPath": "C:\\Users\\bellj23\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
+  "python.pythonPath": "C:\\Users\\bellj23\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+  "python.testing.pytestArgs": [
+    "sounds"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestEnabled": true
 }
