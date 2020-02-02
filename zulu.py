@@ -171,7 +171,7 @@ def game_intro():
 
             # Quit game from keyboard
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.q_g:
+                if event.key == pygame.K_q:
                     quitgame()
         
         # Start intro music
@@ -202,7 +202,7 @@ def gate_1():
     if buttonsPressed(['button1']):      
         gate0Success = False
         gate1Success = True
-        return
+        success()
 
     if buttonsPressed(['button2']):
         fail()
