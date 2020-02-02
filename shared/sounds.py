@@ -1,6 +1,7 @@
 import pygame
 
 pygame.init()
+pygame.mixer.init()
 
 #### Sounds ####
 soundWarningMissile = pygame.mixer.Sound("warning_incoming_missile.wav")

@@ -11,6 +11,7 @@ import time
 # 
 
 pygame.init()
+pygame.mixer.init()
 clock = pygame.time.Clock()
 
 ##### DISPLAY ##### 
@@ -198,7 +199,7 @@ def fail():
 
             # Quit game from keyboard
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.q_g:
+                if event.key == pygame.K_q:
                     quitgame()
 
         # TODO: Make Enter only available if game was successful. Put LOCK symbol for this fail.
