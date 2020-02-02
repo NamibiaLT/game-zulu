@@ -199,7 +199,7 @@ def gate_1():
         pygame.quit()
         quit()
 
-    if buttonsPressed(['button1']):
+    if buttonsPressed(['up']):
         gate0Success = False
         gate1Success = True
 
