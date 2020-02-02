@@ -87,13 +87,14 @@ pause = False
 
 ON = 1
 OFF = 0
+### HELP: How to write if "ALL, ON" then all lights come on.
 def light(light, state):
     light.write(state)
  
 def success():
     #### SOUNDS ####
     pygame.mixer.music.stop()    
-    soundSuccess.play()
+    soundTrumpet.play()
     pygame.mixer.music.stop()
     logging.info("Game Success")
    
