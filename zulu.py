@@ -31,7 +31,7 @@ arduino = getArduino()
 
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 from shared.text import text_objects
-from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2, soundGateSuccess
+from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDeadd, soundButtonPush11, soundbuttonPush2, soundGateSuccess
 
 ##### LIGHTS #####
 lights = {
@@ -68,7 +68,7 @@ buttons = {
 }
         # 'handle': arduino.get_pin('d:XXXXXX:i') ADD TO button array
 ##### SENSORS #####
-#motionSense = ardiuno.get_pin('d:8:i')    # Detects motion as HIGH then waits 3 seconds of no motion to go low. Can adjust time manually. https://www.makerguides.com/hc-sr501-arduino-tutorial/
+#motionSense = ardiuno.get_pin('d:8:i')
 
 
 BUTTON_PRESSED = False
@@ -104,6 +104,9 @@ def success():
     TextSurf, TextRect = text_objects("", largeText)
     TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
+
+    pygame.display.update()
+    clock.tick(15) 
 
     #### BUTTON BOX ####
     # HELP: How to make light function so we can do 'light(lights['ALL'], ON)
@@ -187,7 +190,10 @@ def fail():
     TextSurf, TextRect = text_objects("", largeText)
     TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
-    
+
+    pygame.display.update()
+    clock.tick(15) 
+
     #### BUTTON BOX #####
     #### HELP: How to get this for loop working
     # for counter in range(0,10):
