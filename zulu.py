@@ -368,10 +368,10 @@ def game_loop():
         if gateSuccess[0]:
             gate_1()
 
-        if gate1Success[1]:
+        if gateSuccess[1]:
             gate_2()
 
-        if gate2Success[2]:
+        if gateSuccess[2]:
             gate_3()
 
         pygame.display.update()
