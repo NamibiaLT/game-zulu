@@ -89,7 +89,11 @@ ON = 1
 OFF = 0
 ### HELP: How to write if "ALL, ON" then all lights come on.
 def light(light, state):
-    light.write(state)
+    if (light == 'ALL'):
+        for lightName in lights:
+            lightName.write(state)
+    else:
+        light.write(state)
  
 def success():
     #### SOUNDS ####
@@ -106,26 +110,9 @@ def success():
     TextSurf, TextRect = text_objects("", largeText)
     TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
-
-
-
     
-    while True:
-        for event in pygame.event.get():
-            # Quit game from window screen            
-            if event.type == pygame.QUIT:
-                quitgame()
-            # Quit game from keyboard
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    quitgame()
-        # TODO: Make Proceed only available if game was successful.
-        button("Proceed",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_intro)
-        # TODO: Make Leave go back to main screen with list of games
-        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,game_intro)
- 
-        pygame.display.update()
-        clock.tick(15) 
+    pygame.display.update()
+    clock.tick(15)
 
     #### BUTTON BOX ####
     # HELP: How to make light function so we can do 'light(lights['ALL'], ON)
@@ -177,6 +164,27 @@ def success():
     light(lights['led4'], OFF)
     light(lights['led5'], OFF)
 
+
+    
+    while True:
+        for event in pygame.event.get():
+            # Quit game from window screen            
+            if event.type == pygame.QUIT:
+                quitgame()
+            # Quit game from keyboard
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    quitgame()
+        # TODO: Make Proceed only available if game was successful.
+        button("Proceed",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_intro)
+        # TODO: Make Leave go back to main screen with list of games
+        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,game_intro)
+ 
+        pygame.display.update()
+        clock.tick(15) 
+
+
+
 def fail():
     #### SOUNDS ####
     pygame.mixer.music.stop()
@@ -192,27 +200,10 @@ def fail():
     TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
 
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
+    pygame.display.update()
+    clock.tick(15)   
 
-            # Quit game from keyboard
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    quitgame()
-
-        # TODO: Make Enter only available if game was successful. Put LOCK symbol for this fail.
-        # TODO: Make dead sound if pushed. Make so nothing happens        
-        button("Proceed (LOCKED)",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_intro)
-        # TODO: Make Leave go back to main screen with list of games        
-        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,game_intro)
-
-        pygame.display.update()
-        clock.tick(15)
-
-        #### BUTTON BOX #####
+            #### BUTTON BOX #####
     #### HELP: How to get this for loop working
     # for counter in range(0,10):
     #     light(lights['led5'], ON)
@@ -242,6 +233,28 @@ def fail():
     light(lights['led3'], OFF)
     light(lights['led4'], OFF)
     light(lights['led5'], OFF)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            # Quit game from keyboard
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    quitgame()
+
+        # TODO: Make Enter only available if game was successful. Put LOCK symbol for this fail.
+        # TODO: Make dead sound if pushed. Make so nothing happens        
+        button("Proceed (LOCKED)",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_intro)
+        # TODO: Make Leave go back to main screen with list of games        
+        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,game_intro)
+
+        pygame.display.update()
+        clock.tick(15)
+
+
     
 def quitgame():
     pygame.quit()
