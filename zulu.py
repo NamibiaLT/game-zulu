@@ -153,8 +153,10 @@ def fail():
                 if event.key == pygame.q_g:
                     quitgame()
 
-        button("Enter",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
-        button("Exit",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
+        # TODO: Make Enter only available if game was successful. Put LOCK symbol for this fail.        
+        button("Proceed",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
+        # TODO: Make Leave go back to main screen with list of games        
+        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,quitgame)
 
         pygame.display.update()
         clock.tick(15)
@@ -214,14 +216,19 @@ def gate_1():
     
     if buttonsPressed(['center']):
         soundTrumpet.play()
+        
     if buttonsPressed(['up']):
-        soundButtonPushDead.play()       
+        soundButtonPushDead.play() 
+
     if buttonsPressed(['down']):
         soundButtonPushDead.play()
+
     if buttonsPressed(['left']):
         soundButtonPushDead.play()
+
     if buttonsPressed(['right']):
         soundButtonPushDead.play()
+
 
     pygame.display.update()
     clock.tick(60)
@@ -272,7 +279,7 @@ def game_loop():
     pygame.mixer.music.load(gamePlayMusic)
     pygame.mixer.music.play(-1)
 
-    # background display
+    # Background display
     gameDisplay.blit(spaceShip, (0,0))    
     pygame.display.update()
 
@@ -304,6 +311,12 @@ def game_loop():
 
         if gate2Success:
             gate_3()
+
+        if buttonsPressed(['center']):
+            soundTrumpet.play()
+        
+        if buttonsPressed(['up']):
+            soundButtonPushDead.play() 
         
         pygame.display.update()
         clock.tick(60)

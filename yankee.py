@@ -53,7 +53,7 @@ def lightsOn(lightArray):
 ##### BUTTONS #####
 from shared.buttons import button, BUTTON_WIDTH, BUTTON_HEIGHT, BUTTON_CENTER_ONE_THIRD, BUTTON_CENTER_TWO_THIRD, BUTTON_CENTER_VERTICAL
 buttons = {
-  'blue': arduino.get_pin('d:5:i'),
+  'blue': arduino.get_pin('d:36:i'),
   'green': arduino.get_pin('d:37:i'),
   'red': arduino.get_pin('d:35:i'),  
   'abort': arduino.get_pin('d:30:i'),   #Back of game. Should be abort button to exit/quit program/game
