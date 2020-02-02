@@ -347,7 +347,6 @@ def gate_3():
     if buttonsPressed(['center']):      
         global gateSuccess
         gateSuccess = [False, False, False]
-        soundGateSuccess.play()
         light(lights['led3'], OFF)  
         time.sleep(0.3)       
         success()
