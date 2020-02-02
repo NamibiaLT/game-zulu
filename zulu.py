@@ -260,11 +260,7 @@ def gate_1():
         soundTrumpet.set_volume(0.3)
         soundGateSuccess.play()
 
-    if buttonsPressed(['down']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
-
-    if buttonsPressed(['left']):
+    if buttonsPressed(['down']) or buttonsPressed(['left']):
         soundTrumpet.set_volume(0.3)
         soundTrumpet.play()
 
