@@ -189,16 +189,28 @@ def fail():
     gameDisplay.blit(TextSurf, TextRect)
     
     #### BUTTON BOX #####
-    i = 0
-    for i in range(0,10):
+    for counter in range(0,10):
         light(lights['led5'], ON)
         light(lights['led1'], OFF)
-        time.sleep(0.3)
+        time.sleep(1)
         light(lights['led1'], OFF)
         light(lights['led5'], ON)        
-        time.sleep(0.3)
-        i += 1
+        time.sleep(1)
     
+    light(lights['led1'], OFF)
+    light(lights['led5'], ON)  
+    time.sleep(0.5)
+    light(lights['led1'], ON)
+    light(lights['led5'], OFF)        
+    time.sleep(0.5)
+    light(lights['led1'], OFF)
+    light(lights['led5'], ON)  
+    time.sleep(0.5)
+    light(lights['led1'], ON)
+    light(lights['led5'], OFF)        
+    time.sleep(0.5)
+
+
     light(lights['button1'], OFF)
     light(lights['button2'], OFF)
     light(lights['led1'], OFF)
