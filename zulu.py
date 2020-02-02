@@ -321,7 +321,7 @@ def gate_2():
     if buttonsPressed(['button2']):      
         global gateSuccess
         gateSuccess = [False, False, True]
-        soundTrumpet.play()
+        soundGateSuccess.play()
         light(lights['button2'], OFF)    
         time.sleep(0.3)     
         gate_3()
@@ -349,7 +349,7 @@ def gate_3():
     if buttonsPressed(['center']):      
         global gateSuccess
         gateSuccess = [False, False, False]
-        soundTrumpet.play()
+        soundGateSuccess.play()
         light(lights['led3'], OFF)  
         time.sleep(0.3)       
         success()
