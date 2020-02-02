@@ -156,7 +156,7 @@ def fail():
         # TODO: Make Enter only available if game was successful. Put LOCK symbol for this fail.        
         button("Proceed (LOCKED)",BUTTON_CENTER_ONE_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,GREEN,BRIGHT_GREEN,game_loop)
         # TODO: Make Leave go back to main screen with list of games        
-        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,game_into)
+        button("Leave",BUTTON_CENTER_TWO_THIRD,BUTTON_CENTER_VERTICAL,BUTTON_WIDTH,BUTTON_HEIGHT,RED,BRIGHT_RED,game_intro)
 
         pygame.display.update()
         clock.tick(15)
@@ -219,16 +219,16 @@ def gate_1():
         soundTrumpet.play()
         
     if buttonsPressed(['up']):
-        soundButtonPushDead.play() 
+        soundButtonPushDead.play(1) 
 
     if buttonsPressed(['down']):
-        soundButtonPushDead.play()
+        soundButtonPushDead.play(3)
 
     if buttonsPressed(['left']):
-        soundButtonPushDead.play()
+        soundButtonPushDead.play(5)
 
     if buttonsPressed(['right']):
-        soundButtonPushDead.play()
+        soundButtonPushDead.play(2)
 
 
     pygame.display.update()
