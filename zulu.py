@@ -192,7 +192,7 @@ def game_intro():
         pygame.display.update()
         clock.tick(15)
         
-def gate_1():
+def gate_1(gate0Success,gate1Success):
     light(lights['button1'], ON)
     
     if buttonsPressed(['back']):
@@ -282,7 +282,7 @@ def game_loop():
                 quit()
             
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.q_g:
+                if event.key == pygame.K_q:
                     pygame.quit()
                     quit()
 
