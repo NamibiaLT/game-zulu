@@ -189,27 +189,27 @@ def fail():
     gameDisplay.blit(TextSurf, TextRect)
     
     #### BUTTON BOX #####
-    for counter in range(0,10):
-        light(lights['led5'], ON)
-        light(lights['led1'], OFF)
-        time.sleep(1)
-        light(lights['led1'], OFF)
-        light(lights['led5'], ON)        
-        time.sleep(1)
+    #### HELP: How to get this for loop working
+    # for counter in range(0,10):
+    #     light(lights['led5'], ON)
+    #     light(lights['led1'], OFF)
+    #     time.sleep(1)
+    #     light(lights['led1'], OFF)
+    #     light(lights['led5'], ON)        
+    #     time.sleep(1)
     
-    light(lights['led1'], OFF)
-    light(lights['led5'], ON)  
-    time.sleep(0.5)
-    light(lights['led1'], ON)
-    light(lights['led5'], OFF)        
-    time.sleep(0.5)
-    light(lights['led1'], OFF)
-    light(lights['led5'], ON)  
-    time.sleep(0.5)
-    light(lights['led1'], ON)
-    light(lights['led5'], OFF)        
-    time.sleep(0.5)
-
+    # light(lights['led1'], OFF)
+    # light(lights['led5'], ON)  
+    # time.sleep(0.3)
+    # light(lights['led1'], ON)
+    # light(lights['led5'], OFF)        
+    # time.sleep(0.3)
+    # light(lights['led1'], OFF)
+    # light(lights['led5'], ON)  
+    # time.sleep(0.3)
+    # light(lights['led1'], ON)
+    # light(lights['led5'], OFF)        
+    # time.sleep(0.3)
 
     light(lights['button1'], OFF)
     light(lights['button2'], OFF)
@@ -218,7 +218,6 @@ def fail():
     light(lights['led3'], OFF)
     light(lights['led4'], OFF)
     light(lights['led5'], OFF)
-
 
     while True:
         for event in pygame.event.get():
@@ -289,7 +288,7 @@ def gate_1():
 
         gateSuccess = [False,True,False]
 
-        soundTrumpet.play()
+        soundButtonPushDead.play()
         light(lights['button1'], OFF)
         time.sleep(0.3)       
         gate_2()
@@ -301,8 +300,8 @@ def gate_1():
     # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
 
     if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']) or buttonsPressed(['center']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
+        soundButtonPushDead.set_volume(1)
+        soundButtonPushDead.play()
 
     pygame.display.update()
     clock.tick(60)
@@ -330,8 +329,8 @@ def gate_2():
     # TODO: Change all these to button dead sound
     # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
     if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']) or buttonsPressed(['center']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
+        soundButtonPushDead.set_volume(1)
+        soundButtonPushDead.play()
 
     pygame.display.update()
     clock.tick(60)
@@ -359,8 +358,8 @@ def gate_3():
     # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
 
     if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']):
-        soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
+        soundButtonPushDead.set_volume(1)
+        soundButtonPushDead.play()
 
     pygame.display.update()
     clock.tick(60)
