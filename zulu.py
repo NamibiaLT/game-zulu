@@ -258,7 +258,7 @@ def gate_1():
         
     if buttonsPressed(['up']):
         soundTrumpet.set_volume(0.3)
-        soundTrumpet.play()
+        soundGateSuccess.play()
 
     if buttonsPressed(['down']):
         soundTrumpet.set_volume(0.3)
