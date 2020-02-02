@@ -338,29 +338,25 @@ def gate_2():
     clock.tick(60)
 
 def gate_3():
-    light(lights['led3'], ON)
+    light(lights['led1'], ON)
+    light(lights['led2'], ON)
     
     if buttonsPressed(['back']):
         pygame.quit()
         quit()
 
     #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
-    if buttonsPressed(['center']):      
+    if buttonsPressed(['up']):      
         global gateSuccess
         gateSuccess = [False, False, False]
-        light(lights['led3'], OFF)  
+        light(lights['led1'], OFF)
+        light(lights['led2'], OFF)
         time.sleep(0.3)       
         success()
 
-    if buttonsPressed(['button1']) or buttonsPressed(['button2']):
+    if buttonsPressed(['button1']) or buttonsPressed(['button2']) or buttonsPressed(['down']) or buttonsPressed(['right']) or buttonsPressed(['left']) or buttonsPressed(['center']):
         fail()
     
-    # TODO: Change all these to button dead sound
-    # HELP: How to make an if statement like if buttonsPressed(['center',up,down....]). So we only need to write one time.
-
-    if buttonsPressed(['down']) or buttonsPressed(['up']) or buttonsPressed(['left']) or buttonsPressed(['right']):
-        soundButtonDead.play()
-
     pygame.display.update()
     clock.tick(60)
 
