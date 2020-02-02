@@ -31,9 +31,7 @@ arduino = getArduino()
 
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 from shared.text import text_objects
-from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDeadd, soundButtonPush11, soundbuttonPush2, soundGateSuccess
-
-soundButtonPushDead = pygame.mixer.Sound("sounds/button_push_dead.wav")
+from shared.sounds import soundMissile, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2, soundGateSuccess
 
 ##### LIGHTS #####
 lights = {
