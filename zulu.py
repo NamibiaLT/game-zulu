@@ -279,6 +279,9 @@ def gate_2():
 
     #HELP: How to I make this if statement change gate0Success and gate1Success states and not require to put gate_2() funtion?
     if buttonsPressed(['button2']):      
+        global gate1Success
+        global gate2Success
+        
         gate1Success = False
         gate2Success = True
         light(lights['button2'], OFF)    
