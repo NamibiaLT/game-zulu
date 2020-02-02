@@ -320,7 +320,7 @@ def gate_2():
 
     success()
 
-def gate_3()
+def gate_3():
     light(lights['led3'], ON)
     
     if buttonsPressed(['back']):
