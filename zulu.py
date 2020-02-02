@@ -202,7 +202,8 @@ def gate_1():
     if buttonsPressed(['button1']):      
         gate0Success = False
         gate1Success = True
-        success()
+        return gate0Success
+        return gate1Success
 
     if buttonsPressed(['button2']):
         fail()
