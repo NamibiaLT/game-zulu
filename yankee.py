@@ -100,6 +100,7 @@ def light(lightArray, state):
             time.sleep(1000)
             for lightName in lightArray:
                 lights[lightName].write(OFF)
+            i += 1
     else:
         for lightName in lightArray:
             lights[lightName].write(state)
