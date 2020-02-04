@@ -6,7 +6,17 @@ import time
 from pyfirmata import Arduino, util
 
 pygame.init()
- 
+
+###### DISPLAY #####
+display_width = 800
+display_height = 600
+white = (255,255,255)
+black = (0,0,0)
+
+gameDisplay = pygame.display.set_mode((display_width,display_height))
+pygame.display.set_caption('Button Box Test')
+clock = pygame.time.Clock()  
+
 ##### BUTTON BOX CONFIGURATION ######
 mega = {
     'digital' : tuple(x for x in range(54)),
@@ -23,7 +33,8 @@ except NameError:
 except AttributeError:
     arduino = Arduino('COM7', mega, 57600)
 except:
-    print("No arduino board is detected\n")
+    arduino = 1
+    get_pin() # Producing AttributeError: 'int' object has no attribute 'get_pin'
 
 buttons = {
   'button2': arduino.get_pin('d:36:i'),
@@ -36,92 +47,91 @@ buttons = {
   'down': arduino.get_pin('d:33:i'),
 }
 
-BUTTON_PRESSED = False
-def buttonsPressed(buttonArray):
-    for buttonName in buttonArray:
-        try:
-            button = buttons[buttonName]
-        except:
-            return False
-        if (button.read() != BUTTON_PRESSED):
-            return False
-    return True
+# BUTTON_PRESSED = False
+# def buttonsPressed(buttonArray):
+#     for buttonName in buttonArray:
+#         try:
+#             button = buttons[buttonName]
+#         except:
+#             return False
+#         if (button.read() != BUTTON_PRESSED):
+#             return False
+#     return True
 
 
-ON = 1
-OFF = 0
-def light(light, state):
-    light.write(state)
+# ON = 1
+# OFF = 0
+# def light(light, state):
+#     light.write(state)
 
-###### DISPLAY #####
-display_width = 800
-display_height = 600
-white = (255,255,255)
 
-gameDisplay = pygame.display.set_mode((display_width,display_height))
-pygame.display.set_caption('Button Box Test')
-clock = pygame.time.Clock() 
+# ##### LIGHT ASSIGNMENTS #####
+# lights = {
+#   'button1': arduino.get_pin('d:11:p'),
+#   'button2': arduino.get_pin('d:10:p'),
+#   'led1': arduino.get_pin('d:3:p'),
+#   'led2': arduino.get_pin('d:2:p'),
+#   'led3': arduino.get_pin('d:5:p'),
+#   'led4': arduino.get_pin('d:4:p'),
+#   'led5': arduino.get_pin('d:13:p'), }
 
-##### LIGHT ASSIGNMENTS #####
-lights = {
-  'button1': arduino.get_pin('d:11:p'),
-  'button2': arduino.get_pin('d:10:p'),
-  'led1': arduino.get_pin('d:3:p'),
-  'led2': arduino.get_pin('d:2:p'),
-  'led3': arduino.get_pin('d:5:p'),
-  'led4': arduino.get_pin('d:4:p'),
-  'led5': arduino.get_pin('d:13:p'), }
+def text_objects(text, font):
+    textSurface = font.render(text, True, black)
+    return textSurface, textSurface.get_rect()
 
 def quitgame():
     pygame.quit()
     quit()
 
-    
 def testLoop():
- 
+    gameDisplay.fill(white)        
+    largeText = pygame.font.SysFont("comicsansms",250) 
+    TextSurf, TextRect = text_objects("Start", largeText)
+    TextRect.center = ((display_width/2),(display_height/2))
+    gameDisplay.blit(TextSurf, TextRect)           
+    pygame.display.update()
+    clock.tick(60)
+
     gameExit = False
  
     while not gameExit:
-        
-        gameDisplay.fill(white)        
-        largeText = pygame.font.SysFont("comicsansms",250)            
-          
+ 
         # Keyboard
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
- 
+            
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     pygame.quit()
                     quit()
-           
-            if event.type == pygame.KEYDOWN:
+
                 if event.key == pygame.K_b:
-                    TextSurf, TextRect = text_objects("Keyboard Button b", largeText)
-                    TextRect.center = ((display_width/2),(display_height/2))
-                    gameDisplay.blit(TextSurf, TextRect)
+                    gameDisplay.fill(white)  
+                    TextSurf, TextRect = text_objects("Key b", largeText)
+             
+                if event.key == pygame.K_v:
+                    gameDisplay.fill(white)  
+                    TextSurf, TextRect = text_objects("Key v", largeText)
+
+        # # Button Box
+        # if buttonsPressed(['back']):
+        #         pygame.quit()
+        #         quit()
+
+        # if buttonsPressed(['button1']):
+        #     TextSurf, TextRect = text_objects("Button 1", largeText)
+        #     TextRect.center = ((display_width/2),(display_height/2))
+        #     gameDisplay.blit(TextSurf, TextRect)
 
 
-
-        # Button Box
-        if buttonsPressed(['back']):
-                pygame.quit()
-                quit()
-
-        if buttonsPressed(['button1']):
-            TextSurf, TextRect = text_objects("Button 1", largeText)
-            TextRect.center = ((display_width/2),(display_height/2))
-            gameDisplay.blit(TextSurf, TextRect)
-
-
-        if buttonsPressed(['button2']):
-            TextSurf, TextRect = text_objects("Button 2", largeText)
-            TextRect.center = ((display_width/2),(display_height/2))
-            gameDisplay.blit(TextSurf, TextRect)
-
-
+        # if buttonsPressed(['button2']):
+        #     TextSurf, TextRect = text_objects("Button 2", largeText)
+        #     TextRect.center = ((display_width/2),(display_height/2))
+        #     gameDisplay.blit(TextSurf, TextRect)
+        TextRect.center = ((display_width/2),(display_height/2))
+        gameDisplay.blit(TextSurf, TextRect)    
         pygame.display.update()
         clock.tick(60)
 

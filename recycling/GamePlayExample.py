@@ -5,7 +5,7 @@ import random
 pygame.init()
 
 #############
-crash_sound = pygame.mixer.Sound("/Users/bellj23/Documents/code/game-zulu/crash.wav")
+crash_sound = pygame.mixer.Sound("/Users/bellj23/Documents/code/game-zulu/sound/crash.wav")
 #############
  
 display_width = 800
@@ -29,8 +29,8 @@ gameDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption('A bit Racey')
 clock = pygame.time.Clock()
  
-carImg = pygame.image.load('/Users/bellj23/Documents/code/game-zulu/racecar2.png')
-gameIcon = pygame.image.load('/Users/bellj23/Documents/code/game-zulu/racecar2.png')
+carImg = pygame.image.load('/Users/bellj23/Documents/code/game-zulu/images/racecar.png')
+gameIcon = pygame.image.load('/Users/bellj23/Documents/code/game-zulu/images/racecar.png')
 
 pygame.display.set_icon(gameIcon)
 
