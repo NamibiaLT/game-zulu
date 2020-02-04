@@ -310,21 +310,38 @@ def gate_1():
     ##loop through all the inputs
     while currentStep < NUMBER_OF_STEPS or attempts == MAX_TRYS:
         
-        # If the button is pressed and correct
-        if(CORRECT_STEPS[currentStep] == True):
-            CORRECT_LIGHTS[currentStep]           
-            currentStep += 1
+        # Ability to quit from screen or keyboard
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_q:
+                pygame.quit()
+                quit()
 
-        # If the button is not correct then no step and attempt counter goes up
-        else:
-            currentStep = 0
-            attempt += 1
-            print('Incorrect input! Back to the beginning!')           
+
+        # If a button is pressed
+        if(buttonsPressed(['button1']) or buttonsPressed(['button2']) or buttonsPressed(['up']) or buttonsPressed(['center']) or buttonsPressed(['down']) or buttonsPressed(['left']) or buttonsPressed(['right'])): #HOW TO WRITE THIS LINE? IF ANY buttons are pressed...
+            time.sleep(0.3)
+            # If the button is pressed and correct. Remember "false" or 0 means a button is pressed. Normally they are high.      
+            if(CORRECT_STEPS[currentStep] == True):
+                CORRECT_LIGHTS[currentStep]           
+                currentStep += 1
+
+            # If the button is not correct then no step and attempt counter goes up
+            else:
+                currentStep = 0
+                attempt += 1
+                print('Incorrect input! Back to the beginning!')           
+            
+            # Check whether the puzzle has been solved
+            if(currentStep == NUMBER_OF_STEPS):
+                success()
+                # break ... is this needed? 
         
-        # Check whether the puzzle has been solved
-        if(currentStep == NUMBER_OF_STEPS):
-            success()
-            # break ... is this needed? 
+
 
     pygame.display.update()
     clock.tick(60)
