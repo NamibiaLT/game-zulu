@@ -310,18 +310,6 @@ def gate_1():
     ##loop through all the inputs
     while currentStep < NUMBER_OF_STEPS or attempts == MAX_TRYS:
         
-        # Ability to quit from screen or keyboard
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-            
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_q:
-                pygame.quit()
-                quit()
-
-
         # If a button is pressed
         if(buttonsPressed(['button1']) or buttonsPressed(['button2']) or buttonsPressed(['up']) or buttonsPressed(['center']) or buttonsPressed(['down']) or buttonsPressed(['left']) or buttonsPressed(['right'])): #HOW TO WRITE THIS LINE? IF ANY buttons are pressed...
             time.sleep(0.3)
@@ -337,9 +325,9 @@ def gate_1():
                 print('Incorrect input! Back to the beginning!')           
             
             # Check whether the puzzle has been solved
-            if(currentStep == NUMBER_OF_STEPS):
-                success()
-                # break ... is this needed? 
+        if(currentStep == NUMBER_OF_STEPS):
+            success()
+            # break ... is this needed? 
         
 
 
