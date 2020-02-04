@@ -315,29 +315,23 @@ def gate_1():
 
     #Put this in game loop
     ##loop through all the inputs
-    while currentStep < 6 or attempts == MAX_TRYS:
+    while currentStep < NUMBER_OF_STEPS or attempts == MAX_TRYS:
         
         # If the button is pressed and correct
-        if(buttonPressed() == CORRECT_STEPS[i]):
+        if(buttonPressed() == CORRECT_STEPS[currentStep]):
+            CORRECT_LIGHTS[currentStep]           
             currentStep += 1
 
-        # If the button is not correct then no step
+        # If the button is not correct then no step and attempt counter goes up
         else:
             currentStep = 0
             attempt += 1
             print('Incorrect input! Back to the beginning!')           
         
-        # Update the stored value for this input
-        lastInputState[i] = currentInputState
-
         # Check whether the puzzle has been solved
-        if(currentStep == NUMBER_OF_STEPS)
+        if(currentStep == NUMBER_OF_STEPS):
             success()
-            # break ... is this needed?
-
-        # Turn on the number of LEDs corresponding to the current step
-        for i in range(0,NUMBER_OF_STEP):
-            CORRECT_LIGHTS[i]     
+            # break ... is this needed? 
 
     pygame.display.update()
     clock.tick(60)
