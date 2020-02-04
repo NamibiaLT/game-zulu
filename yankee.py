@@ -14,10 +14,10 @@ clock = pygame.time.Clock()
 
 ##### DISPLAY ##### 
 from shared.display import gameDisplay, DISPLAY_WIDTH, DISPLAY_HEIGHT, fullScreenImage
-pygame.display.set_caption('Game Zulu')
+pygame.display.set_caption('Game Yankee')
 
 ###### IMAGES #####
-stars = fullScreenImage('images/stars.jpg')
+lava = fullScreenImage('images/lava.jpg')
 spaceShip = fullScreenImage('images/inside_space_ship.jpg')
 spaceShipFail = fullScreenImage('images/inside_space_ship_fail.jpg')
 spaceShipSuccess = fullScreenImage('images/inside_space_ship_success.jpg')
@@ -112,10 +112,10 @@ def success():
     logging.info("Game Success")
    
     #### DISPLAY ####
-    gameDisplay.blit(spaceShipSuccess, (0,0))  
+    gameDisplay.blit(spaceShipSuccess, (0, 0))  
     pygame.display.update()     
    
-    largeText = pygame.font.SysFont("comicsansms",250)
+    largeText = pygame.font.SysFont("comicsansms", 250)
     TextSurf, TextRect = text_objects("", largeText)
     TextRect.center = ((DISPLAY_WIDTH * 0.5),(DISPLAY_HEIGHT * 0.33))
     gameDisplay.blit(TextSurf, TextRect)
