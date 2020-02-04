@@ -68,7 +68,7 @@ buttons = {
 
 BUTTON_PRESSED = False
 def buttonsPressed(buttonArray, buttonType):
-    if (buttonType === 'any'):
+    if (buttonType == 'any'):
         for buttonName in buttonArray:
             try:
                 button = buttons[buttonName]
@@ -77,7 +77,7 @@ def buttonsPressed(buttonArray, buttonType):
             if (button.read() != BUTTON_PRESSED):
                 return True
         return False
-    if (buttonType === 'all'):
+    if (buttonType == 'all'):
         for buttonName in buttonArray:
             try:
                 button = buttons[buttonName]
