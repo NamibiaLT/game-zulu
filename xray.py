@@ -308,7 +308,7 @@ def gate_1():
 
     #Put this in game loop
     ##loop through all the inputs
-    while currentStep < NUMBER_OF_STEPS or attempts == MAX_TRYS:
+    while currentStep < NUMBER_OF_STEPS or attempts >= MAX_TRYS:
         
         # If a button is pressed
         if(buttonsPressed(['button1']) or buttonsPressed(['button2']) or buttonsPressed(['up']) or buttonsPressed(['center']) or buttonsPressed(['down']) or buttonsPressed(['left']) or buttonsPressed(['right'])): #HOW TO WRITE THIS LINE? IF ANY buttons are pressed...
