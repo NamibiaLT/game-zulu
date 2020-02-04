@@ -95,11 +95,11 @@ def light(lightArray, state):
     if (state == 'blink'):
         # i = 0
         # while i < 3:
-        for lightName in lightArray:
-            lights[lightName].write(ON)
-        time.sleep(1000)
-        for lightName in lightArray:
-            lights[lightName].write(OFF)
+        # for lightName in lightArray:
+        #     lights[lightName].write(ON)
+        # time.sleep(1000)
+        # for lightName in lightArray:
+        #     lights[lightName].write(OFF)
             # i += 1
     else:
         for lightName in lightArray:
