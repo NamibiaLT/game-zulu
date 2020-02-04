@@ -301,10 +301,10 @@ def gate_1():
     CORRECT_LIGHTS = [light(lights['led1'], ON),light(lights['led2'], ON),light(lights['led3'], ON),light(lights['led4'], ON),light(lights['led5'], ON)]
 
     # What step of the sequence is the player currently on?
-    currentSteps = 0
+    currentStep = 0
     
     # Players attempts
-    attempts = 0
+    attempt = 0
 
     #Put this in game loop
     ##loop through all the inputs
