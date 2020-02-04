@@ -289,23 +289,16 @@ def game_intro():
    
 def gate_1():
 
-
     # Possible number of inputs. Player cannot try anymore than this.
     MAX_TRYS = 3
 
     # number of steps in the sequence that the player must follow
     NUMBER_OF_STEPS = 5
 
-    # Correct sequence of inputs required to solve the pizzle
-    steps = (0, 2, 1, 1, 0) # press button #2 once, then button #3 twice then button #0 then button #1
-
     CORRECT_STEPS = [buttonsPressed(['down']),buttonsPressed(['right']),buttonsPressed(['button1']),buttonsPressed(['button2']),buttonsPressed(['center'])]
 
     # pins are used to light up LEDs to show the player's progress, so one output pin per step in the puzzle'
     CORRECT_LIGHTS = [light(lights['led1'], ON),light(lights['led2'], ON),light(lights['led3'], ON),light(lights['led4'], ON),light(lights['led5'], ON)]
-
-    # Assume the defailt state of each switch is HIGH
-    lastInputState = [HIGH, HIGH, HIGH, HIGH]
 
     # What step of the sequence is the player currently on?
     currentSteps = 0
