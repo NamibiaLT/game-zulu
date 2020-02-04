@@ -17,4 +17,4 @@ soundbuttonPush2 = pygame.mixer.Sound("sound/button_push_2.wav")
 #### Background Music ####
 introMusicSpace = "sound/intro_music_space.wav"
 gamePlayMusic = 'sound/spooky_gameplay.wav'
-lava = "sound/lava.wav"
+introMusicLava = "sound/lava.wav"
