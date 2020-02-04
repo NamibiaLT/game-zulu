@@ -311,7 +311,7 @@ def gate_1():
     while currentStep < NUMBER_OF_STEPS or attempts == MAX_TRYS:
         
         # If the button is pressed and correct
-        if(buttonPressed() == CORRECT_STEPS[currentStep]):
+        if(CORRECT_STEPS[currentStep] == True):
             CORRECT_LIGHTS[currentStep]           
             currentStep += 1
 
