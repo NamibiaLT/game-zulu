@@ -92,7 +92,7 @@ ON = 1
 OFF = 0
 ### HELP: How to write if "ALL, ON" then all lights come on. Help with this function. "ALL does not work."
 def light(lightArray, state):
-    if (state === 'blink'):
+    if (state == 'blink'):
         i = 0
         while i < 3:
             for lightName in lightArray:
