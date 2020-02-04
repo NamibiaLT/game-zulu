@@ -1,7 +1,7 @@
 {
   "python.linting.pylintEnabled": false,
   "python.linting.enabled": true,
-  "python.pythonPath": "C:\\Users\\bellj23\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+  "python.pythonPath": "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python",
   "python.testing.pytestArgs": [
     "sounds"
   ],
