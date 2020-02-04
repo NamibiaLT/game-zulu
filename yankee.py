@@ -17,7 +17,7 @@ from shared.display import gameDisplay, DISPLAY_WIDTH, DISPLAY_HEIGHT, fullScree
 pygame.display.set_caption('Game Yankee')
 
 ###### IMAGES #####
-lava = fullScreenImage('images/lava.jpg')
+lavaBackground = fullScreenImage('images/lava.jpg')
 spaceShip = fullScreenImage('images/inside_space_ship.jpg')
 spaceShipFail = fullScreenImage('images/inside_space_ship_fail.jpg')
 spaceShipSuccess = fullScreenImage('images/inside_space_ship_success.jpg')
@@ -30,7 +30,7 @@ arduino = getArduino()
 
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 from shared.text import text_objects
-from shared.sounds import soundMissile, soundButtonDead, soundGateSuccess, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2
+from shared.sounds import soundMissile, soundButtonDead, soundGateSuccess, soundSuccess, gamePlayMusic, soundTrumpet, introMusicLava, soundButtonPushDead, soundButtonPush1, soundbuttonPush2
 
 ##### LIGHT ASSIGNMENTS #####
 lights = {
