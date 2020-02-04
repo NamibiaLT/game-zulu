@@ -202,7 +202,7 @@ def game_intro():
         
         # Start intro music
         while not startMusicPlay:
-            pygame.mixer.music.load(lava)
+            pygame.mixer.music.load(introMusicLava)
             pygame.mixer.music.play(-1)   
             startMusicPlay = True
 
