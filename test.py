@@ -5,6 +5,8 @@ import logging
 import time
 from pyfirmata import Arduino, util
 
+useArduino = True
+
 pygame.init()
 
 ###### DISPLAY #####
@@ -26,6 +28,8 @@ mega = {
     'disabled' : (0, 1, 14, 15) # Rx, Tx, Crystal
     }
 
+useArduino = True
+
 try:
     arduino = Arduino('/dev/ttyACM0', mega, 57600)
 except NameError:
@@ -33,31 +37,55 @@ except NameError:
 except AttributeError:
     arduino = Arduino('COM7', mega, 57600)
 except:
-    arduino = 1
-    get_pin() # Producing AttributeError: 'int' object has no attribute 'get_pin'
+    useArduino = False
 
-buttons = {
-  'button2': arduino.get_pin('d:36:i'),
-  'button1': arduino.get_pin('d:37:i'),
-  'center': arduino.get_pin('d:35:i'),  
-  'back': arduino.get_pin('d:30:i'),
-  'left': arduino.get_pin('d:32:i'),
-  'right': arduino.get_pin('d:31:i'),
-  'up': arduino.get_pin('d:34:i'),
-  'down': arduino.get_pin('d:33:i'),
-}
 
-# BUTTON_PRESSED = False
-# def buttonsPressed(buttonArray):
-#     for buttonName in buttonArray:
-#         try:
-#             button = buttons[buttonName]
-#         except:
-#             return False
-#         if (button.read() != BUTTON_PRESSED):
-#             return False
-#     return True
+if useArduino:
+    buttons = {
+    'button2': arduino.get_pin('d:36:i'),
+    'button1': arduino.get_pin('d:37:i'),
+    'center': arduino.get_pin('d:35:i'),  
+    'back': arduino.get_pin('d:30:i'),
+    'left': arduino.get_pin('d:32:i'),
+    'right': arduino.get_pin('d:31:i'),
+    'up': arduino.get_pin('d:34:i'),
+    'down': arduino.get_pin('d:33:i'),
+    }
 
+else:
+    buttons = {
+    'button2': pygame.K_x,
+    'button1': pygame.K_c,
+    } 
+
+
+BUTTON_PRESSED = False
+def buttonsPressed(buttonArray):
+    for buttonName in buttonArray:
+        try:
+            button = buttons[buttonName]
+        except:
+            return False
+        if (button.read() != BUTTON_PRESSED):
+            return False
+    return True
+
+def keyPressed(keyPush):
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            quit()
+
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_keyPush:
+            gameDisplay.fill(white)  
+            TextSurf, TextRect = text_objects("Key LEFT", largeText)    
+        if event.key == pygame.K_keyPush:
+            gameDisplay.fill(white)  
+            TextSurf, TextRect = text_objects("LEFT", largeText) 
+        if event.key == pygame.K_keyPush:
+            pause = True
+            paused()
 
 # ON = 1
 # OFF = 0
@@ -97,24 +125,38 @@ def testLoop():
     while not gameExit:
  
         # Keyboard
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
+        #while (event in pygame.event.get()) or buttonPressed() == True:
+
+        keyPressed()   
+        # for event in pygame.event.get():   
+        #     while event in pygame.event.get():
+        #         print(event)
+        #     if event.type == pygame.QUIT:
+        #         pygame.quit()
+        #         quit()
             
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    pygame.quit()
-                    quit()
+        #     if event.type == pygame.KEYDOWN and event.key == pygame.K_v:
+        #         gameDisplay.fill(white)  
+        #         TextSurf, TextRect = text_objects("Key v", largeText)                
+            
+        #     if event.type == pygame.KEYDOWN and event.key == pygame.K_b:
+        #         gameDisplay.fill(white)  
+        #         TextSurf, TextRect = text_objects("Key b", largeText)                
+                
+        #         if event.key == pygame.K_q:
+        #             pygame.quit()
+        #             quit()
 
-                if event.key == pygame.K_b:
-                    gameDisplay.fill(white)  
-                    TextSurf, TextRect = text_objects("Key b", largeText)
+        #         if event.key == pygame.K_b or event.key == pygame.button1:
+        #             gameDisplay.fill(white)  
+        #             TextSurf, TextRect = text_objects("Key b", largeText)
              
-                if event.key == pygame.K_v:
-                    gameDisplay.fill(white)  
-                    TextSurf, TextRect = text_objects("Key v", largeText)
+        #         if event.key == pygame.K_v:
+        #             gameDisplay.fill(white)  
+        #             TextSurf, TextRect = text_objects("Key v", largeText)
+                
 
+        # while buttonPressed
         # # Button Box
         # if buttonsPressed(['back']):
         #         pygame.quit()
@@ -130,6 +172,7 @@ def testLoop():
         #     TextSurf, TextRect = text_objects("Button 2", largeText)
         #     TextRect.center = ((display_width/2),(display_height/2))
         #     gameDisplay.blit(TextSurf, TextRect)
+
         TextRect.center = ((display_width/2),(display_height/2))
         gameDisplay.blit(TextSurf, TextRect)    
         pygame.display.update()
