@@ -86,7 +86,7 @@ def light(light, state):
         for lightName in lights:
             lightName.write(state)
     else:
-        light.write(state)
+        lightName.write(state)
  
 def success():
     #### SOUNDS ####
