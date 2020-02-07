@@ -6,7 +6,6 @@ pygame.mixer.init()
 #### Sounds ####
 soundWarningMissile = pygame.mixer.Sound("sound/warning_incoming_missile.wav")
 soundMissile = pygame.mixer.Sound("sound/missile.wav")
-soundSuccess = pygame.mixer.Sound("sound/success.wav")
 soundTrumpet = pygame.mixer.Sound("sound/trumpet.wav")
 soundGateSuccess = pygame.mixer.Sound("sound/sound_gate_success.wav") 
 soundButtonPushDead = pygame.mixer.Sound("sound/button_push_dead.wav")

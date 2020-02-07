@@ -30,7 +30,7 @@ arduino = getArduino()
 
 from shared.color import BLACK, WHITE, RED, GREEN, BRIGHT_RED, BRIGHT_GREEN
 from shared.text import text_objects
-from shared.sounds import soundMissile, soundButtonDead, soundGateSuccess, soundSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2
+from shared.sounds import soundMissile, soundButtonDead, soundGateSuccess, gamePlayMusic, soundTrumpet, introMusicSpace, soundButtonPushDead, soundButtonPush1, soundbuttonPush2
 
 ##### LIGHT ASSIGNMENTS #####
 lights = {
@@ -40,7 +40,8 @@ lights = {
   'led2': arduino.get_pin('d:2:p'),
   'led3': arduino.get_pin('d:5:p'),
   'led4': arduino.get_pin('d:4:p'),
-  'led5': arduino.get_pin('d:13:p'), }
+  'led5': arduino.get_pin('d:13:p')
+}
 
 def lightsOn(lightArray):
     for lightName in lightArray:
@@ -193,7 +194,7 @@ def fail():
     pygame.display.update()
     clock.tick(15)   
 
-            #### BUTTON BOX #####
+    #### BUTTON BOX #####
     #### HELP: How to get this for loop working
     # for counter in range(0,10):
     #     light(lights['led5'], ON)
