@@ -311,7 +311,7 @@ def gate_1():
     # Leave game loop when players beat the game or maximum # of trys are reached.
     while currentStep < len(correctSteps) and attempts <= MAX_TRYS:
         # User enters their guess and it stores in the list as a number 
-        if any button pushed:
+        if buttonsPressed(['button1'],'any'):
             guesses[currentStep] = ButtonPressed()     
 
         # If the number equals the correct step, then add a light
