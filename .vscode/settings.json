@@ -1,7 +1,7 @@
 {
   "python.linting.pylintEnabled": false,
   "python.linting.enabled": true,
-  "python.pythonPath": "/usr/local/Caskroom/miniconda/base/bin/python",
+  "python.pythonPath": "/usr/local/bin/python3",
   "python.testing.pytestArgs": [
     "sounds"
   ],

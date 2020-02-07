@@ -1,6 +1,10 @@
 import time
 from pyfirmata import Arduino, util
 
+# GOAL: DEVELOP AND ITERATE FASTER W/O being plugged into the arduino box.
+# THIS FILE is supposed to create a fake keyboard
+# EXPLORE: Can you run the program w/o being pluged into the arduino box
+
 class KeyboardArduino:
     def __init__(self):
         self.pins = {
