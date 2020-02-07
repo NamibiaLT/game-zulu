@@ -294,7 +294,7 @@ def gate_1():
     # Number of steps in the sequence that the player must follow. Add numbers to increase difficulty.
     correctSteps = [1,1,1]
     for i in range(3):
-        correctSteps[i] = random.choice(buttonsPressed(['button1']), buttonsPressed(['button2']), buttonsPressed(['center']))
+        correctSteps[i] = random.choice('button1', 'button2', 'center')
 
     # Initialize the guess list
     guesses = [0,0,0]
@@ -311,23 +311,20 @@ def gate_1():
     # Leave game loop when players beat the game or maximum # of trys are reached.
     while currentStep < len(correctSteps) and attempts <= MAX_TRYS:
         # User enters their guess and it stores in the list as a number 
-        if buttonsPressed(['button1'],'any'):
-            guesses[currentStep] = ButtonPressed()     
-
-        # If the number equals the correct step, then add a light
-        if(correctSteps[currentStep] == guesses[currentStep]):
-            lights[currentStep]         
-            currentStep += 1
-        
-        # If the number does not equal correct step, then turn off all lights
-        else:
-            currentStep = 0
-            attempts += 1
-            light(ALL,OFF)
-            print('Incorrect input. Back to the beginning!')         
+        if buttonsPressed(['button1'],'any'): 
+            # If the number equals the correct step, then add a light
+            if(buttonsPressed([correctSteps[currentStep]]) == True:
+                lights[currentStep]         
+                currentStep += 1    
+            # If the number does not equal correct step, then turn off all lights
+            else:
+                currentStep = 0
+                attempts += 1
+                light(ALL,OFF)
+                print('Incorrect input. Back to the beginning!')         
     
         # Check whether the puzzle has been solved
-        if guesses == correctSteps:
+        if currentStep == len(correctSteps):
             success()
         else:
             fail()
