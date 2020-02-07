@@ -288,46 +288,49 @@ def game_intro():
 
    
 def gate_1():
-
-    # Possible number of inputs. Player cannot try anymore than this.
+    # Possible number of trys. Decrease this nuymber to increase difficulty.
     MAX_TRYS = 3
 
-    # number of steps in the sequence that the player must follow
-    NUMBER_OF_STEPS = 5
+    # Number of steps in the sequence that the player must follow. Add numbers to increase difficulty.
+    correctSteps = [1,1,1]
+    for i in range(3):
+        correctSteps[i] = random.choice(buttonsPressed(['button1']), buttonsPressed(['button2']), buttonsPressed(['center']))
 
-    CORRECT_STEPS = [buttonsPressed(['down']),buttonsPressed(['right']),buttonsPressed(['button1']),buttonsPressed(['button2']),buttonsPressed(['center'])]
+    # Initialize the guess list
+    guesses = [0,0,0]
 
-    # pins are used to light up LEDs to show the player's progress, so one output pin per step in the puzzle'
-    CORRECT_LIGHTS = [light(lights['led1'], ON),light(lights['led2'], ON),light(lights['led3'], ON),light(lights['led4'], ON),light(lights['led5'], ON)]
+    # Lights to illuminate players progress
+    lights = [light(led1,ON), light(led2,ON), light(led3,ON)]
 
-    # What step of the sequence is the player currently on?
+    # What step of the sequence is the player currently on? Initialize with 0 for first number in list.
     currentStep = 0
-    
-    # Players attempts
-    attempt = 0
 
-    #Put this in game loop
-    ##loop through all the inputs
-    while currentStep < NUMBER_OF_STEPS or attempts >= MAX_TRYS:
+    # Players attempts. Initialize as 1st attempt.
+    attempts = 1
+
+    # Leave game loop when players beat the game or maximum # of trys are reached.
+    while currentStep < len(correctSteps) and attempts <= MAX_TRYS:
+        # User enters their guess and it stores in the list as a number 
+        if buttonsPressed(['button1'],'any'):
+            guesses[currentStep] = ButtonPressed()     
+
+        # If the number equals the correct step, then add a light
+        if(correctSteps[currentStep] == guesses[currentStep]):
+            lights[currentStep]         
+            currentStep += 1
         
-        # If a button is pressed
-        if(buttonsPressed(['button1']) or buttonsPressed(['button2']) or buttonsPressed(['up']) or buttonsPressed(['center']) or buttonsPressed(['down']) or buttonsPressed(['left']) or buttonsPressed(['right'])): #HOW TO WRITE THIS LINE? IF ANY buttons are pressed...
-            time.sleep(0.3)
-            # If the button is pressed and correct. Remember "false" or 0 means a button is pressed. Normally they are high.      
-            if(CORRECT_STEPS[currentStep] == True):
-                CORRECT_LIGHTS[currentStep]           
-                currentStep += 1
-
-            # If the button is not correct then no step and attempt counter goes up
-            else:
-                currentStep = 0
-                attempt += 1
-                print('Incorrect input! Back to the beginning!')           
-            
-            # Check whether the puzzle has been solved
-        if(currentStep == NUMBER_OF_STEPS):
+        # If the number does not equal correct step, then turn off all lights
+        else:
+            currentStep = 0
+            attempts += 1
+            light(ALL,OFF)
+            print('Incorrect input. Back to the beginning!')         
+    
+        # Check whether the puzzle has been solved
+        if guesses == correctSteps:
             success()
-            # break ... is this needed? 
+        else:
+            fail()
         
 
 
