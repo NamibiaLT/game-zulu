@@ -108,6 +108,7 @@ def success():
 
     #### BUTTON BOX ####
     # HELP: How to make light function so we can do 'light(lights['ALL'], ON)
+    light(lights.values(), ON)
     light(lights['button1'], ON)
     light(lights['button2'], ON)
     light(lights['led1'], ON)
