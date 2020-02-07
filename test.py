@@ -59,33 +59,27 @@ else:
     } 
 
 
-BUTTON_PRESSED = False
-def buttonsPressed(buttonArray):
-    for buttonName in buttonArray:
-        try:
-            button = buttons[buttonName]
-        except:
-            return False
-        if (button.read() != BUTTON_PRESSED):
-            return False
-    return True
+# BUTTON_PRESSED = False
+# def buttonsPressed(buttonArray):
+#     for buttonName in buttonArray:
+#         try:
+#             button = buttons[buttonName]
+#         except:
+#             return False
+#         if (button.read() != BUTTON_PRESSED):
+#             return False
+#     return True
 
-def keyPressed(keyPush):
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
+def buttonPressed(buttonn,type):
+    if type == 'keyboard':
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_buttonn:
+                    return True
 
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_keyPush:
-            gameDisplay.fill(white)  
-            TextSurf, TextRect = text_objects("Key LEFT", largeText)    
-        if event.key == pygame.K_keyPush:
-            gameDisplay.fill(white)  
-            TextSurf, TextRect = text_objects("LEFT", largeText) 
-        if event.key == pygame.K_keyPush:
-            pause = True
-            paused()
+    if type == 'box':
+        return True
+                    
 
 # ON = 1
 # OFF = 0
@@ -123,11 +117,13 @@ def testLoop():
     gameExit = False
  
     while not gameExit:
- 
-        # Keyboard
-        #while (event in pygame.event.get()) or buttonPressed() == True:
 
-        keyPressed()   
+        if buttonPressed('b','keyboard'):
+            print('Button 1 pressed') 
+
+
+
+        #keyPressed()   
         # for event in pygame.event.get():   
         #     while event in pygame.event.get():
         #         print(event)
